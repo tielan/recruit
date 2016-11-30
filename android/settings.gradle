@@ -1,0 +1,3 @@
+rootProject.name = 'zp01'
+
+include ':app'

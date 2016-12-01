@@ -8,7 +8,7 @@ import {
   View
 } from 'react-native';
 
-import { naviGoBack } from './utils/CommonUtil';
+import { naviGoBack } from './utils/CommonUtils';
 import Splash from './pages/Splash';
 
 let tempNavigator;

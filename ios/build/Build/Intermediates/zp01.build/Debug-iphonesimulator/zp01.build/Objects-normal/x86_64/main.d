@@ -1,2 +1,2 @@
-dependencies: /Users/liuyin/Desktop/git/zp01/ios/zp01/main.m \
-  /Users/liuyin/Desktop/git/zp01/ios/zp01/AppDelegate.h
+dependencies: /Users/iosteam/Desktop/git/recruit/ios/zp01/main.m \
+  /Users/iosteam/Desktop/git/recruit/ios/zp01/AppDelegate.h

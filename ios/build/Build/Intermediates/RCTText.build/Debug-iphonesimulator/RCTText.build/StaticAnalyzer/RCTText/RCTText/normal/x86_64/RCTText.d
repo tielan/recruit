@@ -1,7 +1,7 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTText.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTText.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTShadowText.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTText.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTText.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTShadowText.h \
   ../../React/Views/RCTShadowView.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTComponent.h \
   ../../React/Base/RCTRootView.h ../../React/Base/RCTBridge.h \

@@ -2,12 +2,13 @@
 
 import React, { Component, } from 'react';
 import {connect} from 'react-redux';
-import Main from '../pages/main';
+
+import MainPage from '../pages/MainPage';
 
 class MainContainer extends Component {
   render() {
     return (
-      <Main {...this.props} />
+      <MainPage {...this.props} />
     );
   }
 }
@@ -20,6 +21,7 @@ function mapStateToProps(state) {
     userInfo,
     tabIndex,
   }
+
 }
 
 export default connect(mapStateToProps)(MainContainer);

@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTTextSelection.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTTextSelection.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTTextSelection.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTTextSelection.h \
   ../../React/Base/RCTConvert.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTAnimationType.h \
   ../../React/Views/RCTBorderStyle.h \

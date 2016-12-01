@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTNetInfo.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTNetInfo.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTNetInfo.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTNetInfo.h \
   ../../React/Modules/RCTEventEmitter.h ../../React/Base/RCTBridge.h \
   ../../React/Base/RCTBridgeDelegate.h \
   ../../React/Base/RCTJavaScriptLoader.h ../../React/Base/RCTDefines.h \

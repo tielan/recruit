@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTDataRequestHandler.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTDefines.h \
   ../../React/Base/RCTURLRequestDelegate.h \

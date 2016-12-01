@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Settings/RCTSettingsManager.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Settings/RCTSettingsManager.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Settings/RCTSettingsManager.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Settings/RCTSettingsManager.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTDefines.h \
   ../../React/Base/RCTBridge.h ../../React/Base/RCTBridgeDelegate.h \
   ../../React/Base/RCTJavaScriptLoader.h \

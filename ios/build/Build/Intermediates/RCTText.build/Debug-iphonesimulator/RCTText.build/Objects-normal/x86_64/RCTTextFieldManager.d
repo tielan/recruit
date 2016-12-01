@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTTextFieldManager.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTTextFieldManager.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTTextFieldManager.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTTextFieldManager.h \
   ../../React/Views/RCTViewManager.h ../../React/Base/RCTBridgeModule.h \
   ../../React/Base/RCTDefines.h ../../React/Base/RCTConvert.h \
   ../../React/CSSLayout/CSSLayout.h ../../React/CSSLayout/CSSMacros.h \
@@ -15,5 +15,5 @@ dependencies: \
   ../../React/Base/RCTFrameUpdate.h ../../React/Base/RCTInvalidating.h \
   ../../React/Views/UIView+React.h ../../React/Views/RCTComponent.h \
   ../../React/Views/RCTShadowView.h ../../React/Base/RCTRootView.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTTextField.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTTextField.h \
   ../../React/Views/RCTFont.h

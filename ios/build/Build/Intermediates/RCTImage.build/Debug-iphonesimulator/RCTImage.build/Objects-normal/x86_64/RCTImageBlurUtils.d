@@ -1,4 +1,4 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageBlurUtils.h \
   ../../React/Base/RCTDefines.h

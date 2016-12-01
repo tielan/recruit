@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageViewManager.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageViewManager.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageViewManager.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageViewManager.h \
   ../../React/Views/RCTViewManager.h ../../React/Base/RCTBridgeModule.h \
   ../../React/Base/RCTDefines.h ../../React/Base/RCTConvert.h \
   ../../React/CSSLayout/CSSLayout.h ../../React/CSSLayout/CSSMacros.h \
@@ -14,9 +14,9 @@ dependencies: \
   ../../React/Base/RCTJavaScriptLoader.h \
   ../../React/Base/RCTFrameUpdate.h ../../React/Base/RCTInvalidating.h \
   ../../React/Views/UIView+React.h ../../React/Views/RCTComponent.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageLoader.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTURLRequestDelegate.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
   ../../React/Base/RCTImageSource.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTImageView.h
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTImageView.h

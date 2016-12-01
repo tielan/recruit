@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTResizeMode.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTResizeMode.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Image/RCTResizeMode.h \
   ../../React/Base/RCTConvert.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTAnimationType.h \
   ../../React/Views/RCTBorderStyle.h \

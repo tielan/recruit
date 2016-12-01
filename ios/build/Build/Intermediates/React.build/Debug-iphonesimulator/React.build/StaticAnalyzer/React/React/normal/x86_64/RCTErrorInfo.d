@@ -1,4 +1,4 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTErrorInfo.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTErrorInfo.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTJSStackFrame.h
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTErrorInfo.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTErrorInfo.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTJSStackFrame.h

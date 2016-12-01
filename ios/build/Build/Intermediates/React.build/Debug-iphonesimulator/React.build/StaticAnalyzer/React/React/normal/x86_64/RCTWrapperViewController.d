@@ -1,18 +1,18 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTWrapperViewController.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTWrapperViewController.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTViewControllerProtocol.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTEventDispatcher.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTBridge.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTDefines.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTBridgeModule.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTFrameUpdate.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTInvalidating.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTNavItem.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTComponent.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTUtils.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Base/RCTAssert.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/UIView+React.h \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTWrapperViewController.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTWrapperViewController.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTViewControllerProtocol.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTEventDispatcher.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTBridge.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTBridgeDelegate.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTJavaScriptLoader.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTDefines.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTBridgeModule.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTFrameUpdate.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTInvalidating.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTNavItem.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTComponent.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTUtils.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Base/RCTAssert.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/UIView+React.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTAutoInsetsProtocol.h

@@ -8,7 +8,7 @@ import {
   Text
 } from 'react-native';
 
-import { naviGoBack } from '../../utils/CommonUtils';
+import { naviGoBack } from '../utils/CommonUtils';
 import ImageButton from './ImageButton';
 import Button from './Button';
 
@@ -50,7 +50,7 @@ const Toolbar = ({
       actions={actions}
       onActionSelected={onActionSelected}
       onIconClicked={handleIconClicked}
-      navIcon={navIcon === undefined ? iconLeft : navIcon}
+      navIcon={navigator ? iconLeft : navIcon}
       titleColor="#fff"
       title={title}
       />
@@ -61,16 +61,20 @@ const Toolbar = ({
     showActionButton = action !== undefined;
     return (
       <View style={styles.toolbar}>
-        <ImageButton
-          containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
-          source={navIcon === undefined ? iconLeftIOS : navIcon}
-          style={styles.leftIOS}
-          onPress={handleIconClicked}
-          />
+        {
+          navigator ? <ImageButton
+            containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
+            source={navIcon === undefined ? iconLeftIOS : navIcon}
+            style={styles.leftIOS}
+            onPress={handleIconClicked}
+            /> : <View style={styles.leftIOS}
+              />
+        }
+
         <Text
           numberOfLines={1}
           style={[styles.titleIOS,
-            showActionButton ? { paddingLeft: 0 } : { paddingLeft: -35 }]}
+          showActionButton ? { paddingLeft: 0 } : { paddingLeft: -35 }]}
           >
           {title}
         </Text>
@@ -102,7 +106,7 @@ const Toolbar = ({
 const styles = StyleSheet.create({
   toolbar: {
     flexDirection: 'row',
-    backgroundColor: '#047DE6',
+    backgroundColor: '#42beff',
     alignItems: 'center',
     height: 58
   },
@@ -133,9 +137,9 @@ const styles = StyleSheet.create({
   }
 });
 
-DToolbar.propTypes = propTypes;
+Toolbar.propTypes = propTypes;
 
-DToolbar.defaultProps = {
+Toolbar.defaultProps = {
   onActionSelected() { },
   title: '',
   actions: []

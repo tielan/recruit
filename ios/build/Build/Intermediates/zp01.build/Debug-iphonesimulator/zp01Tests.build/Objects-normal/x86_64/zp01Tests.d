@@ -1,4 +1,5 @@
-dependencies: /Users/liuyin/Desktop/git/zp01/ios/zp01Tests/zp01Tests.m \
+dependencies: \
+  /Users/iosteam/Desktop/git/recruit/ios/zp01Tests/zp01Tests.m \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Modules/module.modulemap \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIRemote.h \
   /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks/XCTest.framework/Headers/XCUIKeyboardKeys.h \

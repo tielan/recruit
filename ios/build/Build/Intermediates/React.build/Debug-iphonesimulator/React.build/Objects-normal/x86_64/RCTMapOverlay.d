@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTMapOverlay.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTMapOverlay.h
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTMapOverlay.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTMapOverlay.h

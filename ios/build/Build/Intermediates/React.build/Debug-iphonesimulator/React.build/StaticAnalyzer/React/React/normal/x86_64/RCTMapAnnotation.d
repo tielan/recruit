@@ -1,3 +1,3 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTMapAnnotation.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/React/Views/RCTMapAnnotation.h
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTMapAnnotation.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/React/Views/RCTMapAnnotation.h

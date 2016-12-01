@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheetManager.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheetManager.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheetManager.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/ActionSheetIOS/RCTActionSheetManager.h \
   ../../React/Base/RCTBridge.h ../../React/Base/RCTBridgeDelegate.h \
   ../../React/Base/RCTJavaScriptLoader.h ../../React/Base/RCTDefines.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTFrameUpdate.h \

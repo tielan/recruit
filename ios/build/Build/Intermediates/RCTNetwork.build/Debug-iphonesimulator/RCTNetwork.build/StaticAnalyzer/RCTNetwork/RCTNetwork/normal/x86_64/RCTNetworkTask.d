@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTNetworkTask.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Network/RCTNetworkTask.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTNetworkTask.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Network/RCTNetworkTask.h \
   ../../React/Base/RCTURLRequestDelegate.h \
   ../../React/Base/RCTURLRequestHandler.h \
   ../../React/Base/RCTBridgeModule.h ../../React/Base/RCTDefines.h \

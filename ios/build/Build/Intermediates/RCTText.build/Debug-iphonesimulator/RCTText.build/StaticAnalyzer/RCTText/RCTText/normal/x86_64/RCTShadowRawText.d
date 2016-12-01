@@ -1,6 +1,6 @@
 dependencies: \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTShadowRawText.m \
-  /Users/liuyin/Desktop/git/zp01/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTShadowRawText.m \
+  /Users/iosteam/Desktop/git/recruit/node_modules/react-native/Libraries/Text/RCTShadowRawText.h \
   ../../React/Views/RCTShadowView.h ../../React/CSSLayout/CSSLayout.h \
   ../../React/CSSLayout/CSSMacros.h ../../React/Views/RCTComponent.h \
   ../../React/Base/RCTRootView.h ../../React/Base/RCTBridge.h \

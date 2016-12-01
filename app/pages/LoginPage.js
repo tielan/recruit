@@ -15,10 +15,14 @@ import { Iconfont } from 'react-native-go';
 import { fetchLogin } from '../actions/LoginAction';
 import Spinner from '../comm/Spinner';
 
+import RegisterContainer from '../containers/RegisterContainer';
+import MainContainer from '../containers/MainContainer';
+
 export default class Login extends React.Component {
     constructor(props) {
         super(props);
         this.onLogin = this.onLogin.bind(this);
+        this.onRegister = this.onRegister.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -99,27 +103,37 @@ export default class Login extends React.Component {
                 <TouchableHighlight onPress={this.onLogin}
                     underlayColor={'#999'}
                     style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 26, color: 'white',  }}>登录</Text>
+                    <Text style={{ fontSize: 26, color: 'white', }}>登录</Text>
                 </TouchableHighlight >
             </View >
-            <View style={{flex:1}} />
-            <View style={{ flexDirection: 'row', height: 48,marginBottom:20, backgroundColor: 'transparent', alignItems: 'center' }}>
-                    <View style={{flex:1}} />
-                    <TouchableHighlight onPress={this.onLogin} underlayColor={'#999'} style={{ height: 22, alignItems: 'center', justifyContent: 'center' }}>
-                        <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center' }}>
-                        <Text style={{ fontSize: 18, color: 'white'}}>没有账号？</Text>
+            <View style={{ flex: 1 }} />
+            <View style={{ flexDirection: 'row', height: 48, marginBottom: 20, backgroundColor: 'transparent', alignItems: 'center' }}>
+                <View style={{ flex: 1 }} />
+                <TouchableHighlight onPress={this.onRegister} underlayColor={'#999'} style={{ height: 22, alignItems: 'center', justifyContent: 'center' }}>
+                    <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center' }}>
+                        <Text style={{ fontSize: 18, color: 'white' }}>没有账号？</Text>
                         <Text style={{ fontSize: 18, color: '#fd8c26' }}>立即注册</Text>
-                        </View>
-                    </TouchableHighlight >
-                    <View style={{flex:1}} />
-                </View>
+                    </View>
+                </TouchableHighlight >
+                <View style={{ flex: 1 }} />
+            </View>
             <View><Spinner visible={login.logining} text={'登录中,请稍后...'} /></View>
         </Image >);
     }
 
     onLogin() {
-        const {dispatch, login} = this.props;
-        dispatch(fetchLogin(login.username, login.password));
+        this.props.navigator.push({
+            name: "MainContainer",
+            component: MainContainer,
+        });
+        /* const {dispatch, login} = this.props;
+         dispatch(fetchLogin(login.username, login.password));*/
+    }
+    onRegister() {
+        this.props.navigator.push({
+            name: "RegisterContainer",
+            component: RegisterContainer,
+        });
     }
 }
 

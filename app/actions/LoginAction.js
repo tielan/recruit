@@ -5,7 +5,8 @@ import { request } from '../utils/RequestUtils';
 export function fetchLogin(username, password) {
   return dispatch => {
     dispatch(fetchLoginStart());
-    let body = JSON.stringify({
+    dispatch(receiveLoginResult());
+  /*  let body = JSON.stringify({
       userName: username,
       password: password,
     });
@@ -16,7 +17,7 @@ export function fetchLogin(username, password) {
       .catch((error) => {
         console.error('fetchLogin error: ' + error);
         dispatch(receiveLoginResult());
-      })
+      })*/
   }
 }
 

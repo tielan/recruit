@@ -1,13 +1,12 @@
-
 import React, { Component, } from 'react';
 import { connect } from 'react-redux';
-import LoginPage from '../pages/LoginPage';
+import GongShiShowPage from '../pages/GongShiShowPage';
 
-class LoginContainer extends Component {
+class GongShiShowContainer extends Component {
 
   render() {
     return (
-      <LoginPage {...this.props} />
+      <GongShiShowPage {...this.props} />
     );
   }
 }
@@ -19,4 +18,4 @@ function mapStateToProps(state) {
   }
 }
 
-export default connect(mapStateToProps)(LoginContainer);
+export default connect(mapStateToProps)(GongShiShowContainer);

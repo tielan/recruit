@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { naviGoBack } from './utils/CommonUtils';
-import Splash from './pages/Splash';
+import Splash from './pages/login/Splash';
 
 let tempNavigator;
 let isRemoved = false;

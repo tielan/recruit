@@ -13,8 +13,8 @@ import {
 } from 'react-native';
 
 import { Iconfont,LineView } from 'react-native-go';
-import Spinner from '../comm/Spinner';
-import Toolbar from '../comm/Toolbar';
+import Spinner from '../../comm/Spinner';
+import Toolbar from '../../comm/Toolbar';
 
 export default class ForgetPassWordPage extends React.Component {
     constructor(props) {

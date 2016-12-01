@@ -6,7 +6,7 @@ import {
   InteractionManager
 } from 'react-native';
 
-import LoginContainer from '../containers/LoginContainer';
+import LoginContainer from '../../containers/login/LoginContainer';
 
 class Splash extends React.Component {
   constructor(props) {
@@ -72,7 +72,7 @@ class Splash extends React.Component {
           height: Dimensions.get('window').height,
           transform: [{ scale: this.state.bounceValue }] 
         }}
-        source={require('../imgs/bj.png')}
+        source={require('../../imgs/bj.png')}
       />
     );
   }

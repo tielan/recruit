@@ -13,9 +13,9 @@ import {
 } from 'react-native';
 
 import { Iconfont } from 'react-native-go';
-import { naviGoBack } from '../utils/CommonUtils';
-import { fetchLogin } from '../actions/LoginAction';
-import Spinner from '../comm/Spinner';
+import { naviGoBack } from '../../utils/CommonUtils';
+import { fetchLogin } from '../../actions/LoginAction';
+import Spinner from '../../comm/Spinner';
 
 export default class RegisterPage extends React.Component {
     constructor(props) {
@@ -52,7 +52,7 @@ export default class RegisterPage extends React.Component {
     render() {
         const {dispatch, login} = this.props;
         constdismissKeyboard = require('dismissKeyboard');
-        return (<Image style={styles.container} source={require('../imgs/bj.png')}>
+        return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
             <TouchableHighlight onPress={this.handleIconClicked}
                 underlayColor={'transparent'}
                 style={{ height: 48, marginTop:20, alignItems: 'flex-start',paddingLeft:8}}>
@@ -67,7 +67,7 @@ export default class RegisterPage extends React.Component {
 
             <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
                 <Image style={{ width: 100, height: 100, margin: 8, borderRadius: 0, }}
-                    source={require('../imgs/login/logo.png')} />
+                    source={require('../../imgs/login/logo.png')} />
             </View>
             <View style={{ margin: 16, backgroundColor: 'transparent', elevation: 4 }}>
                 <View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>

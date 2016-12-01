@@ -12,12 +12,12 @@ import {
 } from 'react-native';
 import { Iconfont } from 'react-native-go';
 
-import { fetchLogin } from '../actions/LoginAction';
-import Spinner from '../comm/Spinner';
+import { fetchLogin } from '../../actions/LoginAction';
+import Spinner from '../../comm/Spinner';
 
-import ForgetPassWordContainer from '../containers/ForgetPassWordContainer';
-import RegisterContainer from '../containers/RegisterContainer';
-import MainContainer from '../containers/MainContainer';
+import ForgetPassWordContainer from '../../containers/login/ForgetPassWordContainer';
+import RegisterContainer from '../../containers/login/RegisterContainer';
+import MainContainer from '../../containers/MainContainer';
 
 export default class Login extends React.Component {
     constructor(props) {
@@ -47,11 +47,11 @@ export default class Login extends React.Component {
     render() {
         const {dispatch, login} = this.props;
         constdismissKeyboard = require('dismissKeyboard');
-        return (<Image style={styles.container} source={require('../imgs/bj.png')}>
+        return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
 
             <View style={{ alignItems: 'center', marginTop: 64, marginBottom: 20 }}>
                 <Image style={{ width: 100, height: 100, margin: 8, borderRadius: 0, }}
-                    source={require('../imgs/login/logo.png')} />
+                    source={require('../../imgs/login/logo.png')} />
             </View>
             <View style={{ margin: 16, backgroundColor: 'transparent', elevation: 4 }}>
                 <View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>

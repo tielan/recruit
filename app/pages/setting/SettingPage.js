@@ -16,7 +16,7 @@ import {
 import { Iconfont, LineView } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
 import Toolbar from '../../comm/Toolbar';
-import ForgetPassWordContainer from '../../containers/ForgetPassWordContainer'
+import ForgetPassWordContainer from '../../containers/login/ForgetPassWordContainer'
 
 export default class SettingPage extends React.Component {
     constructor(props) {

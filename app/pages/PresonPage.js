@@ -17,6 +17,7 @@ import Toolbar from '../comm/Toolbar';
 import ListItemSetting from '../comm/ListItemSetting';
 import SettingContainer from '../containers/setting/SettingContainer';
 import MyCVContainer from '../containers/setting/MyCVContainer';
+import ZhiWeiDetailContainer from '../containers/ZhiWeiDetailContainer'
 
 var WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -26,6 +27,7 @@ class PresonPage extends Component {
         super(props);
         this.onSetting = this.onSetting.bind(this);
         this.onMyCV = this.onMyCV.bind(this);
+        this.onHasSend = this.onHasSend.bind(this);
 
     }
     onMyCV() {
@@ -38,6 +40,12 @@ class PresonPage extends Component {
         this.props.navigator.push({
             name: "SettingContainer",
             component: SettingContainer,
+        });
+    }
+    onHasSend() {
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
         });
     }
 
@@ -63,10 +71,12 @@ class PresonPage extends Component {
                     <ListItemSetting
                         icon='e683'
                         iconColor='#fe7442'
+                        onPress={this.onHasSend}
                         showText='我投递的岗位' />
                     <ListItemSetting
                         icon='e67B'
                         iconColor='#83d130'
+                        onPress={this.onHasSend}
                         showText='我的收藏' />
                     <View style={styles.emptyview}></View>
                     <ListItemSetting

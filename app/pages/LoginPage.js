@@ -15,6 +15,7 @@ import { Iconfont } from 'react-native-go';
 import { fetchLogin } from '../actions/LoginAction';
 import Spinner from '../comm/Spinner';
 
+import ForgetPassWordContainer from '../containers/ForgetPassWordContainer';
 import RegisterContainer from '../containers/RegisterContainer';
 import MainContainer from '../containers/MainContainer';
 
@@ -23,6 +24,7 @@ export default class Login extends React.Component {
         super(props);
         this.onLogin = this.onLogin.bind(this);
         this.onRegister = this.onRegister.bind(this);
+        this.onForgetPwd = this.onForgetPwd.bind(this);
     }
 
     componentWillReceiveProps(nextProps) {
@@ -94,7 +96,7 @@ export default class Login extends React.Component {
                 </View>
                 <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center' }}>
                     <View style={{ height: 22, flex: 1, backgroundColor: 'transparent' }} />
-                    <TouchableHighlight onPress={this.onLogin} underlayColor={'#999'} style={{ height: 22, alignItems: 'center', justifyContent: 'center' }}>
+                    <TouchableHighlight onPress={this.onForgetPwd} underlayColor={'#999'} style={{ height: 22, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ fontSize: 16, color: 'white', }}>忘记密码？</Text>
                     </TouchableHighlight >
                 </View>
@@ -128,6 +130,12 @@ export default class Login extends React.Component {
         });
         /* const {dispatch, login} = this.props;
          dispatch(fetchLogin(login.username, login.password));*/
+    }
+    onForgetPwd() {
+        this.props.navigator.push({
+            name: "ForgetPassWordContainer",
+            component: ForgetPassWordContainer,
+        });
     }
     onRegister() {
         this.props.navigator.push({

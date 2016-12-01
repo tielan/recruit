@@ -15,6 +15,9 @@ import { Iconfont, LineView } from 'react-native-go';
 import RefreshFooter from '../comm/RefreshFooter';
 import Toolbar from '../comm/Toolbar';
 import GridView from '../comm/GridView';
+
+import ZhiWeiListContainer from '../containers/ZhiWeiListContainer'
+
 const WINDOW_WIDTH = Dimensions.get('window').width;
 let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 let canLoadMore;
@@ -27,6 +30,7 @@ class HomePage extends React.Component {
         this.onEndReached = this.onEndReached.bind(this);
         this._renderGridItem = this._renderGridItem.bind(this);
         this._renderRowView = this._renderRowView.bind(this);
+        this._onMenuClick = this._onMenuClick.bind(this);
         canLoadMore = false;
         this.state = {
             dataSource: ds.cloneWithRows(_data),
@@ -55,6 +59,12 @@ class HomePage extends React.Component {
             },],
         };
 
+    }
+    _onMenuClick(item) {
+        this.props.navigator.push({
+            name: "ZhiWeiListContainer",
+            component: ZhiWeiListContainer,
+        });
     }
     _renderGridItem(item, index) {
         return (

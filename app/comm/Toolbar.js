@@ -22,7 +22,7 @@ const propTypes = {
   navigator: PropTypes.object,
   onActionSelected: PropTypes.func,
   onIconClicked: PropTypes.func,
-  navIcon: PropTypes.number
+  navIcon: PropTypes.object
 };
 
 const Toolbar = ({
@@ -67,8 +67,8 @@ const Toolbar = ({
             source={navIcon === undefined ? iconLeftIOS : navIcon}
             style={styles.leftIOS}
             onPress={handleIconClicked}
-            /> : <View style={styles.leftIOS}
-              />
+            /> : 
+            <View style={styles.leftIOS}  />
         }
 
         <Text

@@ -10,7 +10,7 @@ import {
     ListView
 } from 'react-native';
 
-import Toolbar from '../comm/Toolbar';
+import Toolbar from '../../comm/Toolbar';
 let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 
 class MessageListPage extends React.Component {

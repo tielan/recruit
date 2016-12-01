@@ -11,7 +11,7 @@ import {
 
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
-import MessageListContainer from '../containers/MessageListContainer';
+import MessageListContainer from '../containers/message/MessageListContainer';
 import Toolbar from '../comm/Toolbar';
 
 class MessagePage extends React.Component {

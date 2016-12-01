@@ -15,6 +15,8 @@ import {
 } from 'react-native';
 import Toolbar from '../comm/Toolbar';
 import ListItemSetting from '../comm/ListItemSetting';
+import SettingContainer from '../containers/setting/SettingContainer';
+import MyCVContainer from '../containers/setting/MyCVContainer';
 
 var WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -22,10 +24,23 @@ class PresonPage extends Component {
 
     constructor(props) {
         super(props);
-      
+        this.onSetting = this.onSetting.bind(this);
+        this.onMyCV = this.onMyCV.bind(this);
+
+    }
+    onMyCV() {
+        this.props.navigator.push({
+            name: "MyCVContainer",
+            component: MyCVContainer,
+        });
+    }
+    onSetting() {
+        this.props.navigator.push({
+            name: "SettingContainer",
+            component: SettingContainer,
+        });
     }
 
-  
     render() {
         return (
             <View style={styles.flex}>
@@ -43,6 +58,7 @@ class PresonPage extends Component {
                     <ListItemSetting
                         icon='e673'
                         iconColor='#ffc62b'
+                        onPress={this.onMyCV}
                         showText='我的简历' />
                     <ListItemSetting
                         icon='e683'
@@ -55,6 +71,7 @@ class PresonPage extends Component {
                     <View style={styles.emptyview}></View>
                     <ListItemSetting
                         icon='e677'
+                        onPress={this.onSetting}
                         iconColor='#15c6ed'
                         showText='设置' />
                 </ScrollView>
@@ -114,7 +131,7 @@ const styles = StyleSheet.create({
     },
     nametitle: {
         fontSize: 20,
-        marginTop:8,
+        marginTop: 8,
         backgroundColor: 'transparent',
         color: '#fff',
     },

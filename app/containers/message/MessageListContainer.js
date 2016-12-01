@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 import { connect } from 'react-redux';
-import MessageListPage from '../pages/MessageListPage';
+import MessageListPage from '../../pages/message/MessageListPage';
 
 class MessageListContainer extends Component {
 

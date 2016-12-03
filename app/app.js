@@ -10,19 +10,19 @@ import {
 
 import { naviGoBack } from './utils/CommonUtils';
 import Splash from './pages/login/Splash';
+import { FetchManger } from 'react-native-go'
 
 let tempNavigator;
 let isRemoved = false;
 
 class App extends React.Component {
-  static configureScene() {
-    return Navigator.SceneConfigs.PushFromRight;
-  }
 
   constructor(props) {
     super(props);
+    FetchManger.initConfig('http://222.240.214.122:18000/mobile_interfaces/mobile_info/');
     this.renderScene = this.renderScene.bind(this);
     BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+
   }
 
   goBack() {
@@ -30,7 +30,7 @@ class App extends React.Component {
   }
 
   renderScene(route, navigator) {
-    
+
     const Component = route.component;
     tempNavigator = navigator;
     if (route.name === 'WebViewPage') {
@@ -43,6 +43,9 @@ class App extends React.Component {
       <Component navigator={navigator} route={route} />
     );
   }
+  static configureScene() {
+    return Navigator.SceneConfigs.PushFromRight;
+  }
 
   render() {
     return (
@@ -50,7 +53,7 @@ class App extends React.Component {
         <StatusBar
           backgroundColor="#3e9ce9"
           barStyle="light-content"
-        />
+          />
         <Navigator
           style={styles.navigator}
           configureScene={this.configureScene}
@@ -59,7 +62,7 @@ class App extends React.Component {
             component: Splash,
             name: 'Splash'
           }}
-        />
+          />
       </View>
     );
   }

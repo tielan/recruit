@@ -12,15 +12,15 @@ import {
     ImageButton
 } from 'react-native';
 
+import dismissKeyboard from 'dismissKeyboard';
 import { Iconfont } from 'react-native-go';
 import { naviGoBack } from '../../utils/CommonUtils';
-import { fetchLogin } from '../../actions/LoginAction';
+import { fetchRegister } from '../../actions/LoginAction';
 import Spinner from '../../comm/Spinner';
 
 export default class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
-        this.onLogin = this.onLogin.bind(this);
         this.handleIconClicked = this.handleIconClicked.bind(this);
 
     }
@@ -28,34 +28,31 @@ export default class RegisterPage extends React.Component {
         naviGoBack(this.props.navigator);
     }
 
-    onLogin() {
-        const {dispatch, login} = this.props;
-        dispatch(fetchLogin(login.username, login.password));
-    }
     componentWillReceiveProps(nextProps) {
-        const {login} = nextProps;
-        if (login.logined) {
-            if (!login.rawData) {
-                Alert.alert('', '网络请求失败，请稍后再试！', [{ text: '好' },]);
-            } else if (login.rawData.code == 'success') {
-                Alert.alert('', '登陆成功', [{ text: '好' },]);
+        const { register } = nextProps;
+        if (register.data) {
+            debugger;
+            if (register.data.success) {
                 //nextProps.navigator.push({
                 //name:"firstLogin",
                 //component:firstLoginContainer,
                 //});
-            } else if (login.rawData.code == 'failure') {
-                Alert.alert('', login.rawData.msg, [{ text: '好' },]);
+            } else {
+                Alert.alert('', register.data.msg ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
             }
+        } else if (register.errMsg) {
+            Alert.alert('', register.errMsg, [{ text: '好' },]);
         }
+       
     }
 
     render() {
-        const {dispatch, login} = this.props;
-        constdismissKeyboard = require('dismissKeyboard');
+        const { dispatch, register } = this.props;
+
         return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
             <TouchableHighlight onPress={this.handleIconClicked}
                 underlayColor={'transparent'}
-                style={{ height: 48, marginTop:20, alignItems: 'flex-start',paddingLeft:8}}>
+                style={{ height: 48, marginTop: 20, alignItems: 'flex-start', paddingLeft: 8 }}>
                 <View>
                     <Iconfont fontFamily={'OAIndexIcon'}
                         icon='e647'
@@ -79,14 +76,14 @@ export default class RegisterPage extends React.Component {
                             />
                     </View>
                     <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
-                        placeholder={'请输入用户名'}
+                        placeholder={'请输入手机号'}
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}
                         autoCorrect={false}
-                        onChangeText={(username) => {
-                            login.username = username;
+                        onChangeText={(user_name) => {
+                            register.user_name = user_name;
                         } }
                         />
                 </View>
@@ -105,8 +102,8 @@ export default class RegisterPage extends React.Component {
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
-                        onChangeText={(password) => {
-                            login.password = password;
+                        onChangeText={(disability_code) => {
+                            register.disability_code = disability_code;
                         } }
                         />
                 </View>
@@ -125,23 +122,27 @@ export default class RegisterPage extends React.Component {
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
-                        onChangeText={(password) => {
-                            login.password = password;
+                        onChangeText={(user_password) => {
+                            register.user_password = user_password;
                         } }
                         />
                 </View>
-                <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center' ,justifyContent: 'center'}}>
+                <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ fontSize: 14, color: 'white' }}>密码为6-20位数字、字母组合，不含下划线</Text>
                 </View>
             </View >
             <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
-                <TouchableHighlight onPress={this.onLogin}
+                <TouchableHighlight onPress={
+                    () => dispatch(fetchRegister(register))
+                }
                     underlayColor={'#999'}
                     style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ fontSize: 26, color: 'white', }}>注册</Text>
                 </TouchableHighlight >
             </View >
-            <View><Spinner visible={login.logining} text={'注册中,请稍后...'} /></View>
+            <View>
+                <Spinner visible={false} text={'注册中,请稍后...'} />
+            </View>
         </Image >);
     }
 

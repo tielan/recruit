@@ -1,23 +1,11 @@
 
 import * as types from './ActionTypes';
-import { request } from '../utils/RequestUtils';
+import { FetchManger } from 'react-native-go'
 
 export function fetchLogin(username, password) {
   return dispatch => {
     dispatch(fetchLoginStart());
     dispatch(receiveLoginResult());
-  /*  let body = JSON.stringify({
-      userName: username,
-      password: password,
-    });
-    return request("", 'post', body, {'Accept': 'application/json', 'Content-Type': 'application/json',})
-      .then((responseData) => {
-        dispatch(receiveLoginResult(responseData));
-      })
-      .catch((error) => {
-        console.error('fetchLogin error: ' + error);
-        dispatch(receiveLoginResult());
-      })*/
   }
 }
 
@@ -30,6 +18,43 @@ function fetchLoginStart() {
 function receiveLoginResult(responseData) {
   return {
     type: types.RECEIVE_LOGIN_RESULT,
+    result: responseData,
+  }
+}
+//注册
+/*
+user_name: '',
+user_password: '',
+disability_code: '',
+*/
+export function fetchRegister(register) {
+
+  let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
+
+  return dispatch => {
+    dispatch(startActon());
+    return FetchManger.postUri('personalRegist.do',param).then((responseData) => {
+      dispatch(receiveResult(responseData));
+    }).catch((error) => {
+        dispatch(receiveErrorResult(error));
+      })
+  };
+}
+
+function startActon() {
+  return {
+    type: types.START_register_ACTION,
+  }
+}
+function receiveErrorResult(errMsg) {
+  return {
+    type: types.RECEIVE_register_ACTION,
+    errMsg: errMsg,
+  }
+}
+function receiveResult(responseData) {
+  return {
+    type: types.RECEIVE_register_ACTION,
     result: responseData,
   }
 }

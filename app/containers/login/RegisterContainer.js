@@ -13,9 +13,9 @@ class RegisterContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
+  const { register } = state;
   return {
-    login,
+    register,
   }
 }
 

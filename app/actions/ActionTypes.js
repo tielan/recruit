@@ -1,6 +1,8 @@
 /**
  * 进行定义请求Action类型
  */
+export const STOP_loading_ACTION = 'STOP_loading_ACTION';  //开始登陆
+
 //注册
 export const START_register_ACTION = 'START_register_ACTION';  //开始登陆
 export const RECEIVE_register_ACTION = 'RECEIVE_register_ACTION'; //收到登陆结果

@@ -3,6 +3,7 @@ import React from 'react';
 import {
   StyleSheet,
   View,
+  Text,
   Modal,
   ActivityIndicator
 } from 'react-native';
@@ -25,31 +26,71 @@ const styles = StyleSheet.create({
     right: 0,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  textContainer: {
+    flex: 1,
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    justifyContent: 'center',
+    alignItems: 'center',
+    position: 'absolute',
+  },
+  textContent: {
+    top: 80,
+    height: 50,
+    fontSize: 20,
+    fontWeight: 'bold'
   }
 });
 
 const SIZES = ['small', 'normal', 'large'];
 
-const propTypes = {
+export default class Spinner extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = { visible: this.props.visible, textContent: this.props.textContent };
+  }
+
+  static propTypes = {
     visible: React.PropTypes.bool,
+    textContent: React.PropTypes.string,
     color: React.PropTypes.string,
     size: React.PropTypes.oneOf(SIZES),
     overlayColor: React.PropTypes.string
   };
 
-export default class Spinner extends React.Component {
+  static defaultProps = {
+    visible: false,
+    textContent: "",
+    color: 'white',
+    size: 'large', // 'normal',
+    overlayColor: 'rgba(0, 0, 0, 0.25)'
+  };
 
-  constructor(props) {
-    super(props);
-    this.state = { visible: this.props.visible };
-  }
   close() {
     this.setState({ visible: false });
   }
 
   componentWillReceiveProps(nextProps) {
-    const { visible } = nextProps;
-    this.setState({ visible });
+    const { visible, textContent } = nextProps;
+    this.setState({ visible, textContent });
+  }
+
+  _renderDefaultContent() {
+    return (
+      <View style={styles.background}>
+        <ActivityIndicator
+          color={this.props.color}
+          size={this.props.size}
+          style={{ flex: 1 }}
+        />
+        <View style={styles.textContainer}>
+          <Text style={[styles.textContent, this.props.textStyle]}>{this.state.textContent}</Text>
+        </View>
+      </View>);
   }
 
   _renderSpinner() {
@@ -61,18 +102,11 @@ export default class Spinner extends React.Component {
       );
 
     const spinner = (
-      <View style={styles.container} key={`spinner_${Date.now()}`}>
-        <View
-          style={[
-            styles.background,
-            { backgroundColor: this.props.overlayColor }
-          ]}>
-          <ActivityIndicator
-            color={this.props.color}
-            size={this.props.size}
-            style={{ flex: 1 }}
-            />
-        </View>
+      <View style={[
+        styles.container,
+        { backgroundColor: this.props.overlayColor }
+      ]} key={`spinner_${Date.now()}`}>
+        {this.props.children ? this.props.children : this._renderDefaultContent()}
       </View>
     );
 
@@ -89,10 +123,3 @@ export default class Spinner extends React.Component {
   }
 
 }
-Spinner.propTypes = propTypes;
-Spinner.defaultProps = {
-    visible: false,
-    color: 'white',
-    size: 'large', // 'normal',
-    overlayColor: 'rgba(0, 0, 0, 0.25)'
-};

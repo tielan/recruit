@@ -2,6 +2,13 @@
 import * as types from './ActionTypes';
 import { FetchManger } from 'react-native-go'
 
+export function stopLoad(){
+  return dispatch => {
+    dispatch({stopLoad:true,type:types.STOP_loading_ACTION});
+  }
+}
+
+
 export function fetchLogin(username, password) {
   return dispatch => {
     dispatch(fetchLoginStart());

@@ -25,27 +25,12 @@ export default class Login extends React.Component {
         this.onLogin = this.onLogin.bind(this);
         this.onRegister = this.onRegister.bind(this);
         this.onForgetPwd = this.onForgetPwd.bind(this);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        const {login} = nextProps;
-        if (login.logined) {
-            if (!login.rawData) {
-                Alert.alert('', '网络请求失败，请稍后再试！', [{ text: '好' },]);
-            } else if (login.rawData.code == 'success') {
-                Alert.alert('', '登陆成功', [{ text: '好' },]);
-                //nextProps.navigator.push({
-                //name:"firstLogin",
-                //component:firstLoginContainer,
-                //});
-            } else if (login.rawData.code == 'failure') {
-                Alert.alert('', login.rawData.msg, [{ text: '好' },]);
-            }
-        }
+        this.state = {
+            loading:false,
+        };
     }
 
     render() {
-        const {dispatch, login} = this.props;
         constdismissKeyboard = require('dismissKeyboard');
         return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
 
@@ -70,7 +55,7 @@ export default class Login extends React.Component {
                         autoCapitalize={'none'}
                         autoCorrect={false}
                         onChangeText={(username) => {
-                            login.username = username;
+                            
                         } }
                         />
                 </View>
@@ -90,7 +75,7 @@ export default class Login extends React.Component {
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
                         onChangeText={(password) => {
-                            login.password = password;
+                            
                         } }
                         />
                 </View>
@@ -119,17 +104,21 @@ export default class Login extends React.Component {
                 </TouchableHighlight >
                 <View style={{ flex: 1 }} />
             </View>
-            <View><Spinner visible={login.logining} text={'登录中,请稍后...'} /></View>
+            <View><Spinner visible={this.state.loading} text={'登录中,请稍后...'} /></View>
         </Image >);
     }
 
     onLogin() {
-        this.props.navigator.push({
-            name: "MainContainer",
-            component: MainContainer,
-        });
+        // this.props.navigator.push({
+        //     name: "MainContainer",
+        //     component: MainContainer,
+        // });
         /* const {dispatch, login} = this.props;
          dispatch(fetchLogin(login.username, login.password));*/
+         setTimeout(() => {
+             this.setState({loading:false});
+         },1);
+         this.setState({loading:true});
     }
     onForgetPwd() {
         this.props.navigator.push({

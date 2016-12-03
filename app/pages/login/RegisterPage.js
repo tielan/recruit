@@ -9,15 +9,18 @@ import {
     Alert,
     TouchableWithoutFeedback,
     Dimensions,
-    ImageButton
+    ImageButton,
+    InteractionManager
 } from 'react-native';
 
 import dismissKeyboard from 'dismissKeyboard';
 import { Iconfont } from 'react-native-go';
 import { naviGoBack } from '../../utils/CommonUtils';
-import { fetchRegister } from '../../actions/LoginAction';
+import { fetchRegister, stopLoad } from '../../actions/LoginAction';
 import Spinner from '../../comm/Spinner';
+import MainContainer from '../../containers/MainContainer';
 
+let count = 0
 export default class RegisterPage extends React.Component {
     constructor(props) {
         super(props);
@@ -29,27 +32,30 @@ export default class RegisterPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { register } = nextProps;
-        if (register.data) {
-            debugger;
-            if (register.data.success) {
-                //nextProps.navigator.push({
-                //name:"firstLogin",
-                //component:firstLoginContainer,
-                //});
-            } else {
-                Alert.alert('', register.data.msg ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
-            }
-        } else if (register.errMsg) {
-            Alert.alert('', register.errMsg, [{ text: '好' },]);
-        }
-       
+        const { dispatch, register } = nextProps;
+        if (register.data || register.errMsg) {
+            setTimeout(() => {
+                if (register.errMsg) {
+                    Alert.alert('', register.errMsg, [{ text: '好' },]);
+                }
+                if (register.data && register.data.success) {
+                    InteractionManager.runAfterInteractions(() => {
+                        nextProps.navigator.resetTo({
+                            name: "MainContainer",
+                            component: MainContainer,
+                        });
+                    });
+                } else {
+                     Alert.alert('',(register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
+                }
+            }, 200);
     }
+}
 
-    render() {
-        const { dispatch, register } = this.props;
-
-        return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
+render() {
+    const { dispatch, register } = this.props;
+    return (<View style={styles.container}>
+        <Image style={styles.container} source={require('../../imgs/bj.png')}>
             <TouchableHighlight onPress={this.handleIconClicked}
                 underlayColor={'transparent'}
                 style={{ height: 48, marginTop: 20, alignItems: 'flex-start', paddingLeft: 8 }}>
@@ -101,7 +107,6 @@ export default class RegisterPage extends React.Component {
                         underlineColorAndroid={'transparent'}
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
-                        secureTextEntry={true}
                         onChangeText={(disability_code) => {
                             register.disability_code = disability_code;
                         } }
@@ -140,11 +145,12 @@ export default class RegisterPage extends React.Component {
                     <Text style={{ fontSize: 26, color: 'white', }}>注册</Text>
                 </TouchableHighlight >
             </View >
-            <View>
-                <Spinner visible={false} text={'注册中,请稍后...'} />
-            </View>
-        </Image >);
-    }
+        </Image >
+        <View>
+            <Spinner visible={register.loading} />
+        </View>
+    </View>);
+}
 
 }
 

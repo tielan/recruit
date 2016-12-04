@@ -7,8 +7,6 @@ import {
 	Image,
 } from 'react-native';
 
-
-
 class ZhiWeiShowPage extends Component {
 	constructor(props) {
 		super(props);

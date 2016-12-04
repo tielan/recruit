@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import { naviGoBack } from './utils/CommonUtils';
-import Splash from './pages/login/Splash';
+import Splash from './Splash';
 import { FetchManger } from 'react-native-go'
 
 let tempNavigator;

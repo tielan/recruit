@@ -37,7 +37,6 @@ disability_code: '',
 export function fetchRegister(register) {
 
   let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
-
   return dispatch => {
     dispatch(startActon());
     return FetchManger.postUri('personalRegist.do',param).then((responseData) => {

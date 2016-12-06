@@ -2,6 +2,13 @@
 import * as types from './ActionTypes';
 import { FetchManger } from 'react-native-go'
 
+export function stopLoad(){
+  return dispatch => {
+    dispatch({stopLoad:true,type:types.STOP_loading_ACTION});
+  }
+}
+
+
 export function fetchLogin(username, password) {
   return dispatch => {
     dispatch(fetchLoginStart());
@@ -30,7 +37,6 @@ disability_code: '',
 export function fetchRegister(register) {
 
   let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
-
   return dispatch => {
     dispatch(startActon());
     return FetchManger.postUri('personalRegist.do',param).then((responseData) => {

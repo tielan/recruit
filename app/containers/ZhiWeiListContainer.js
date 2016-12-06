@@ -22,6 +22,7 @@ import RefreshFooter from '../comm/RefreshFooter';
 import Toolbar from '../comm/Toolbar';
 import GridView from '../comm/GridView';
 import * as Type_Dict from '../constants/Type_Dict';
+import { getCompanyByParamAction } from '../actions/GetCompanyByParamAction';
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
@@ -39,17 +40,33 @@ class ZhiWeiListPage extends React.Component {
         this.renderSelect = this.renderSelect.bind(this);
         canLoadMore = false;
         this.state = {
-            dataSource: ds.cloneWithRows(_data),
-            isShowLoading: true,
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            }),
             loadMore: false,
         };
 
     }
-    renderSelect(typeDict) {
+    componentDidMount() {
+        const { dispatch, router, getCompanyByParam } = this.props;
+        //获取列表
+        dispatch(getCompanyByParamAction(router.work_type,
+            getCompanyByParam.addr_area,
+            getCompanyByParam.industry,
+            getCompanyByParam.post_name,
+            getCompanyByParam.salary_type));
+    }
+
+    renderSelect(typeDict,type) {
         let options = [];
-        typeDict.map((item)=> {
+        typeDict.map((item) => {
             options.push(item.name);
         });
+        let values = [];
+        typeDict.map((item) => {
+            values.push(item.id);
+        });
+        const { dispatch,getCompanyByParam } = this.props;
         return (
             <ModalDropdown
                 style={{
@@ -60,10 +77,16 @@ class ZhiWeiListPage extends React.Component {
                 options={options}
                 defaultValue={options[0]}
                 onSelect={(id, values) => {
+                    getCompanyByParam[type] = values[id];
+                    //根据类型 获取列表
+                    dispatch(getCompanyByParamAction(router.work_type,
+                        getCompanyByParam.addr_area,
+                        getCompanyByParam.industry,
+                        getCompanyByParam.post_name,
+                        getCompanyByParam.salary_type));
                     canLoadMore = false;
                     onEndReach = false;
                 } }>
-                  
             </ModalDropdown>
         )
     }
@@ -104,47 +127,49 @@ class ZhiWeiListPage extends React.Component {
         }
     }
     render() {
-        const {headTabList} = this.state;
+        const { getCompanyByParam } = this.state;
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
                 <Toolbar title='职位列表' navigator={this.props.navigator} />
 
                 <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.addr_area)}
-                      
+                        {this.renderSelect(Type_Dict.addr_area,'addr_area')}
+
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.industry)}
+                        {this.renderSelect(Type_Dict.industry,'industry')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.post)}
+                        {this.renderSelect(Type_Dict.post,'post')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.salary_area)}
+                        {this.renderSelect(Type_Dict.salary_area,'salary_area')}
                     </View>
                 </View>
                 <LineView />
-                {
-                    (_data.length != 0) ?
-                        <ListView
-                            enableEmptySections={true}
-                            dataSource={this.state.dataSource}
-                            renderRow={this.renderRowView}
-                            onEndReached={this.onEndReached.bind(this)}
-                            onEndReachedThreshold={38}
-                            renderFooter={() =>
-                                <View style={{ width: WINDOW_WIDTH, height: 44 }}>
-                                    <RefreshFooter loading={this.state.loadMore} />
-                                </View>}
-                            />
-                        :
-                        <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
-                            <View style={{ flex: 1 }} />
-                            <Text style={styles.bgtext}>暂无数据</Text>
-                            <View style={{ flex: 1 }} />
-                        </View>
-                }
+                <View style={{ flex: 1 }}>
+                    {
+                        (getCompanyByParam.data.length != 0) ?
+                            <ListView
+                                enableEmptySections={true}
+                                dataSource={this.state.dataSource.cloneWithRows(getCompanyByParam.data)}
+                                renderRow={this.renderRowView}
+                                onEndReached={this.onEndReached.bind(this)}
+                                onEndReachedThreshold={38}
+                                renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={this.state.loadMore} /></View>}
+                                />
+                            :
+                            <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.bgtext}>暂无数据</Text>
+                                <View style={{ flex: 1 }} />
+                            </View>
+                    }
+                    <View>
+                        <Spinner visible={homeCompanyList.loading} />
+                    </View>
+                </View>
             </View>
         );
     }
@@ -242,9 +267,9 @@ class ZhiWeiListContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    const { login } = state;
+    const { getCompanyByParam } = state;
     return {
-        login,
+        getCompanyByParam,
     }
 }
 

@@ -11,6 +11,7 @@ import {
     ListView
 } from 'react-native';
 import { Iconfont, LineView } from 'react-native-go';
+import { getHotCompanyByAction } from '../actions/GetCompanyByParamAction';
 
 import RefreshFooter from '../comm/RefreshFooter';
 import Toolbar from '../comm/Toolbar';
@@ -19,56 +20,39 @@ import GridView from '../comm/GridView';
 import ZhiWeiListContainer from './ZhiWeiListContainer'
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
-let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 let canLoadMore;
 
 class HomePage extends React.Component {
     constructor(props) {
         super(props);
-        _data = [];
-
         this.onEndReached = this.onEndReached.bind(this);
         this._renderGridItem = this._renderGridItem.bind(this);
         this._renderRowView = this._renderRowView.bind(this);
         this._onMenuClick = this._onMenuClick.bind(this);
         canLoadMore = false;
         this.state = {
-            dataSource: ds.cloneWithRows(_data),
-            isShowLoading: true,
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            }),
             loadMore: false,
-            headTabList: [{
-                name: '全职',
-                icon: 'e675',
-                color: '#ffba00',
-                size: 24
-            }, {
-                name: '兼职',
-                icon: 'e681',
-                color: '#83d130',
-                size: 24
-            }, {
-                name: '实习',
-                icon: 'e680',
-                color: '#fe7442',
-                size: 26
-            }, {
-                name: '企业',
-                icon: 'e67d',
-                color: '#15c6ed',
-                size: 20
-            },],
         };
 
     }
-    _onMenuClick(item) {
+    componentDidMount() {
+        const { dispatch } = this.props;
+        //获取列表
+        dispatch(getHotCompanyByAction());
+    }
+    _onMenuClick(work_type) {
         this.props.navigator.push({
             name: "ZhiWeiListContainer",
             component: ZhiWeiListContainer,
+            work_type: work_type,
         });
     }
     _renderGridItem(item, index) {
         return (
-            <TouchableHighlight underlayColor='#C8C7CC' onPress={() => this._onMenuClick(item)} key={index}>
+            <TouchableHighlight underlayColor='#C8C7CC' onPress={() => this._onMenuClick(item.work_type)} key={index}>
                 <View style={styles.itembtnview}>
                     <View style={[styles.gridItemIcon, { backgroundColor: item.color }]}>
                         <View style={{
@@ -124,13 +108,14 @@ class HomePage extends React.Component {
         }
     }
     render() {
-        const {headTabList} = this.state;
+        const { homeCompanyList } = this.props;
+
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
                 <Toolbar title='首页' />
                 <View style={{ height: WINDOW_WIDTH / 4 }}>
                     <GridView
-                        items={Array.from(headTabList)}
+                        items={Array.from(homeCompanyList.headTabList)}
                         itemsPerRow={4}
                         renderItem={this._renderGridItem}
                         />
@@ -141,23 +126,28 @@ class HomePage extends React.Component {
                     <Text style={{ color: '#051b28', marginLeft: 8 }}>热门推荐</Text>
                 </View>
                 <LineView />
-                {
-                    (_data.length != 0) ?
-                        <ListView
-                            enableEmptySections={true}
-                            dataSource={this.state.dataSource}
-                            renderRow={this.renderRowView}
-                            onEndReached={this.onEndReached.bind(this)}
-                            onEndReachedThreshold={38}
-                            renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={this.state.loadMore} /></View>}
-                            />
-                        :
-                        <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
-                            <View style={{ flex: 1 }} />
-                            <Text style={styles.bgtext}>暂无数据</Text>
-                            <View style={{ flex: 1 }} />
-                        </View>
-                }
+                <View style={{flex:1}}>
+                    {
+                        (homeCompanyList.data.length != 0) ?
+                            <ListView
+                                enableEmptySections={true}
+                                dataSource={this.state.dataSource.cloneWithRows(homeCompanyList.data)}
+                                renderRow={this.renderRowView}
+                                onEndReached={this.onEndReached.bind(this)}
+                                onEndReachedThreshold={38}
+                                renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={this.state.loadMore} /></View>}
+                                />
+                            :
+                            <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.bgtext}>暂无数据</Text>
+                                <View style={{ flex: 1 }} />
+                            </View>
+                    }
+                    <View>
+                        <Spinner visible={homeCompanyList.loading} />
+                    </View>
+                </View>
             </View>
         );
     }
@@ -190,18 +180,18 @@ const styles = StyleSheet.create({
 
 class HomeContainer extends Component {
 
-  render() {
-    return (
-      <HomePage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <HomePage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { homeCompanyList } = state;
+    return {
+        homeCompanyList,
+    }
 }
 
 export default connect(mapStateToProps)(HomeContainer);

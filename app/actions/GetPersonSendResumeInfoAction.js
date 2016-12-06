@@ -3,16 +3,16 @@ import * as types from './ActionTypes';
 import { FetchManger } from 'react-native-go'
 
 //注册
-export function getPersonSendResumeInfoAction(register) {
+export function getPersonSendResumeInfoAction(personal_id) {
 
-  let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
+  let param = { personal_id: personal_id };
   return dispatch => {
     dispatch(startActon());
-    return FetchManger.postUri(types.API_getPersonSendResumeInfo,param).then((responseData) => {
+    return FetchManger.postUri(types.API_getPersonSendResumeInfo, param).then((responseData) => {
       dispatch(receiveResult(responseData));
     }).catch((error) => {
-        dispatch(receiveErrorResult(error));
-      })
+      dispatch(receiveErrorResult(error));
+    })
   };
 }
 

@@ -18,13 +18,41 @@ import { Iconfont, LineView } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
 import Toolbar from '../../comm/Toolbar';
 import { connect } from 'react-redux';
+import { getPersoanResumeInfoByIdAction } from '../../actions/GetPersoanResumeInfoByIdAction';
 
-
+/**
+ * 我的简历
+ */
 class MyCVPage extends React.Component {
     constructor(props) {
         super(props);
         this.onRenderSectionHeader = this.onRenderSectionHeader.bind(this);
     }
+    componentDidMount() {
+        const { dispatch, router, getPersoanResumeInfoById } = this.props;
+        dispatch(getPersonSendResumeInfoAction('personal_id'));
+    }
+
+    componentWillReceiveProps(nextProps) {
+        const { dispatch, getPersoanResumeInfoById } = nextProps;
+        if (getPersoanResumeInfoById.data || getPersoanResumeInfoById.errMsg) {
+            setTimeout(() => {
+                if (register.errMsg) {
+                    Alert.alert('', register.errMsg, [{ text: '好' },])
+                    return;
+                }
+                if (register.data && register.data.success) {
+
+                } else {
+                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
+                    return;
+                }
+            }, 200);
+        }
+    }
+
+
+
     onRenderSectionHeader(title) {
         return (<View style={{ height: 44, backgroundColor: '#f2f2f2', justifyContent: 'center' }}>
             <Text style={{ color: '#051b28', marginLeft: 16 }}>{title}</Text>
@@ -36,6 +64,8 @@ class MyCVPage extends React.Component {
     }
     //基本信息
     onRenderBaseInfoView() {
+        const {  getPersoanResumeInfoById } = this.props;
+
         return (<View style={{ backgroundColor: '#fff' }}>
             <View style={{ height: 44 }}>
                 <View style={styles.row}>
@@ -168,36 +198,37 @@ class MyCVPage extends React.Component {
         </View>);
     }
     render() {
+
         return (<View style={styles.container} >
             <Toolbar title='我的简历' navigator={this.props.navigator} />
             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
-            <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-                {
-                    this.onRenderSectionHeader('头像')
-                }
-                {
-                    this.onRenderHeadView()
-                }
-                {
-                    this.onRenderSectionHeader('基本信息')
-                }
-                {
-                    this.onRenderBaseInfoView()
-                }
-                {
-                    this.onRenderSectionHeader('教育经历')
-                }
-                {
-                    this.onRenderHeadView()
-                }
-                {
-                    this.onRenderSectionHeader('工作经历')
-                }
-                {
-                    this.onRenderHeadView()
-                }
-            </View >
-             </ScrollView >
+                <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+                    {
+                        this.onRenderSectionHeader('头像')
+                    }
+                    {
+                        this.onRenderHeadView()
+                    }
+                    {
+                        this.onRenderSectionHeader('基本信息')
+                    }
+                    {
+                        this.onRenderBaseInfoView()
+                    }
+                    {
+                        this.onRenderSectionHeader('教育经历')
+                    }
+                    {
+                        this.onRenderHeadView()
+                    }
+                    {
+                        this.onRenderSectionHeader('工作经历')
+                    }
+                    {
+                        this.onRenderHeadView()
+                    }
+                </View >
+            </ScrollView >
         </View >);
     }
 
@@ -207,11 +238,11 @@ var styles = StyleSheet.create({
     container: {
         flex: 1
     },
-     row: {
+    row: {
         flexDirection: 'row',
         borderColor: '#D4D4D4',
         borderBottomWidth: 1,
-        backgroundColor:'#fff',
+        backgroundColor: '#fff',
         height: 44,
     },
     text: {
@@ -233,18 +264,18 @@ var styles = StyleSheet.create({
 
 class MyCVContainer extends Component {
 
-  render() {
-    return (
-      <MyCVPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <MyCVPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { getPersoanResumeInfoById } = state;
+    return {
+        getPersoanResumeInfoById,
+    }
 }
 
 export default connect(mapStateToProps)(MyCVContainer);

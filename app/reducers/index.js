@@ -2,6 +2,10 @@ import {combineReducers} from 'redux';
 
 import personalLogin from './LoginReducer';
 import personalRegist from './RegisterReducer';
+import homeCompanyList from './HomeCompanyListReducer';
+import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
+
+
 import collectionPost from './CollectionPost';
 import editPersoanlResume from './EditPersoanlResume';
 import personalForgetPassWord from './ForgetPassWord';
@@ -11,7 +15,6 @@ import getCompanyInfo from './GetCompanyInfo';
 import getCompanyInfoById from './GetCompanyInfoById';
 import getCompanyInviteInfo from './GetCompanyInviteInfo';
 import getPersoanResumeInfoById from './GetPersoanResumeInfo';
-import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
 import getResumeStatus from './GetResumeStatus';
 import sendResume from './SendResume';
 
@@ -30,6 +33,7 @@ const rootReducer = combineReducers({
       getPersonSendResumeInfo,
       getResumeStatus,
       sendResume,
+      homeCompanyList
       
 });
 

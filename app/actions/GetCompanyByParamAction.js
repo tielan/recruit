@@ -1,35 +1,54 @@
 
 import * as types from './ActionTypes';
 import { FetchManger } from 'react-native-go'
+/*
+根据不同的工作类型获取相应的岗位要求信息
+请求参数	参数名	类型	参数说明
+	work_type	string	工作类型（1:全职，2:兼职，3:实习）
+	addr_area	string	地区
+	industry	string	行业
+	post_name	string	岗位名称
+	salary_type	string	薪资
+	hot_recommend	string	热门岗位推荐（1：是，0否）
+  */
+export function getCompanyByParamAction(work_type, addr_area, industry, post_name, salary_type) {
 
-//注册
-export function getCompanyByParamAction(register) {
-
-  let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
+  let param = { work_type: work_type, addr_area: addr_area, industry: industry, post_name: post_name, salary_type: salary_type, hot_recommend: '0' };
   return dispatch => {
-    dispatch(startActon());
-    return FetchManger.postUri(types.API_getCompanyByParam,param).then((responseData) => {
-      dispatch(receiveResult(responseData));
+    dispatch({
+      type: types.START_getCompanyByParam_ACTION,
+    });
+    return FetchManger.getUri(types.API_getCompanyByParam, param).then((responseData) => {
+      dispatch({
+        type: types.RECEIVE_getCompanyByParam_ACTION,
+        result: responseData,
+      });
     }).catch((error) => {
-        dispatch(receiveErrorResult(error));
-      })
+      dispatch({
+        type: types.RECEIVE_getCompanyByParam_ACTION,
+        errMsg: error,
+      });
+    })
   };
 }
-
-function startActon() {
-  return {
-    type: types.START_getCompanyByParam_ACTION,
-  }
-}
-function receiveErrorResult(errMsg) {
-  return {
-    type: types.RECEIVE_getCompanyByParam_ACTION,
-    errMsg: errMsg,
-  }
-}
-function receiveResult(responseData) {
-  return {
-    type: types.RECEIVE_getCompanyByParam_ACTION,
-    result: responseData,
-  }
+/**
+	hot_recommend	string	热门岗位推荐（1：是，0否）
+ */
+export function getHotCompanyByAction() {
+  return dispatch => {
+    dispatch({
+      type: types.START_Home_getCompanyByParam_ACTION,
+    });
+    return FetchManger.getUri(types.API_getCompanyByParam, { hot_recommend: '1' }).then((responseData) => {
+      dispatch({
+        type: types.RECEIVE_Home_getCompanyByParam_ACTION,
+        result: responseData,
+      });
+    }).catch((error) => {
+      dispatch({
+        type: types.RECEIVE_Home_getCompanyByParam_ACTION,
+        errMsg: error,
+      });
+    })
+  };
 }

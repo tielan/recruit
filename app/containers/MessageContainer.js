@@ -31,9 +31,9 @@ class MessagePage extends React.Component {
                         tabBarActiveTextColor='#61c4f7'
                         tabBarInactiveTextColor='#000000'
                         renderTabBar={() => <DefaultTabBar />}>
-                        <MessageListContainer {...this.props} tabLabel='简历状态通知' />
-                        <MessageListContainer {...this.props} tabLabel='企业邀请通知' />
-                        <MessageListContainer {...this.props} tabLabel='系统消息' />
+                        <MessageListContainer {...this.props} tabLabel='简历状态通知' type={0} />
+                        <MessageListContainer {...this.props} tabLabel='企业邀请通知' type={1}/>
+                        <MessageListContainer {...this.props} tabLabel='系统消息' type={2}/>
                     </ScrollableTabView>
                 </View>
             </View >
@@ -54,9 +54,9 @@ class MessageContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
+  const { getPersonSendResumeInfo,getCompanyInviteInfo }  = state;
   return {
-    login,
+    getPersonSendResumeInfo,getCompanyInviteInfo
   }
 }
 

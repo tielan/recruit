@@ -38,8 +38,8 @@ class RegisterPage extends React.Component {
         if (register.data || register.errMsg) {
             setTimeout(() => {
                 if (register.errMsg) {
-                    Alert.alert('', register.errMsg, [{ text: '好' },]) 
-                    return ;
+                    Alert.alert('', register.errMsg, [{ text: '好' },])
+                    return;
                 }
                 if (register.data && register.data.success) {
                     InteractionManager.runAfterInteractions(() => {
@@ -49,112 +49,112 @@ class RegisterPage extends React.Component {
                         });
                     });
                 } else {
-                     Alert.alert('',(register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
-                     return;
+                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
+                    return;
                 }
             }, 200);
+        }
     }
-}
 
-render() {
-    const { dispatch, personalRegist } = this.props;
-    return (<View style={styles.container}>
-        <Image style={styles.container} source={require('../../imgs/bj.png')}>
-            <TouchableHighlight onPress={this.handleIconClicked}
-                underlayColor={'transparent'}
-                style={{ height: 48, marginTop: 20, alignItems: 'flex-start', paddingLeft: 8 }}>
-                <View>
-                    <Iconfont fontFamily={'OAIndexIcon'}
-                        icon='e647'
-                        iconColor='#fff'
-                        iconSize={34}
-                        />
-                </View>
-            </TouchableHighlight >
-
-            <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
-                <Image style={{ width: 100, height: 100, margin: 8, borderRadius: 0, }}
-                    source={require('../../imgs/login/logo.png')} />
-            </View>
-            <View style={{ margin: 16, backgroundColor: 'transparent', elevation: 4 }}>
-                <View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>
-                    <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
+    render() {
+        const { dispatch, personalRegist } = this.props;
+        return (<View style={styles.container}>
+            <Image style={styles.container} source={require('../../imgs/bj.png')}>
+                <TouchableHighlight onPress={this.handleIconClicked}
+                    underlayColor={'transparent'}
+                    style={{ height: 48, marginTop: 20, alignItems: 'flex-start', paddingLeft: 8 }}>
+                    <View>
                         <Iconfont fontFamily={'OAIndexIcon'}
-                            icon='e60e'
+                            icon='e647'
                             iconColor='#fff'
-                            iconSize={24}
+                            iconSize={34}
                             />
                     </View>
-                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
-                        placeholder={'请输入手机号'}
-                        backgroundColor={'#5e5e5e'}
-                        placeholderTextColor={'#fff'}
-                        underlineColorAndroid={'transparent'}
-                        autoCapitalize={'none'}
-                        autoCorrect={false}
-                        onChangeText={(user_name) => {
-                            personalRegist.user_name = user_name;
-                        } }
-                        />
-                </View>
-                <View style={{ height: 8, backgroundColor: 'transparent' }} />
-                <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
-                    <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
-                        <Iconfont fontFamily={'OAIndexIcon'}
-                            icon='e676'
-                            iconColor='#fff'
-                            iconSize={24}
-                            />
-                    </View>
-                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
-                        placeholder={'残联证编号'}
-                        underlineColorAndroid={'transparent'}
-                        backgroundColor={'#5e5e5e'}
-                        placeholderTextColor={'#fff'}
-                        onChangeText={(disability_code) => {
-                            personalRegist.disability_code = disability_code;
-                        } }
-                        />
-                </View>
-                <View style={{ height: 8, backgroundColor: 'transparent' }} />
-                <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
-                    <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
-                        <Iconfont fontFamily={'OAIndexIcon'}
-                            icon='e692'
-                            iconColor='#fff'
-                            iconSize={24}
-                            />
-                    </View>
-                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
-                        placeholder={'请输入密码'}
-                        underlineColorAndroid={'transparent'}
-                        backgroundColor={'#5e5e5e'}
-                        placeholderTextColor={'#fff'}
-                        secureTextEntry={true}
-                        onChangeText={(user_password) => {
-                            personalRegist.user_password = user_password;
-                        } }
-                        />
-                </View>
-                <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 14, color: 'white' }}>密码为6-20位数字、字母组合，不含下划线</Text>
-                </View>
-            </View >
-            <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
-                <TouchableHighlight onPress={
-                    () => dispatch(personalRegistAction(personalRegist))
-                }
-                    underlayColor={'#999'}
-                    style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
-                    <Text style={{ fontSize: 26, color: 'white', }}>注册</Text>
                 </TouchableHighlight >
-            </View >
-        </Image >
-        <View>
-            <Spinner visible={personalRegist.loading} />
-        </View>
-    </View>);
-}
+
+                <View style={{ alignItems: 'center', marginTop: 20, marginBottom: 20 }}>
+                    <Image style={{ width: 100, height: 100, margin: 8, borderRadius: 0, }}
+                        source={require('../../imgs/login/logo.png')} />
+                </View>
+                <View style={{ margin: 16, backgroundColor: 'transparent', elevation: 4 }}>
+                    <View style={{ flexDirection: 'row', height: 48, alignItems: 'center' }}>
+                        <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
+                            <Iconfont fontFamily={'OAIndexIcon'}
+                                icon='e60e'
+                                iconColor='#fff'
+                                iconSize={24}
+                                />
+                        </View>
+                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                            placeholder={'请输入手机号'}
+                            backgroundColor={'#5e5e5e'}
+                            placeholderTextColor={'#fff'}
+                            underlineColorAndroid={'transparent'}
+                            autoCapitalize={'none'}
+                            autoCorrect={false}
+                            onChangeText={(user_name) => {
+                                personalRegist.user_name = user_name;
+                            } }
+                            />
+                    </View>
+                    <View style={{ height: 8, backgroundColor: 'transparent' }} />
+                    <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
+                        <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
+                            <Iconfont fontFamily={'OAIndexIcon'}
+                                icon='e676'
+                                iconColor='#fff'
+                                iconSize={24}
+                                />
+                        </View>
+                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                            placeholder={'残联证编号'}
+                            underlineColorAndroid={'transparent'}
+                            backgroundColor={'#5e5e5e'}
+                            placeholderTextColor={'#fff'}
+                            onChangeText={(disability_code) => {
+                                personalRegist.disability_code = disability_code;
+                            } }
+                            />
+                    </View>
+                    <View style={{ height: 8, backgroundColor: 'transparent' }} />
+                    <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'white', alignItems: 'center' }}>
+                        <View style={{ height: 48, width: 48, backgroundColor: '#303030' }}>
+                            <Iconfont fontFamily={'OAIndexIcon'}
+                                icon='e692'
+                                iconColor='#fff'
+                                iconSize={24}
+                                />
+                        </View>
+                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                            placeholder={'请输入密码'}
+                            underlineColorAndroid={'transparent'}
+                            backgroundColor={'#5e5e5e'}
+                            placeholderTextColor={'#fff'}
+                            secureTextEntry={true}
+                            onChangeText={(user_password) => {
+                                personalRegist.user_password = user_password;
+                            } }
+                            />
+                    </View>
+                    <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 14, color: 'white' }}>密码为6-20位数字、字母组合，不含下划线</Text>
+                    </View>
+                </View >
+                <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
+                    <TouchableHighlight onPress={
+                        () => dispatch(personalRegistAction(personalRegist))
+                    }
+                        underlayColor={'#999'}
+                        style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 26, color: 'white', }}>注册</Text>
+                    </TouchableHighlight >
+                </View >
+            </Image >
+            <View>
+                <Spinner visible={personalRegist.loading} />
+            </View>
+        </View>);
+    }
 
 }
 
@@ -175,18 +175,18 @@ var styles = StyleSheet.create({
 
 class RegisterContainer extends Component {
 
-  render() {
-    return (
-      <RegisterPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <RegisterPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { personalRegist } = state;
-  return {
-    personalRegist,
-  }
+    const { personalRegist } = state;
+    return {
+        personalRegist,
+    }
 }
 
 export default connect(mapStateToProps)(RegisterContainer);

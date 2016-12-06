@@ -11,16 +11,33 @@ import {
 
 import { connect } from 'react-redux';
 import Toolbar from '../../comm/Toolbar';
-let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
+import { getPersonSendResumeInfoAction } from '../../actions/GetPersonSendResumeInfoAction';
+import { getCompanyInviteInfoAction } from '../../actions/GetCompanyInviteInfoAction';
 
 class MessageListPage extends React.Component {
     constructor(props) {
         super(props);
-        _data = [];
         this.state = {
-            dataSource: ds.cloneWithRows(_data),
+            dataSource: new ListView.DataSource({
+                rowHasChanged: (row1, row2) => row1 !== row2,
+            }),
         };
 
+    }
+    componentDidMount() {
+        const { dispatch, router, getPersonSendResumeInfo } = this.props;
+
+        if (0 === router.type) {//简历状态通知
+            //获取列表
+            dispatch(getPersonSendResumeInfoAction('personal_id'));
+
+        } else if (1 === router.type) {//企业邀请通知
+            dispatch(getCompanyInviteInfoAction('personal_id'));
+
+        } else if (2 === router.type) {//系统消息
+
+
+        }
     }
 
     _renderRowView(rowData, sectionId, index) {
@@ -65,6 +82,9 @@ class MessageListPage extends React.Component {
                             <View style={{ flex: 1 }} />
                         </View>
                 }
+                <View>
+                    <Spinner visible={homeCompanyList.loading} />
+                </View>
             </View >
         );
     }
@@ -75,18 +95,18 @@ const styles = StyleSheet.create({
 
 class MessageListContainer extends Component {
 
-  render() {
-    return (
-      <MessageListPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <MessageListPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { getPersonSendResumeInfo } = state;
+    return {
+        getPersonSendResumeInfo,
+    }
 }
 
 export default connect(mapStateToProps)(MessageListContainer);

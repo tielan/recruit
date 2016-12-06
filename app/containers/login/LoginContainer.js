@@ -14,7 +14,7 @@ import {
 
 import { connect } from 'react-redux';
 import { Iconfont } from 'react-native-go';
-import { fetchLogin } from '../../actions/LoginAction';
+import { personalLoginAction } from '../../actions/LoginAction';
 import Spinner from '../../comm/Spinner';
 
 import ForgetPassWordContainer from '../../containers/login/ForgetPassWordContainer';
@@ -25,16 +25,37 @@ import MainContainer from '../../containers/MainContainer';
 class LoginPage extends React.Component {
     constructor(props) {
         super(props);
-        this.onLogin = this.onLogin.bind(this);
         this.onRegister = this.onRegister.bind(this);
         this.onForgetPwd = this.onForgetPwd.bind(this);
-        this.state = {
-            loading:false,
-        };
+    }
+    
+    componentWillReceiveProps(nextProps) {
+        const { dispatch, personalLogin } = nextProps;
+        if (personalLogin.data || personalLogin.errMsg) {
+            setTimeout(() => {
+                if (personalLogin.errMsg) {
+                    Alert.alert('', register.errMsg, [{ text: '好' },])
+                    return;
+                }
+                if (personalLogin.data && personalLogin.data.success) {
+                    InteractionManager.runAfterInteractions(() => {
+                        nextProps.navigator.resetTo({
+                            name: "MainContainer",
+                            component: MainContainer,
+                        });
+                    });
+                } else {
+                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
+                    return;
+                }
+            }, 200);
+        }
     }
 
     render() {
         constdismissKeyboard = require('dismissKeyboard');
+        const { dispatch, personalLogin } = this.props;
+
         return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
 
             <View style={{ alignItems: 'center', marginTop: 64, marginBottom: 20 }}>
@@ -57,8 +78,8 @@ class LoginPage extends React.Component {
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}
                         autoCorrect={false}
-                        onChangeText={(username) => {
-                            
+                        onChangeText={(user_name) => {
+                            personalLogin.user_name = user_name;
                         } }
                         />
                 </View>
@@ -78,7 +99,7 @@ class LoginPage extends React.Component {
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
                         onChangeText={(password) => {
-                            
+                            personalLogin.user_password = user_password;
                         } }
                         />
                 </View>
@@ -90,7 +111,9 @@ class LoginPage extends React.Component {
                 </View>
             </View >
             <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
-                <TouchableHighlight onPress={this.onLogin}
+                <TouchableHighlight onPress={
+                    () => dispatch(personalLoginAction(personalLogin))
+                }
                     underlayColor={'#999'}
                     style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ fontSize: 26, color: 'white', }}>登录</Text>
@@ -107,18 +130,10 @@ class LoginPage extends React.Component {
                 </TouchableHighlight >
                 <View style={{ flex: 1 }} />
             </View>
-            <View><Spinner visible={this.state.loading} text={'登录中,请稍后...'} /></View>
+            <View><Spinner visible={personalLogin.loading} text={'登录中,请稍后...'} /></View>
         </Image >);
     }
 
-    onLogin() {
-        this.props.navigator.push({
-            name: "MainContainer",
-            component: MainContainer,
-        });
-        /* const {dispatch, login} = this.props;
-         dispatch(fetchLogin(login.username, login.password));*/
-    }
     onForgetPwd() {
         this.props.navigator.push({
             name: "ForgetPassWordContainer",
@@ -145,18 +160,18 @@ var styles = StyleSheet.create({
 
 class LoginContainer extends Component {
 
-  render() {
-    return (
-      <LoginPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <LoginPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { personalLogin } = state;
+    return {
+        personalLogin,
+    }
 }
 
 export default connect(mapStateToProps)(LoginContainer);

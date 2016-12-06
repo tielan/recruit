@@ -18,7 +18,7 @@ import { connect } from 'react-redux';
 import dismissKeyboard from 'dismissKeyboard';
 import { Iconfont } from 'react-native-go';
 import { naviGoBack } from '../../utils/CommonUtils';
-import { fetchRegister, stopLoad } from '../../actions/LoginAction';
+import { personalRegistAction, stopLoad } from '../../actions/RegisterAction';
 import Spinner from '../../comm/Spinner';
 import MainContainer from '../MainContainer';
 
@@ -57,7 +57,7 @@ class RegisterPage extends React.Component {
 }
 
 render() {
-    const { dispatch, register } = this.props;
+    const { dispatch, personalRegist } = this.props;
     return (<View style={styles.container}>
         <Image style={styles.container} source={require('../../imgs/bj.png')}>
             <TouchableHighlight onPress={this.handleIconClicked}
@@ -93,7 +93,7 @@ render() {
                         autoCapitalize={'none'}
                         autoCorrect={false}
                         onChangeText={(user_name) => {
-                            register.user_name = user_name;
+                            personalRegist.user_name = user_name;
                         } }
                         />
                 </View>
@@ -112,7 +112,7 @@ render() {
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         onChangeText={(disability_code) => {
-                            register.disability_code = disability_code;
+                            personalRegist.disability_code = disability_code;
                         } }
                         />
                 </View>
@@ -132,7 +132,7 @@ render() {
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
                         onChangeText={(user_password) => {
-                            register.user_password = user_password;
+                            personalRegist.user_password = user_password;
                         } }
                         />
                 </View>
@@ -142,7 +142,7 @@ render() {
             </View >
             <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
                 <TouchableHighlight onPress={
-                    () => dispatch(fetchRegister(register))
+                    () => dispatch(personalRegistAction(personalRegist))
                 }
                     underlayColor={'#999'}
                     style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>
@@ -151,7 +151,7 @@ render() {
             </View >
         </Image >
         <View>
-            <Spinner visible={register.loading} />
+            <Spinner visible={personalRegist.loading} />
         </View>
     </View>);
 }
@@ -183,9 +183,9 @@ class RegisterContainer extends Component {
 }
 
 function mapStateToProps(state) {
-  const { register } = state;
+  const { personalRegist } = state;
   return {
-    register,
+    personalRegist,
   }
 }
 

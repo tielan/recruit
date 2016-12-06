@@ -17,12 +17,15 @@ import {
     Modal,
 } from 'react-native';
 import { Iconfont, LineView } from 'react-native-go';
-
+import ModalDropdown from '../comm/ModalDropdown'
 import RefreshFooter from '../comm/RefreshFooter';
 import Toolbar from '../comm/Toolbar';
 import GridView from '../comm/GridView';
+import * as Type_Dict from '../constants/Type_Dict';
+
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
+
 let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
 let canLoadMore;
 
@@ -33,87 +36,38 @@ class ZhiWeiListPage extends React.Component {
 
         this.onEndReached = this.onEndReached.bind(this);
         this._renderRowView = this._renderRowView.bind(this);
-        this.renderPick = this.renderPick.bind(this);
         this.renderSelect = this.renderSelect.bind(this);
-        this.renderModel = this.renderModel.bind(this);
-        this.cancel = this.cancel.bind(this);
-        this.passSelectDate = this.passSelectDate.bind(this);
         canLoadMore = false;
         this.state = {
             dataSource: ds.cloneWithRows(_data),
             isShowLoading: true,
             loadMore: false,
-            showModel: false,
         };
 
     }
-    cancel() {
-        this.setState({ showModel: false });
-    }
-
-    passSelectDate() {
-        this.setState({ showModel: false });
-    }
-
-    renderSelect(name) {
-        if (Platform.OS == 'ios') {
-            return (
-                <View>
-                    <TouchableOpacity onPress={() => { this.setState({ showModel: true }) } } style={{ alignItems: 'center', marginTop: 10 }}>
-                        <Text style={{ textAlign: 'center' }}>
-                            {name}
-                        </Text>
-                    </TouchableOpacity>
-                </View>)
-        } else {
-            return (this.renderPick())
-        }
-    }
-    renderPick() {
-        let searchArr = [];
-        let itemAll = { id: '', name: '全部' };
-        searchArr.push(itemAll);
+    renderSelect(typeDict) {
+        let options = [];
+        typeDict.map((item)=> {
+            options.push(item.name);
+        });
         return (
-            <Picker
-                style={styles.picker}
-                mode="dropdown"
-                selectedValue='1'
-                itemStyle={{ backgroundColor: '#fdfcf5', }}
-                onValueChange={(id) => {
-                    page = 1;
+            <ModalDropdown
+                style={{
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    flex: 1
+                }}
+                options={options}
+                defaultValue={options[0]}
+                onSelect={(id, values) => {
                     canLoadMore = false;
                     onEndReach = false;
                 } }>
-                {searchArr.map(function (row) {
-                    return <Picker.Item label={row.name} value={row.id} />
-                })}
-            </Picker>
+                  
+            </ModalDropdown>
         )
     }
-    renderModel() {
-        return (
-            <Modal visible={this.state.showModel} transparent={true}>
-                <View style={{ backgroundColor: 'rgba(0, 0, 0, 0.5)', height: WINDOW_HEIGHT, width: WINDOW_WIDTH, }}>
-                    <View style={styles.modelStyle}>
-                        <View style={styles.calendarContainer}>
-                            <Text style={styles.textStyle}>请选择类型</Text>
-                            <View style={{ flex: 1, justifyContent: 'center', }}>
-                                {this.renderPick()}
-                            </View>
-                            <View style={styles.calendar}>
-                                <TouchableOpacity style={styles.button} onPress={this.passSelectDate.bind(this)} >
-                                    <Text style={styles.buttonText}>取 消</Text>
-                                </TouchableOpacity>
-                                <TouchableOpacity style={styles.button} onPress={this.cancel.bind(this)}>
-                                    <Text style={styles.buttonText}>确 定</Text>
-                                </TouchableOpacity>
-                            </View>
-                        </View>
-                    </View>
-                </View>
-            </Modal>
-        )
-    }
+
     _renderRowView(rowData, sectionId, index) {
         if (!rowData) {
             return <View />;
@@ -154,22 +108,22 @@ class ZhiWeiListPage extends React.Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
                 <Toolbar title='职位列表' navigator={this.props.navigator} />
-               
-                <View style={{ height: 35, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
+
+                <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect('地区')}
+                        {this.renderSelect(Type_Dict.addr_area)}
+                      
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect('行业')}
+                        {this.renderSelect(Type_Dict.industry)}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect('岗位')}
+                        {this.renderSelect(Type_Dict.post)}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect('薪资')}
+                        {this.renderSelect(Type_Dict.salary_area)}
                     </View>
                 </View>
-                 <LineView width={1} />
                 <LineView />
                 {
                     (_data.length != 0) ?
@@ -179,7 +133,10 @@ class ZhiWeiListPage extends React.Component {
                             renderRow={this.renderRowView}
                             onEndReached={this.onEndReached.bind(this)}
                             onEndReachedThreshold={38}
-                            renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={this.state.loadMore} /></View>}
+                            renderFooter={() =>
+                                <View style={{ width: WINDOW_WIDTH, height: 44 }}>
+                                    <RefreshFooter loading={this.state.loadMore} />
+                                </View>}
                             />
                         :
                         <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
@@ -188,61 +145,61 @@ class ZhiWeiListPage extends React.Component {
                             <View style={{ flex: 1 }} />
                         </View>
                 }
-                {this.renderModel()}
             </View>
         );
     }
 }
+
 const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    modelStyle:{
-    flexDirection: 'column',
-    position: 'absolute',
-    backgroundColor: '#fdfcf5',
-    opacity: 0.98,
-    borderRadius: 10,
-    overflow: 'hidden',
-    marginLeft:WINDOW_WIDTH/8,
-    width: WINDOW_WIDTH- WINDOW_WIDTH/4,
-    height: WINDOW_HEIGHT- WINDOW_HEIGHT/3,
-    marginTop:WINDOW_HEIGHT/8,
-  },
-  picker: {
-    flex: 1,
-  },
-  textStyle:{
-    marginTop:5,
-    fontSize:20,
-    fontWeight:'500',
-    textAlign: 'center',
-    color:'#ff8c00'
-  },
-  calendar: {
-    height:60,
-    justifyContent: 'center',
-    flexDirection:'row',
-  },
-  button: {
-    justifyContent: 'center',
-    borderRadius: 8,
-    marginBottom: 20,
-    marginLeft: 20,
-    marginRight: 20,
-    width:70,
-    height:35,
-  },
-  buttonText: {
-    alignSelf: 'center',
-    fontSize: 18,
-    color:'#ff8c00'
-  },
-  calendarContainer: {
-    flex: 1,
-    justifyContent: 'center',
-    marginTop: 30,
-  },
+    modelStyle: {
+        flexDirection: 'column',
+        position: 'absolute',
+        backgroundColor: '#fdfcf5',
+        opacity: 0.98,
+        borderRadius: 10,
+        overflow: 'hidden',
+        marginLeft: WINDOW_WIDTH / 8,
+        width: WINDOW_WIDTH - WINDOW_WIDTH / 4,
+        height: WINDOW_HEIGHT - WINDOW_HEIGHT / 3,
+        marginTop: WINDOW_HEIGHT / 8,
+    },
+    picker: {
+        flex: 1,
+    },
+    textStyle: {
+        marginTop: 5,
+        fontSize: 20,
+        fontWeight: '500',
+        textAlign: 'center',
+        color: '#ff8c00'
+    },
+    calendar: {
+        height: 60,
+        justifyContent: 'center',
+        flexDirection: 'row',
+    },
+    button: {
+        justifyContent: 'center',
+        borderRadius: 8,
+        marginBottom: 20,
+        marginLeft: 20,
+        marginRight: 20,
+        width: 70,
+        height: 35,
+    },
+    buttonText: {
+        alignSelf: 'center',
+        fontSize: 18,
+        color: '#ff8c00'
+    },
+    calendarContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        marginTop: 30,
+    },
     pickerContainer: {
         flex: 1,
         height: 35,
@@ -250,6 +207,8 @@ const styles = StyleSheet.create({
         borderRadius: 2,
         backgroundColor: 'white',
         borderColor: 'lightgrey',
+        justifyContent: 'center',
+        flexDirection: 'row',
     },
     gridItemIcon: {
         alignItems: 'center',
@@ -275,18 +234,18 @@ const styles = StyleSheet.create({
 
 class ZhiWeiListContainer extends Component {
 
-  render() {
-    return (
-      <ZhiWeiListPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <ZhiWeiListPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { login } = state;
+    return {
+        login,
+    }
 }
 
 export default connect(mapStateToProps)(ZhiWeiListContainer);

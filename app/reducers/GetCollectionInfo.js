@@ -2,22 +2,20 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     loading: false,
-    user_name: '',
-    user_password: '',
-    disability_code: '',
     data: undefined,
     errMsg: undefined,
+    personal_id	:'',//Int	个人id
 }
 
 export default function register(state = initialState, action) {
     switch (action.type) {
-        case types.START_personalRegist_ACTION:
+        case types.START_getCollectionInfo_ACTION:
             return Object.assign({}, state, {
                 loading: true,
                 data: undefined,
                 errMsg: undefined,
             });
-        case types.RECEIVE_personalRegist_ACTION:
+        case types.RECEIVE_getCollectionInfo_ACTION:
             return Object.assign({}, state, {
                 loading: false,
                 data: action.result,

@@ -1,22 +1,27 @@
 import * as types from '../actions/ActionTypes';
 
 const initialState = {
-    logining : false,
-    
-    data:''
+    loading: false,
+    user_name: '',
+    user_password: '',
+    data: undefined,
+    errMsg: undefined,
 }
 
-export default function login(state = initialState, action){
+export default function login(state = initialState, action) {
     switch (action.type) {
-        case types.START_LOGIN_ACTION:
-                  return Object.assign({}, state, {
-                      logining: true
-                  });
-        case types.RECEIVE_LOGIN_ACTION:
-                  return Object.assign({}, state, {
-                       logining: false,
-                       data: action.result
-                  });
+        case types.START_personalLogin_ACTION:
+            return Object.assign({}, state, {
+                logining: true,
+                errMsg: undefined,
+                data: undefined,
+            });
+        case types.RECEIVE_personalLogin_ACTION:
+            return Object.assign({}, state, {
+                logining: false,
+                data: action.result,
+                errMsg: action.errMsg,
+            });
         default:
             return state;
     }

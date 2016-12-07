@@ -10,7 +10,7 @@ import {
 
 import { naviGoBack } from './utils/CommonUtils';
 import Splash from './Splash';
-import { FetchManger } from 'react-native-go'
+import { FetchManger,LoginInfo } from 'react-native-go'
 
 let tempNavigator;
 let isRemoved = false;
@@ -19,10 +19,10 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    FetchManger.initConfig({baseUrl:'http://222.240.214.122:18000/mobile_interfaces/mobile_info/'});
+    FetchManger.initConfig({baseUrl:'http://222.240.214.122:18000/mobile_interfaces/mobile_info/',});
     this.renderScene = this.renderScene.bind(this);
-    BackAndroid.addEventListener('hardwareBackPress', this.goBack);
-
+     BackAndroid.addEventListener('hardwareBackPress', this.goBack);
+     LoginInfo.loadUserInfo();
   }
 
   goBack() {

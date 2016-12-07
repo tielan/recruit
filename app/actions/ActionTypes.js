@@ -24,11 +24,16 @@ export const RECEIVE_editPersoanlResume_ACTION = 'RECEIVE_editPersoanlResume_ACT
 export const API_getPersoanResumeInfoById = 'getPersoanResumeInfoById.do'
 export const START_getPersoanResumeInfoById_ACTION = 'START_getPersoanResumeInfoById_ACTION';  //开始登陆
 export const RECEIVE_getPersoanResumeInfoById_ACTION = 'RECEIVE_getPersoanResumeInfoById_ACTION'; //收到登陆结果
+
+
 //3.2.3 搜索岗位信息
 //根据不同的工作类型获取相应的岗位要求信息
 export const API_getCompanyByParam = 'getCompanyByParam.do'
 export const START_getCompanyByParam_ACTION = 'START_getCompanyByParam_ACTION';  //开始登陆
 export const RECEIVE_getCompanyByParam_ACTION = 'RECEIVE_getCompanyByParam_ACTION'; //收到登陆结果
+
+export const START_Home_getCompanyByParam_ACTION = 'START_Home_getCompanyByParam_ACTION';  //开始登陆
+export const RECEIVE_Home_getCompanyByParam_ACTION = 'RECEIVE_Home_getCompanyByParam_ACTION'; //收到登陆结果
 //3.2.4 获取公司信息
 export const API_getCompanyInfoById = 'getCompanyInfoById.do'
 export const START_getCompanyInfoById_ACTION = 'START_getCompanyInfoById_ACTION';  //开始登陆

@@ -9,17 +9,18 @@ import {
     TouchableHighlight,
     Alert,
     TouchableWithoutFeedback,
-    Dimensions
+    Dimensions,
+    InteractionManager
 } from 'react-native';
 
 import { connect } from 'react-redux';
-import { Iconfont } from 'react-native-go';
+import { Iconfont, Toast, Spinner, LoginInfo } from 'react-native-go';
 import { personalLoginAction } from '../../actions/LoginAction';
-import Spinner from '../../comm/Spinner';
 
 import ForgetPassWordContainer from '../../containers/login/ForgetPassWordContainer';
 import RegisterContainer from '../../containers/login/RegisterContainer';
 import MainContainer from '../../containers/MainContainer';
+import dismissKeyboard from 'dismissKeyboard';
 
 
 class LoginPage extends React.Component {
@@ -28,32 +29,31 @@ class LoginPage extends React.Component {
         this.onRegister = this.onRegister.bind(this);
         this.onForgetPwd = this.onForgetPwd.bind(this);
     }
-    
+
     componentWillReceiveProps(nextProps) {
         const { dispatch, personalLogin } = nextProps;
         if (personalLogin.data || personalLogin.errMsg) {
-            setTimeout(() => {
-                if (personalLogin.errMsg) {
-                    Alert.alert('', register.errMsg, [{ text: '好' },])
-                    return;
-                }
-                if (personalLogin.data && personalLogin.data.success) {
-                    InteractionManager.runAfterInteractions(() => {
-                        nextProps.navigator.resetTo({
-                            name: "MainContainer",
-                            component: MainContainer,
-                        });
+            if (personalLogin.errMsg) {
+                Toast.show(personalLogin.errMsg);
+                return;
+            }
+            if (personalLogin.data && personalLogin.data.data) {
+                let data = personalLogin.data.data;
+                LoginInfo.setUserInfo(data);
+                InteractionManager.runAfterInteractions(() => {
+                    nextProps.navigator.resetTo({
+                        name: "MainContainer",
+                        component: MainContainer,
                     });
-                } else {
-                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
-                    return;
-                }
-            }, 200);
+                });
+            } else {
+                Toast.show((personalLogin.data && personalLogin.data.msg) ? personalLogin.data.msg : '网络请求失败，请稍后再试');
+                return;
+            }
         }
     }
 
     render() {
-        constdismissKeyboard = require('dismissKeyboard');
         const { dispatch, personalLogin } = this.props;
 
         return (<Image style={styles.container} source={require('../../imgs/bj.png')}>
@@ -98,7 +98,7 @@ class LoginPage extends React.Component {
                         backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
-                        onChangeText={(password) => {
+                        onChangeText={(user_password) => {
                             personalLogin.user_password = user_password;
                         } }
                         />
@@ -112,7 +112,10 @@ class LoginPage extends React.Component {
             </View >
             <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
                 <TouchableHighlight onPress={
-                    () => dispatch(personalLoginAction(personalLogin))
+                    () => {
+                        dismissKeyboard();
+                        dispatch(personalLoginAction(personalLogin.user_name, personalLogin.user_password));
+                    }
                 }
                     underlayColor={'#999'}
                     style={{ height: 48, alignItems: 'center', justifyContent: 'center' }}>

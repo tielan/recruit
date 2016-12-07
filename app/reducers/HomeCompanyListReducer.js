@@ -1,8 +1,15 @@
+import React, {
+  ListView,
+} from 'react-native';
+
 import * as types from '../actions/ActionTypes';
 
+var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 const initialState = {
+    listData: dataSource.cloneWithRows([]),
+    canLoadMore:false,
+    loadMore: false,
     loading: false,
-    data: [],
     errMsg: undefined,
     isShowLoading: true,
     headTabList: [{
@@ -32,12 +39,11 @@ export default function homeCompanyList(state = initialState, action) {
             return Object.assign({}, state, {
                 logining: true,
                 errMsg: undefined,
-                data: undefined,
             });
         case types.RECEIVE_Home_getCompanyByParam_ACTION:
             return Object.assign({}, state, {
                 logining: false,
-                data: action.result,
+                listData:dataSource.cloneWithRows(action.result ? action.result : []),
                 errMsg: action.errMsg,
             });
         default:

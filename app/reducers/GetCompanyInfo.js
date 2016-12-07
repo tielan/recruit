@@ -8,7 +8,7 @@ const initialState = {
 	post_id	:'',//	Int	发布的岗位信息
 }
 
-export default function register(state = initialState, action) {
+export default function getCompanyInfo(state = initialState, action) {
     switch (action.type) {
         case types.START_getCompanyInfo_ACTION:
             return Object.assign({}, state, {

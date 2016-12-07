@@ -7,7 +7,7 @@ const initialState = {
 	company_id:'',//		Int	公司id
 }
 
-export default function register(state = initialState, action) {
+export default function getCompanyInfoById(state = initialState, action) {
     switch (action.type) {
         case types.START_getCompanyInfoById_ACTION:
             return Object.assign({}, state, {

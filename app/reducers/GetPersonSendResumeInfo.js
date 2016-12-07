@@ -7,7 +7,7 @@ const initialState = {
 	personal_id:'',//	int	个人ID
 }
 
-export default function register(state = initialState, action) {
+export default function getPersonSendResumeInfo(state = initialState, action) {
     switch (action.type) {
         case types.START_getPersonSendResumeInfo_ACTION:
             return Object.assign({}, state, {

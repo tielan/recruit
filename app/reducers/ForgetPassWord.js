@@ -9,7 +9,7 @@ const initialState = {
     user_password: '',//	新密码
 }
 
-export default function register(state = initialState, action) {
+export default function personalForgetPassWord(state = initialState, action) {
     switch (action.type) {
         case types.START_personalForgetPassWord_ACTION:
             return Object.assign({}, state, {

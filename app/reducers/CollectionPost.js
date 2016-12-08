@@ -2,25 +2,28 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     loading: false,
-    data: undefined,
+    isFetched: false,
+    result: undefined,
     errMsg: undefined,
-    company_id: '',//		Int	公司id
-    post_id: '',//		Int	发布的岗位信息
-    personal_id: '',//	int	个人ID
 }
 
 export default function collectionPost(state = initialState, action) {
+    state = Object.assign({}, state, {
+        isFetched: false,
+    });
     switch (action.type) {
         case types.START_collectionPost_ACTION:
             return Object.assign({}, state, {
                 loading: true,
-                data: undefined,
+                isFetched: true,
+                result: undefined,
                 errMsg: undefined,
             });
         case types.RECEIVE_collectionPost_ACTION:
             return Object.assign({}, state, {
                 loading: false,
-                data: action.result,
+                isFetched: true,
+                result: action.result,
                 errMsg: action.errMsg,
             });
         default:

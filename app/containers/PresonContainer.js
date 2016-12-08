@@ -54,14 +54,6 @@ class PresonPage extends Component {
             <View style={styles.flex}>
                 <Toolbar title='个人' />
                 <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-                    <View style={styles.bgimage}>
-                        <View style={{ alignItems: 'center', height: 130 }}>
-                            <Image source={require('../imgs/defaul_user_icon.png')} style={styles.userIcon} />
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <Text style={styles.nametitle}> 张三</Text>
-                            </View>
-                        </View>
-                    </View>
                     <View style={styles.emptyview}></View>
                     <ListItemSetting
                         icon='e673'

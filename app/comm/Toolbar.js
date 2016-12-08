@@ -64,7 +64,7 @@ const Toolbar = ({
         {
           navigator ? <ImageButton
             containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
-            source={navIcon === undefined ? iconLeftIOS : navIcon}
+            source={navIcon ?  navIcon : iconLeftIOS}
             style={styles.leftIOS}
             onPress={handleIconClicked}
             /> : 

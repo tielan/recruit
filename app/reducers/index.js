@@ -4,7 +4,9 @@ import personalLogin from './LoginReducer';
 import personalRegist from './RegisterReducer';
 import homeCompanyList from './HomeCompanyListReducer';
 import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
-
+import zhiweilist from './zhiweilist';
+import zhiWeiShow from './zhiWeiShow';
+import gongShiShow from './gongShiShow';
 
 import collectionPost from './CollectionPost';
 import editPersoanlResume from './EditPersoanlResume';
@@ -33,7 +35,10 @@ const rootReducer = combineReducers({
       getPersonSendResumeInfo,
       getResumeStatus,
       sendResume,
-      homeCompanyList
+      homeCompanyList,
+      zhiweilist,
+      zhiWeiShow,
+      gongShiShow
       
 });
 

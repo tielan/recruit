@@ -2,28 +2,27 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     loading: false,
-    isFetched:false,
-    result: undefined,
+    data: {},
     errMsg: undefined,
 }
 
-export default function SendResume(state = initialState, action) {
-    state = Object.assign({},state,{
-        isFetched:false,
-    });
+export default function zhiWeiShow(state = initialState, action) {
     switch (action.type) {
-        case types.START_sendResume_ACTION:
+        case types.START_zhiWeiShow_ACTION:
             return Object.assign({}, state, {
                 loading: true,
-                isFetched:true,
-                data: undefined,
                 errMsg: undefined,
+                data: {},
             });
-        case types.RECEIVE_sendResume_ACTION:
+        case types.SUCCESS_zhiWeiShow_ACTION:
             return Object.assign({}, state, {
                 loading: false,
-                isFetched:true,
-                result: action.result,
+                data: action.result,
+            });
+        case types.ERROR_zhiWeiShow_ACTION:
+            return Object.assign({}, state, {
+                loading: false,
+                data: {},
                 errMsg: action.errMsg,
             });
         default:

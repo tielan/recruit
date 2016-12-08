@@ -209,7 +209,7 @@ JSON格式
 
 接口说明	获取指定公司信息
 接口方向	手机客户端 -> 服务器系统
-接口地址	http://222.240.214.122:18000/mobile_interfaces/mobile_info/getCompanyInfoById.do
+接口地址	http://222.240.214.122:18000/mobile_interfaces/mobile_info/getCompanyInfoById.do?company_id=9075
 请求类型	get
 请求参数	参数名	类型	参数说明
 	company_id	Int	公司id
@@ -266,7 +266,7 @@ JSON格式	属性名	类型	属性说明
  
 接口说明	获取用户投递简历状态信息
 接口方向	手机客户端 -> 服务器系统
-接口地址	http://222.240.214.122:18000/mobile_interfaces/mobile_info/getResumeStatus.do
+接口地址	http://222.240.214.122:18000/mobile_interfaces/mobile_info/getResumeStatus.do?personal_id=9076
 请求类型	Get
 请求参数	参数名	类型	参数说明
 	personal_id	Int	用户id

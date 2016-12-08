@@ -66,3 +66,17 @@ export const RECEIVE_collectionPost_ACTION = 'RECEIVE_collectionPost_ACTION'; //
 export const API_getCollectionInfo = 'getCollectionInfo.do'
 export const START_getCollectionInfo_ACTION = 'START_getCollectionInfo_ACTION';  //开始登陆
 export const RECEIVE_getCollectionInfo_ACTION = 'RECEIVE_getCollectionInfo_ACTION'; //收到登陆结果
+
+//职位列表
+export const START_zhiweilist_ACTION = 'START_zhiweilist_ACTION';
+export const ERROR_zhiweilist_ACTION = 'ERROR_zhiweilist_ACTION';
+export const SUCCESS_zhiweilist_ACTION = 'SUCCESS_zhiweilist_ACTION';
+
+//职位详情
+export const START_zhiWeiShow_ACTION = 'START_zhiWeiShow_ACTION';
+export const ERROR_zhiWeiShow_ACTION = 'ERROR_zhiWeiShow_ACTION';
+export const SUCCESS_zhiWeiShow_ACTION = 'SUCCESS_zhiWeiShow_ACTION';
+//公司详情
+export const START_gongShiShow_ACTION = 'START_gongShiShow_ACTION';
+export const ERROR_gongShiShow_ACTION = 'ERROR_gongShiShow_ACTION';
+export const SUCCESS_gongShiShow_ACTION = 'SUCCESS_gongShiShow_ACTION';

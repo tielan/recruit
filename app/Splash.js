@@ -57,7 +57,7 @@ class Splash extends React.Component {
           height: Dimensions.get('window').height,
           //   transform: [{ scale: this.state.bounceValue }] 
         }}
-        source={require('./imgs/bj.png')}
+        source={require('./imgs/ic_splash.png')}
         />
     );
   }

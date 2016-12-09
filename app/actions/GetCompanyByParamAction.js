@@ -11,7 +11,7 @@ export function getHotCompanyByAction(start = 0, count = 0) {
     });
     return FetchManger.getUri(types.API_getCompanyByParam, { hot_recommend: '1' }).then((responseData) => {
       console.log('success');
-      if (responseData.result === '1') {
+            if (responseData.result === '1' || responseData.result === 1) {
         dispatch(successhomeAction(responseData.data));
       } else {
         dispatch(errorhomeAction(responseData.msg));

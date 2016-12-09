@@ -11,7 +11,7 @@ export function zhiWeiShowAction(post_id) {
             type: types.START_zhiWeiShow_ACTION,
         });
         return FetchManger.getUri(types.API_getCompanyInfoById, param).then((responseData) => {
-            if (responseData.result === '1') {
+            if (responseData.result === '1' || responseData.result === 1) {
                 dispatch({
                     type: types.SUCCESS_zhiWeiShow_ACTION,
                     result: responseData.data,

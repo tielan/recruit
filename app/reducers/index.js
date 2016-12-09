@@ -7,6 +7,10 @@ import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
 import zhiweilist from './zhiweilist';
 import zhiWeiShow from './zhiWeiShow';
 import gongShiShow from './gongShiShow';
+import resumeMessageList from './resumeMessageList'
+import companyMessageList from './companyMessageList'
+import MyCollectionList from './MyCollectionList'
+import MyResumeList from './MyResumeList'
 
 import collectionPost from './CollectionPost';
 import editPersoanlResume from './EditPersoanlResume';
@@ -38,7 +42,11 @@ const rootReducer = combineReducers({
       homeCompanyList,
       zhiweilist,
       zhiWeiShow,
-      gongShiShow
+      gongShiShow,
+      companyMessageList,
+      resumeMessageList,
+      MyCollectionList,
+      MyResumeList
       
 });
 

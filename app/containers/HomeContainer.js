@@ -151,7 +151,7 @@ class HomePage extends React.Component {
         } else {
             return (<View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
                 <View style={{ flex: 1 }} />
-                <Text style={styles.bgtext}>暂无数据</Text>
+                <Text >暂无数据</Text>
                 <View style={{ flex: 1 }} />
             </View>);
         }

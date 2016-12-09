@@ -80,3 +80,21 @@ export const SUCCESS_zhiWeiShow_ACTION = 'SUCCESS_zhiWeiShow_ACTION';
 export const START_gongShiShow_ACTION = 'START_gongShiShow_ACTION';
 export const ERROR_gongShiShow_ACTION = 'ERROR_gongShiShow_ACTION';
 export const SUCCESS_gongShiShow_ACTION = 'SUCCESS_gongShiShow_ACTION';
+//简历被查看 消息
+export const START_resumeMessageList_ACTION = 'START_resumeMessageList_ACTION';
+export const SUCCESS_resumeMessageList_ACTION = 'SUCCESS_resumeMessageList_ACTION';
+export const ERROR_resumeMessageList_ACTION = 'ERROR_resumeMessageList_ACTION';
+//公司邀请 消息
+export const START_companyMessageList_ACTION = 'START_companyMessageList_ACTION';
+export const SUCCESS_companyMessageList_ACTION = 'SUCCESS_companyMessageList_ACTION';
+export const ERROR_companyMessageList_ACTION = 'ERROR_companyMessageList_ACTION';
+
+//我的收藏列表
+export const START_MyCollectionList_ACTION = 'START_MyCollectionList_ACTION';
+export const SUCCESS_MyCollectionList_ACTION = 'SUCCESS_MyCollectionList_ACTION';
+export const ERROR_MyCollectionList_ACTION = 'ERROR_MyCollectionList_ACTION';
+
+//我的投递的岗位列表
+export const START_MyResumeList_ACTION = 'START_MyResumeList_ACTION';
+export const SUCCESS_MyResumeList_ACTION = 'SUCCESS_MyResumeList_ACTION';
+export const ERROR_MyResumeList_ACTION = 'ERROR_MyResumeList_ACTION';

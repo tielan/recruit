@@ -9,7 +9,6 @@ import {
 const propTypes = {
   onPress: PropTypes.func,
   disabled: PropTypes.bool,
-  source: PropTypes.object,
   style: View.propTypes.style,
   containerStyle: View.propTypes.style
 };
@@ -19,18 +18,18 @@ const ImageButton = ({ onPress, disabled, source, style, containerStyle }) => (
     style={containerStyle}
     onPress={onPress}
     disabled={disabled}
-  >
+    >
     <Image
       style={style}
       source={source}
-    />
+      />
   </TouchableOpacity>
 );
 
 ImageButton.propTypes = propTypes;
 
 ImageButton.defaultProps = {
-  onPress() {},
+  onPress() { },
   disabled: false
 };
 

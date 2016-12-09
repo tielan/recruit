@@ -30,7 +30,7 @@ export function getCompanyByParamAction(work_type, addr_area, industry, post_nam
             type: types.START_zhiweilist_ACTION,
         });
         return FetchManger.getUri(types.API_getCompanyByParam, param).then((responseData) => {
-            if (responseData.result === '1') {
+            if (responseData.result === '1' || responseData.result === 1) {
                 dispatch({
                     type: types.SUCCESS_zhiweilist_ACTION,
                     result: responseData.data,

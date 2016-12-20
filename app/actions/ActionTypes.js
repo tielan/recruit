@@ -36,8 +36,8 @@ export const START_Home_getCompanyByParam_ACTION = 'START_Home_getCompanyByParam
 export const RECEIVE_Home_getCompanyByParam_ACTION = 'RECEIVE_Home_getCompanyByParam_ACTION'; //收到登陆结果
 //3.2.4 获取公司信息
 export const API_getCompanyInfoById = 'getCompanyInfoById.do'
-export const START_getCompanyInfoById_ACTION = 'START_getCompanyInfoById_ACTION';  //开始登陆
-export const RECEIVE_getCompanyInfoById_ACTION = 'RECEIVE_getCompanyInfoById_ACTION'; //收到登陆结果
+export const START_getCompanyInfoById_ACTION = 'START_getCompanyInfoById_ACTION'; 
+export const RECEIVE_getCompanyInfoById_ACTION = 'RECEIVE_getCompanyInfoById_ACTION'; 
 //3.2.5 投递简历
 export const API_sendResume = 'sendResume.do'
 export const START_sendResume_ACTION = 'START_sendResume_ACTION';  //开始登陆

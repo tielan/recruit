@@ -62,13 +62,14 @@ const Toolbar = ({
     return (
       <View style={styles.toolbar}>
         {
-          navigator ? <ImageButton
-            containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
-            source={navIcon === undefined ? iconLeftIOS : navIcon}
-            style={styles.leftIOS}
-            onPress={handleIconClicked}
-            /> : 
-            <View style={styles.leftIOS}  />
+          navigator ?
+            <ImageButton
+              containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
+              source={require('../imgs/icon_left_ios.png')}
+              style={styles.leftIOS}
+              onPress={handleIconClicked}
+              /> :
+            <View style={styles.leftIOS} />
         }
 
         <Text

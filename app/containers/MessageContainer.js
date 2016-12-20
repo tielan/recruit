@@ -12,6 +12,10 @@ import {
 import ScrollableTabView, { DefaultTabBar, } from 'react-native-scrollable-tab-view';
 
 import MessageListContainer from './message/MessageListContainer';
+import ResumeMessageListContainer from './message/ResumeMessageListContainer';
+import CompanyMessageListContainer from './message/CompanyMessageListContainer';
+
+
 import Toolbar from '../comm/Toolbar';
 
 class MessagePage extends React.Component {
@@ -31,8 +35,8 @@ class MessagePage extends React.Component {
                         tabBarActiveTextColor='#61c4f7'
                         tabBarInactiveTextColor='#000000'
                         renderTabBar={() => <DefaultTabBar />}>
-                        <MessageListContainer {...this.props} tabLabel='简历状态通知' type={0} />
-                        <MessageListContainer {...this.props} tabLabel='企业邀请通知' type={1}/>
+                        <ResumeMessageListContainer {...this.props} tabLabel='简历状态通知'/>
+                        <CompanyMessageListContainer {...this.props} tabLabel='企业邀请通知' />
                         <MessageListContainer {...this.props} tabLabel='系统消息' type={2}/>
                     </ScrollableTabView>
                 </View>

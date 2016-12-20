@@ -8,11 +8,11 @@ export function getPersoanResumeInfoByIdAction(personal_id) {
   let param = { personal_id: personal_id };
   return dispatch => {
     dispatch(startActon());
-    return FetchManger.postUri(types.API_getPersoanResumeInfoById,param).then((responseData) => {
+    return FetchManger.getUri(types.API_getPersoanResumeInfoById, param).then((responseData) => {
       dispatch(receiveResult(responseData));
     }).catch((error) => {
-        dispatch(receiveErrorResult(error));
-      })
+      dispatch(receiveErrorResult(error));
+    })
   };
 }
 

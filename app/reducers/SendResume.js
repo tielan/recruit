@@ -2,25 +2,28 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     loading: false,
-    data: undefined,
+    isFetched:false,
+    result: undefined,
     errMsg: undefined,
-	personal_id	:'',//	Int	用户id
-	company_id:'',//		Int	公司id
-	post_id	:'',//	Int	发布岗位信息Id
 }
 
-export default function register(state = initialState, action) {
+export default function SendResume(state = initialState, action) {
+    state = Object.assign({},state,{
+        isFetched:false,
+    });
     switch (action.type) {
         case types.START_sendResume_ACTION:
             return Object.assign({}, state, {
                 loading: true,
+                isFetched:true,
                 data: undefined,
                 errMsg: undefined,
             });
         case types.RECEIVE_sendResume_ACTION:
             return Object.assign({}, state, {
                 loading: false,
-                data: action.result,
+                isFetched:true,
+                result: action.result,
                 errMsg: action.errMsg,
             });
         default:

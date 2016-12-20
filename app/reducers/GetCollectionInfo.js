@@ -7,7 +7,7 @@ const initialState = {
     personal_id	:'',//Int	个人id
 }
 
-export default function register(state = initialState, action) {
+export default function getCollectionInfo(state = initialState, action) {
     switch (action.type) {
         case types.START_getCollectionInfo_ACTION:
             return Object.assign({}, state, {

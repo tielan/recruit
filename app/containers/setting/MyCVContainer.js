@@ -14,7 +14,7 @@ import {
     ScrollView
 } from 'react-native';
 
-import { Iconfont, LineView } from 'react-native-go';
+import { Iconfont, LineView, LoginInfo } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
 import Toolbar from '../../comm/Toolbar';
 import { connect } from 'react-redux';
@@ -30,25 +30,12 @@ class MyCVPage extends React.Component {
     }
     componentDidMount() {
         const { dispatch, router, getPersoanResumeInfoById } = this.props;
-        dispatch(getPersonSendResumeInfoAction('personal_id'));
+        const userInfo = LoginInfo.getUserInfo();
+        dispatch(getPersoanResumeInfoByIdAction(userInfo.personal_id));
     }
 
     componentWillReceiveProps(nextProps) {
-        const { dispatch, getPersoanResumeInfoById } = nextProps;
-        if (getPersoanResumeInfoById.data || getPersoanResumeInfoById.errMsg) {
-            setTimeout(() => {
-                if (register.errMsg) {
-                    Alert.alert('', register.errMsg, [{ text: '好' },])
-                    return;
-                }
-                if (register.data && register.data.success) {
 
-                } else {
-                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
-                    return;
-                }
-            }, 200);
-        }
     }
 
 
@@ -64,7 +51,6 @@ class MyCVPage extends React.Component {
     }
     //基本信息
     onRenderBaseInfoView() {
-        const {  getPersoanResumeInfoById } = this.props;
 
         return (<View style={{ backgroundColor: '#fff' }}>
             <View style={{ height: 44 }}>
@@ -74,6 +60,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>姓名</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -90,6 +86,7 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>性别</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -106,6 +103,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>出生日期</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -122,6 +129,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>学历</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -138,6 +155,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>工作年限</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -154,6 +181,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>残联证编号</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -170,6 +207,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>联系电话</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -186,6 +233,16 @@ class MyCVPage extends React.Component {
                         <Text style={styles.titles}>求职状态</Text>
                         <View style={{ flex: 1 }} />
                     </View>
+                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        placeholder={'请出生日期'}
+                        underlineColorAndroid={'transparent'}
+                        backgroundColor={'#5e5e5e'}
+                        placeholderTextColor={'#fff'}
+                        secureTextEntry={true}
+                        onChangeText={(user_password) => {
+
+                        } }
+                        />
                     <View style={styles.right} >
                         <Iconfont fontFamily={'OAIndexIcon'}
                             icon='e657' // 图标
@@ -203,12 +260,6 @@ class MyCVPage extends React.Component {
             <Toolbar title='我的简历' navigator={this.props.navigator} />
             <ScrollView style={{ flex: 1 }} showsVerticalScrollIndicator={false}>
                 <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
-                    {
-                        this.onRenderSectionHeader('头像')
-                    }
-                    {
-                        this.onRenderHeadView()
-                    }
                     {
                         this.onRenderSectionHeader('基本信息')
                     }

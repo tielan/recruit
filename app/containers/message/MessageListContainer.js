@@ -9,6 +9,8 @@ import {
     ListView
 } from 'react-native';
 
+import { Iconfont, Toast, Spinner, LoginInfo, LineView } from 'react-native-go';
+
 import { connect } from 'react-redux';
 import Toolbar from '../../comm/Toolbar';
 import { getPersonSendResumeInfoAction } from '../../actions/GetPersonSendResumeInfoAction';
@@ -17,24 +19,17 @@ import { getCompanyInviteInfoAction } from '../../actions/GetCompanyInviteInfoAc
 class MessageListPage extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            }),
-        };
-
     }
     componentDidMount() {
-        const { dispatch, router, getPersonSendResumeInfo } = this.props;
-
-        if (0 === router.type) {//简历状态通知
+        const { dispatch, route, getPersonSendResumeInfo } = this.props;
+        if (0 === route.type) {//简历状态通知
             //获取列表
             dispatch(getPersonSendResumeInfoAction('personal_id'));
 
-        } else if (1 === router.type) {//企业邀请通知
+        } else if (1 === route.type) {//企业邀请通知
             dispatch(getCompanyInviteInfoAction('personal_id'));
 
-        } else if (2 === router.type) {//系统消息
+        } else if (2 === route.type) {//系统消息
 
 
         }
@@ -66,13 +61,15 @@ class MessageListPage extends React.Component {
 
     }
     render() {
+        const { getPersonSendResumeInfo } = this.props;
+
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
                 {
-                    (_data.length != 0) ?
+                    (getPersonSendResumeInfo.result && getPersonSendResumeInfo.result['data'] && getPersonSendResumeInfo.result['data'].length != 0) ?
                         <ListView
                             enableEmptySections={true}
-                            dataSource={this.state.dataSource}
+                            dataSource={homeCompanyList.listDataSource.cloneWithRows(getPersonSendResumeInfo.result['data'])}
                             renderRow={this.renderRowView}
                             />
                         :
@@ -83,7 +80,7 @@ class MessageListPage extends React.Component {
                         </View>
                 }
                 <View>
-                    <Spinner visible={homeCompanyList.loading} />
+                    <Spinner visible={getPersonSendResumeInfo.loading} />
                 </View>
             </View >
         );

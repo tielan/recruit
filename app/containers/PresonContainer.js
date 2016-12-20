@@ -17,7 +17,9 @@ import Toolbar from '../comm/Toolbar';
 import ListItemSetting from '../comm/ListItemSetting';
 import SettingContainer from './setting/SettingContainer';
 import MyCVContainer from './setting/MyCVContainer';
-import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
+import MyResumeListContainer from './setting/MyResumeListContainer';
+import MyCollectionListContainer from './setting/MyCollectionListContainer';
+
 
 var WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -27,7 +29,9 @@ class PresonPage extends Component {
         super(props);
         this.onSetting = this.onSetting.bind(this);
         this.onMyCV = this.onMyCV.bind(this);
-        this.onHasSend = this.onHasSend.bind(this);
+        this.onMyCollectionList = this.onMyCollectionList.bind(this);
+        this.onMyResumeList = this.onMyResumeList.bind(this);
+
 
     }
     onMyCV() {
@@ -42,10 +46,17 @@ class PresonPage extends Component {
             component: SettingContainer,
         });
     }
-    onHasSend() {
+    onMyCollectionList() {
         this.props.navigator.push({
-            name: "ZhiWeiDetailContainer",
-            component: ZhiWeiDetailContainer,
+            name: "MyCollectionListContainer",
+            component: MyCollectionListContainer,
+        });
+    }
+
+    onMyResumeList() {
+        this.props.navigator.push({
+            name: "MyResumeListContainer",
+            component: MyResumeListContainer,
         });
     }
 
@@ -54,14 +65,6 @@ class PresonPage extends Component {
             <View style={styles.flex}>
                 <Toolbar title='个人' />
                 <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-                    <View style={styles.bgimage}>
-                        <View style={{ alignItems: 'center', height: 130 }}>
-                            <Image source={require('../imgs/defaul_user_icon.png')} style={styles.userIcon} />
-                            <View style={{ flexDirection: 'column', flex: 1 }}>
-                                <Text style={styles.nametitle}> 张三</Text>
-                            </View>
-                        </View>
-                    </View>
                     <View style={styles.emptyview}></View>
                     <ListItemSetting
                         icon='e673'
@@ -71,12 +74,12 @@ class PresonPage extends Component {
                     <ListItemSetting
                         icon='e683'
                         iconColor='#fe7442'
-                        onPress={this.onHasSend}
+                        onPress={this.onMyResumeList}
                         showText='我投递的岗位' />
                     <ListItemSetting
                         icon='e67B'
                         iconColor='#83d130'
-                        onPress={this.onHasSend}
+                        onPress={this.onMyCollectionList}
                         showText='我的收藏' />
                     <View style={styles.emptyview}></View>
                     <ListItemSetting
@@ -166,18 +169,18 @@ const styles = StyleSheet.create({
 });
 class PresonContainer extends Component {
 
-  render() {
-    return (
-      <PresonPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <PresonPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { login } = state;
+    return {
+        login,
+    }
 }
 
 export default connect(mapStateToProps)(PresonContainer);

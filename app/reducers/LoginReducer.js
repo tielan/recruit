@@ -12,13 +12,13 @@ export default function login(state = initialState, action) {
     switch (action.type) {
         case types.START_personalLogin_ACTION:
             return Object.assign({}, state, {
-                logining: true,
+                loading: true,
                 errMsg: undefined,
                 data: undefined,
             });
         case types.RECEIVE_personalLogin_ACTION:
             return Object.assign({}, state, {
-                logining: false,
+                loading: false,
                 data: action.result,
                 errMsg: action.errMsg,
             });

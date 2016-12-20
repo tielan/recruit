@@ -2,23 +2,27 @@ import * as types from '../actions/ActionTypes';
 
 const initialState = {
     loading: false,
-    data: undefined,
+    data: {},
     errMsg: undefined,
-	company_id:'',//		Int	公司id
 }
 
-export default function getCompanyInfoById(state = initialState, action) {
+export default function gongShiShow(state = initialState, action) {
     switch (action.type) {
-        case types.START_getCompanyInfoById_ACTION:
+        case types.START_gongShiShow_ACTION:
             return Object.assign({}, state, {
                 loading: true,
-                data: undefined,
                 errMsg: undefined,
+                data: {},
             });
-        case types.RECEIVE_getCompanyInfoById_ACTION:
+        case types.SUCCESS_gongShiShow_ACTION:
             return Object.assign({}, state, {
                 loading: false,
                 data: action.result,
+            });
+        case types.ERROR_gongShiShow_ACTION:
+            return Object.assign({}, state, {
+                loading: false,
+                data: {},
                 errMsg: action.errMsg,
             });
         default:

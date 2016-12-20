@@ -30,7 +30,7 @@ const initialState = {
 	jntcms:'',//	string	技能特长
 }
 
-export default function register(state = initialState, action) {
+export default function editPersoanlResume(state = initialState, action) {
     switch (action.type) {
         case types.START_editPersoanlResume_ACTION:
             return Object.assign({}, state, {

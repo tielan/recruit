@@ -7,6 +7,9 @@ import {
 } from 'react-native';
 
 import LoginContainer from './containers/login/LoginContainer';
+import MainContainer from './containers/MainContainer';
+
+import { LoginInfo } from 'react-native-go'
 
 class Splash extends React.Component {
   constructor(props) {
@@ -18,45 +21,27 @@ class Splash extends React.Component {
 
   componentDidMount() {
     const { navigator } = this.props;
-    Animated.timing(
-      this.state.bounceValue, { toValue: 1.2, duration: 1000 }
-    ).start();
+    // Animated.timing(
+    //   this.state.bounceValue, { toValue: 1.2, duration: 1000 }
+    // ).start();
 
     this.timer = setTimeout(() => {
 
-       InteractionManager.runAfterInteractions(() => {
-            navigator.resetTo({
-              component: LoginContainer,
-              name: 'Login'
-            });
-          });
-          /*
-      global.storage.load({
-        key: 'userName',
-      }).then((ret)=>{
-        if (ret.userName && ret.password && ret.rawData){
-          navigator.push({
-            name: "Main",
+      if (LoginInfo.getUserInfo() && LoginInfo.getUserInfo().personal_id) {
+        InteractionManager.runAfterInteractions(() => {
+          navigator.resetTo({
             component: MainContainer,
+            name: 'MainContainer'
           });
-        } else {
-          InteractionManager.runAfterInteractions(() => {
-            navigator.resetTo({
-              component: LoginContainer,
-              name: 'Login'
-            });
+        });
+      } else {
+        InteractionManager.runAfterInteractions(() => {
+          navigator.resetTo({
+            component: LoginContainer,
+            name: 'LoginContainer'
           });
-        }
-      }).catch((err)=>{
-        console.log('setAotoLogin error ==> ', err);
-        if(!err)
-          InteractionManager.runAfterInteractions(() => {
-            navigator.resetTo({
-              component: LoginContainer,
-              name: 'Login'
-            });
-          });
-      })*/
+        });
+      }
     }, 2000);
   }
 
@@ -67,13 +52,13 @@ class Splash extends React.Component {
   render() {
     return (
       <Animated.Image
-        style={{ 
+        style={{
           width: Dimensions.get('window').width,
           height: Dimensions.get('window').height,
-          transform: [{ scale: this.state.bounceValue }] 
+          //   transform: [{ scale: this.state.bounceValue }] 
         }}
-        source={require('./imgs/bj.png')}
-      />
+        source={require('./imgs/ic_splash.png')}
+        />
     );
   }
 }

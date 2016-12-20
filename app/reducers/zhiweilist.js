@@ -1,38 +1,25 @@
-import React, {
-    ListView,
-} from 'react-native';
-
 import * as types from '../actions/ActionTypes';
 
-var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const initialState = {
-    listData: dataSource.cloneWithRows([]),//数据源
-    canLoadMore: false,//是否可以加载更多
-    loadMore: false,//显示加载更多
-    loading: false,//显示loading
-    errMsg: undefined,//请求错误显示
-    addr_area: undefined,
-    industry: undefined,
-    post_name: undefined,
-    salary_type: undefined
+    loading: false,
+    user_name: '',
+    user_password: '',
+    data: undefined,
+    errMsg: undefined,
 }
 
-export default function zhiweilist(state = initialState, action) {
+export default function login(state = initialState, action) {
     switch (action.type) {
-        case types.START_zhiweilist_ACTION:
+        case types.START_personalLogin_ACTION:
             return Object.assign({}, state, {
                 logining: true,
                 errMsg: undefined,
+                data: undefined,
             });
-        case types.SUCCESS_zhiweilist_ACTION:
+        case types.RECEIVE_personalLogin_ACTION:
             return Object.assign({}, state, {
                 logining: false,
-                listData: dataSource.cloneWithRows(action.result ? action.result : []),
-            });
-        case types.ERROR_zhiweilist_ACTION:
-            return Object.assign({}, state, {
-                logining: false,
-                listData: dataSource.cloneWithRows([]),
+                data: action.result,
                 errMsg: action.errMsg,
             });
         default:

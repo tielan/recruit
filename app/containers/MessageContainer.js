@@ -16,7 +16,7 @@ import ResumeMessageListContainer from './message/ResumeMessageListContainer';
 import CompanyMessageListContainer from './message/CompanyMessageListContainer';
 
 
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 
 class MessagePage extends React.Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class MessagePage extends React.Component {
     render() {
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='消息' />
+                <NavigationBar title='消息' leftButtonIcon={-1}/>
                 <View style={{ flex: 1 }}>
                     <ScrollableTabView
                         tabBarUnderlineStyle={ {backgroundColor:'#61c4f7'}}

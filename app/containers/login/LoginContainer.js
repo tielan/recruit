@@ -71,9 +71,8 @@ class LoginPage extends React.Component {
                             iconSize={24}
                             />
                     </View>
-                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                    <TextInput style={{ height: 48, color: '#ffffff', backgroundColor:'#5e5e5e', flex: 1, paddingLeft: 8 }}
                         placeholder={'请输入用户名'}
-                        backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}
@@ -92,10 +91,9 @@ class LoginPage extends React.Component {
                             iconSize={24}
                             />
                     </View>
-                    <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                    <TextInput style={{ height: 48, color: '#ffffff',  backgroundColor:'#5e5e5e', flex: 1, paddingLeft: 8 }}
                         placeholder={'请输入密码'}
                         underlineColorAndroid={'transparent'}
-                        backgroundColor={'#5e5e5e'}
                         placeholderTextColor={'#fff'}
                         secureTextEntry={true}
                         onChangeText={(user_password) => {

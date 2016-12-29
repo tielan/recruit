@@ -119,10 +119,10 @@ class ZhiWeiShowPage extends Component {
 					<View style={{ height: 1, backgroundColor: '#d9d9d9' }} />
 					<Text style={{ fontSize: 16, color: '#999', marginTop: 8 }}> {data.post_introduction}</Text>
 				</View>
-				<View style={{ flexDirection: 'row', borderTopColor: '#d9d9d9', borderTopWidth: StyleSheet.hairlineWith, height: 60, padding: 12, marginBottom: 8 }}>
+				<View style={{ flexDirection: 'row', borderTopColor: '#d9d9d9', borderTopWidth: StyleSheet.hairlineWith, height: 56, margin: 8 }}>
 					<TouchableHighlight
 						underlayColor='#ffaa50'
-						style={{ backgroundColor: '#ffaa50', flex: 1, height: 46, alignItems: 'center', justifyContent: 'center', borderRadius: 6, }}
+						style={{ backgroundColor: '#ffaa50', flex: 1, height: 44, alignItems: 'center', justifyContent: 'center', borderRadius: 6, }}
 						onPress={this.onSendResumeAction.bind(this)}
 						>
 						<Text style={{ fontSize: 16, color: '#fff', alignSelf: 'center' }}>投递简历</Text>
@@ -132,7 +132,7 @@ class ZhiWeiShowPage extends Component {
 						underlayColor='#fff'
 						onPress={this.onShouChang.bind(this)}
 						>
-						<View style={{ backgroundColor: '#42beff', width: 50, height: 46, borderRadius: 6, }}>
+						<View style={{ backgroundColor: '#42beff', width: 50, height: 44, borderRadius: 6, }}>
 							<Iconfont fontFamily={'OAIndexIcon'}
 								icon={'e67b'} // 图标
 								iconColor={data.collection_status === '1' ? 'blue' : '#fff'}

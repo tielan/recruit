@@ -20,7 +20,7 @@ import { connect } from 'react-redux';
 import { Iconfont, LineView, Spinner } from 'react-native-go';
 import ModalDropdown from '../comm/ModalDropdown'
 import RefreshFooter from '../comm/RefreshFooter';
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 import GridView from '../comm/GridView';
 import * as Type_Dict from '../constants/Type_Dict';
 import { getCompanyByParamAction } from '../actions/zhiweilistAction';
@@ -54,32 +54,41 @@ class ZhiWeiListPage extends React.Component {
         });
         const { dispatch, route, zhiweilist } = this.props;
         return (
-            <ModalDropdown
+            <Picker
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
                     flex: 1
                 }}
-                options={options}
-                defaultValue={options[0]}
-                onSelect={(id, values) => {
-                    zhiweilist[type] = ids[id];
-                    //根据类型 获取列表
-                    dispatch(getCompanyByParamAction(route.work_type,
-                        zhiweilist.addr_area,
-                        zhiweilist.industry,
-                        zhiweilist.post_name,
-                        zhiweilist.salary_type));
-                } }>
-            </ModalDropdown>
+                itemStyle={{
+                    textAlign: 'right',
+                    color: '#999'
+                }}
+                selectedValue={zhiweilist[type] ? zhiweilist[type] :  options[0]}
+                onValueChange={
+                    (values, id) => {
+                        zhiweilist[type] = ids[id];
+                        //根据类型 获取列表
+                        dispatch(getCompanyByParamAction(route.work_type,
+                            zhiweilist.addr_area,
+                            zhiweilist.industry,
+                            zhiweilist.post_name,
+                            zhiweilist.salary_type));
+                    }
+                }>
+                {
+                    options.map((optionValue) => <Picker.Item label={optionValue} value={optionValue} key={optionValue} />)
+                }
+            </Picker>
+
         )
     }
     _rowOnPress(rowData) {
-         this.props.navigator.push({
+        this.props.navigator.push({
             name: "ZhiWeiDetailContainer",
             component: ZhiWeiDetailContainer,
-            company_id:rowData.company_id,
-            post_id:rowData.post_id,
+            company_id: rowData.company_id,
+            post_id: rowData.post_id,
         });
     }
 
@@ -108,7 +117,7 @@ class ZhiWeiListPage extends React.Component {
                                     iconSize={14}
                                     />
                             </View>
-                            <View style={{ alignSelf: 'flex-start' ,marginLeft:16}}>
+                            <View style={{ alignSelf: 'flex-start', marginLeft: 16 }}>
                                 <Iconfont fontFamily={'OAIndexIcon'}
                                     icon={'e683'} // 图标
                                     iconColor='#bbb'
@@ -121,8 +130,8 @@ class ZhiWeiListPage extends React.Component {
                         </View>
                     </View>
                     <View style={{ flexDirection: 'column', alignItems: 'center', width: 60, marginLeft: 8 }}>
-                        <Text style={{ color: '#bbbbbb',marginTop: 10 ,fontSize: 14,}}>{rowData.time}</Text>
-                        <Text style={{ color: 'red',marginTop: 10 ,fontSize: 16,}}>{rowData.salary_area}</Text>
+                        <Text style={{ color: '#bbbbbb', marginTop: 10, fontSize: 14, }}>{rowData.time}</Text>
+                        <Text style={{ color: 'red', marginTop: 10, fontSize: 16, }}>{rowData.salary_area}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -136,8 +145,8 @@ class ZhiWeiListPage extends React.Component {
     render() {
         const { zhiweilist } = this.props;
         return (
-            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='职位列表' navigator={this.props.navigator} />
+            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee', }}>
+                <NavigationBar title='职位列表' navigator={this.props.navigator} />
 
                 <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
                     <View style={styles.pickerContainer}>
@@ -235,8 +244,6 @@ const styles = StyleSheet.create({
     pickerContainer: {
         flex: 1,
         height: 35,
-        elevation: 2,
-        borderRadius: 2,
         backgroundColor: 'white',
         borderColor: 'lightgrey',
         justifyContent: 'center',

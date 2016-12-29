@@ -17,7 +17,7 @@ import {
 import { connect } from 'react-redux';
 import { Iconfont,LineView } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 
 class ForgetPassWordPage extends React.Component {
     constructor(props) {
@@ -25,14 +25,13 @@ class ForgetPassWordPage extends React.Component {
     }
     render() {
         return (<View style={styles.container} >
-            <Toolbar title='忘记密码' navigator={this.props.navigator} />
+            <NavigationBar title='忘记密码' navigator={this.props.navigator} />
             <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
                
                 <View style={{ height: 40,  marginTop: 20 }}>
                     <LineView />
-                    <TextInput style={{ height: 40,  paddingLeft: 8 }}
+                    <TextInput style={{ height: 40,  paddingLeft: 8 ,backgroundColor:'#fff'}}
                         placeholder={'请输入手机号码'}
-                        backgroundColor={'#fff'}
                         placeholderTextColor={'#cbcbcb'}
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}
@@ -45,9 +44,8 @@ class ForgetPassWordPage extends React.Component {
                 
                 <View style={{ height: 40, marginTop:1}}>
                     <LineView />
-                    <TextInput style={{ height: 40,  paddingLeft: 8 }}
+                    <TextInput style={{ height: 40,  paddingLeft: 8 ,backgroundColor:'#fff'}}
                         placeholder={'请输入残联证编号'}
-                        backgroundColor={'#fff'}
                         placeholderTextColor={'#cbcbcb'}
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}
@@ -59,9 +57,8 @@ class ForgetPassWordPage extends React.Component {
                 </View>
                 <LineView />
                 <View style={{ height: 40,  marginTop: 20 }}>
-                    <TextInput style={{ height: 40,  paddingLeft: 8 }}
+                    <TextInput style={{ height: 40,  paddingLeft: 8 ,backgroundColor:'#fff'}}
                         placeholder={'请输入新密码'}
-                        backgroundColor={'#fff'}
                         placeholderTextColor={'#cbcbcb'}
                         underlineColorAndroid={'transparent'}
                         autoCapitalize={'none'}

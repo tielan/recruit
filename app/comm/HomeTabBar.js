@@ -36,7 +36,7 @@ class HomeTabBar extends Component {
                     <Iconfont fontFamily={'OAIndexIcon'}
                         icon={this.props.tabIconNames[i]} // 图标
                         iconColor={color}
-                        iconSize={28}
+                        iconSize={24}
                         />
                     <Text style={{ color: color }}>
                         {this.props.tabNames[i]}

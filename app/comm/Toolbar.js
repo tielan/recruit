@@ -96,11 +96,11 @@ const Toolbar = ({
     );
   };
 
-  const Toolbar = Platform.select({
-    android: () => renderToolbarAndroid(),
-    ios: () => renderToolbarIOS()
-  });
-
+  // const Toolbar = Platform.select({
+  //   android: () => renderToolbarAndroid(),
+  //   ios: () => renderToolbarIOS()
+  // });
+  const Toolbar =  () => renderToolbarIOS();
   return <Toolbar />;
 };
 

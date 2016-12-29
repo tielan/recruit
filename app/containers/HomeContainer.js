@@ -14,7 +14,7 @@ import { getHotCompanyByAction } from '../actions/GetCompanyByParamAction';
 import { connect } from 'react-redux';
 
 import RefreshFooter from '../comm/RefreshFooter';
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 import GridView from '../comm/GridView';
 
 import ZhiWeiListContainer from './ZhiWeiListContainer';
@@ -161,7 +161,7 @@ class HomePage extends React.Component {
         const { homeCompanyList } = this.props;
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='首页' />
+                <NavigationBar title='首页' leftButtonIcon={-1}/>
                 <View style={{ height: WINDOW_WIDTH / 4 }}>
                     <GridView
                         items={Array.from(homeCompanyList.headTabList)}

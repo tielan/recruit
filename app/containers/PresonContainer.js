@@ -13,7 +13,7 @@ import {
     InteractionManager
 } from 'react-native';
 import { connect } from 'react-redux';
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 import ListItemSetting from '../comm/ListItemSetting';
 import SettingContainer from './setting/SettingContainer';
 import MyCVContainer from './setting/MyCVContainer';
@@ -63,7 +63,7 @@ class PresonPage extends Component {
     render() {
         return (
             <View style={styles.flex}>
-                <Toolbar title='个人' />
+                <NavigationBar title='个人' leftButtonIcon={-1}/>
                 <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
                     <View style={styles.emptyview}></View>
                     <ListItemSetting

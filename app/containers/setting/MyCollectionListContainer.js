@@ -18,7 +18,7 @@ import {
 import { connect } from 'react-redux';
 
 import { Iconfont, LineView, Spinner, LoginInfo } from 'react-native-go';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 
 import { getMyCollectionListAction } from '../../actions/MyCollectionListAction';
 import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
@@ -98,7 +98,7 @@ class MyCollectionListPage extends React.Component {
         const { MyCollectionList } = this.props;
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='我的收藏' navigator={this.props.navigator} />
+                <NavigationBar title='我的收藏' navigator={this.props.navigator} />
                 <View style={{ flex: 1 }}>
                     {
                         (MyCollectionList.listData._cachedRowCount > 0) ?

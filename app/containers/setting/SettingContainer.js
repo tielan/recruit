@@ -16,13 +16,15 @@ import {
 import { connect } from 'react-redux';
 import { Iconfont, LineView } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 import ForgetPassWordContainer from '../login/ForgetPassWordContainer'
+import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
 
 class SettingPage extends React.Component {
     constructor(props) {
         super(props);
         this.onForgetPwd = this.onForgetPwd.bind(this);
+        this.onMessageSetting = this.onMessageSetting.bind(this);
     }
     onForgetPwd() {
         this.props.navigator.push({
@@ -30,60 +32,67 @@ class SettingPage extends React.Component {
             component: ForgetPassWordContainer,
         });
     }
+
+    onMessageSetting(){
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
+        });
+    }
     render() {
         return (<View style={styles.container} >
-            <Toolbar title='设置' navigator={this.props.navigator} />
-                <View style={{ flex:1,backgroundColor: '#F2F2F2' }}>
-                    <View style={{ height: 44 }}>
-                        <TouchableHighlight
-                            underlayColor='#C8C7CC'
-                            onPress={this.onForgetPwd}>
-                            <View style={styles.row}>
-                                <View style={styles.text}>
-                                    <View style={{ flex: 1 }} />
-                                    <Text style={styles.titles}>修改密码</Text>
-                                    <View style={{ flex: 1 }} />
-                                </View>
-                                <View style={styles.right} >
-                                    <Iconfont fontFamily={'OAIndexIcon'}
-                                        icon='e657' // 图标
-                                        iconColor='#a3a3a3'
-                                        iconSize={20}
-                                        />
-                                </View>
+            <NavigationBar title='设置' navigator={this.props.navigator} />
+            <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
+                <View style={{ height: 44 }}>
+                    <TouchableHighlight
+                        underlayColor='#C8C7CC'
+                        onPress={this.onForgetPwd}>
+                        <View style={styles.row}>
+                            <View style={styles.text}>
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.titles}>修改密码</Text>
+                                <View style={{ flex: 1 }} />
                             </View>
-                        </TouchableHighlight>
-                    </View>
-                    <View style={{ height: 44 }}>
-                        <TouchableHighlight
-                            underlayColor='#C8C7CC'
-                            onPress={this.onSectionClicked}>
-                            <View style={styles.row}>
-                                <View style={styles.text}>
-                                    <View style={{ flex: 1 }} />
-                                    <Text style={styles.titles}>消息提醒</Text>
-                                    <View style={{ flex: 1 }} />
-                                </View>
-                                <View style={styles.right} >
-                                    <Iconfont fontFamily={'OAIndexIcon'}
-                                        icon='e657' // 图标
-                                        iconColor='#a3a3a3'
-                                        iconSize={20}
-                                        />
-                                </View>
+                            <View style={styles.right} >
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon='e657' // 图标
+                                    iconColor='#a3a3a3'
+                                    iconSize={20}
+                                    />
                             </View>
-                        </TouchableHighlight>
-                    </View>
+                        </View>
+                    </TouchableHighlight>
+                </View>
+                <View style={{ height: 44 }}>
+                    <TouchableHighlight
+                        underlayColor='#C8C7CC'
+                        onPress={this.onMessageSetting}>
+                        <View style={styles.row}>
+                            <View style={styles.text}>
+                                <View style={{ flex: 1 }} />
+                                <Text style={styles.titles}>消息提醒</Text>
+                                <View style={{ flex: 1 }} />
+                            </View>
+                            <View style={styles.right} >
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon='e657' // 图标
+                                    iconColor='#a3a3a3'
+                                    iconSize={20}
+                                    />
+                            </View>
+                        </View>
+                    </TouchableHighlight>
+                </View>
 
 
-                    <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
-                        <TouchableHighlight onPress={this.onLogin}
-                            underlayColor={'#999'}
-                            style={{ height: 44, alignItems: 'center', justifyContent: 'center' }}>
-                            <Text style={{ fontSize: 26, color: 'white', }}>退出</Text>
-                        </TouchableHighlight >
-                    </View >
+                <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
+                    <TouchableHighlight onPress={this.onLogin}
+                        underlayColor={'#999'}
+                        style={{ height: 44, alignItems: 'center', justifyContent: 'center' }}>
+                        <Text style={{ fontSize: 26, color: 'white', }}>退出</Text>
+                    </TouchableHighlight >
                 </View >
+            </View >
         </View >);
     }
 
@@ -122,18 +131,18 @@ var styles = StyleSheet.create({
 });
 class SettingContainer extends Component {
 
-  render() {
-    return (
-      <SettingPage {...this.props} />
-    );
-  }
+    render() {
+        return (
+            <SettingPage {...this.props} />
+        );
+    }
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+    const { login } = state;
+    return {
+        login,
+    }
 }
 
 export default connect(mapStateToProps)(SettingContainer);

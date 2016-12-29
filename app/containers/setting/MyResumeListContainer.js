@@ -18,7 +18,7 @@ import {
 import { connect } from 'react-redux';
 
 import { Iconfont, LineView, Spinner, LoginInfo } from 'react-native-go';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 
 import { getMyResumeListAction } from '../../actions/MyResumeListAction';
 import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
@@ -98,7 +98,7 @@ class MyResumeListPage extends React.Component {
         const { MyResumeList } = this.props;
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='我的投递的岗位' navigator={this.props.navigator} />
+                <NavigationBar title='我的投递的岗位' navigator={this.props.navigator} />
                 <View style={{ flex: 1 }}>
                     {
                         (MyResumeList.listData._cachedRowCount > 0) ?

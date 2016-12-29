@@ -5,9 +5,11 @@ import {
 	View,
 	Text,
 	Image,
-	TouchableWithoutFeedback
+	TouchableWithoutFeedback,
+	TouchableOpacity,
+	Platform
 } from 'react-native';
-const iconLeftIOS = require('../imgs/icon_left_ios.png');
+const iconLeftIOS = require('../imgs/icon_left.png');
 import ImageButton from '../comm/ImageButton';
 import ScrollableTabView from 'react-native-scrollable-tab-view';
 
@@ -24,19 +26,19 @@ class ZhiWeiDetailPage extends Component {
 		this.props.navigator.pop();
 	}
 	renderTabBar(tab) {
-		let color0 = tab.activeTab == 0 ?  "#fff" : "#42beff" ;
-		let color1 = tab.activeTab == 1 ? "#fff" : "#42beff" ; // 判断i是否是当前选中的tab，设置不同的颜色
+		let color0 = tab.activeTab == 0 ? "#fff" : "#42beff";
+		let color1 = tab.activeTab == 1 ? "#fff" : "#42beff"; // 判断i是否是当前选中的tab，设置不同的颜色
 		return (
-			<View style={{height: 44, backgroundColor: '#42beff', flexDirection: 'row', justifyContent: 'center',
-				alignItems: 'center',
+			<View style={{
+				height: 48, backgroundColor: '#42beff', flexDirection: 'row', justifyContent: 'center',
+				alignItems: 'center', elevation: 5,
 			}}>
-				<View style={{ width: 44 }}>
-					<ImageButton
-						containerStyle={{ justifyContent: 'center', alignItems: 'center' }}
-						source={iconLeftIOS}
-						style={styles.leftIOS}
-						onPress={this.backClick}
-						/>
+				<View style={{ width: 48 }}>
+					<TouchableOpacity onPress={this.backClick}>
+						<View style={{ justifyContent: 'center', alignItems: 'center' }}>
+							<Image style={styles.leftIOS} source={iconLeftIOS} />
+						</View>
+					</TouchableOpacity>
 				</View>
 				<View style={{ flex: 1 }} />
 				<View style={styles.tabs}>
@@ -56,21 +58,23 @@ class ZhiWeiDetailPage extends Component {
 					</TouchableWithoutFeedback>
 				</View>
 				<View style={{ flex: 1 }} />
-				<View style={{ width: 44 }} />
+				<View style={{ width: 48 }} />
 			</View>
 		);
 
 	}
 
 	render() {
+		let iosTop = Platform.OS === 'ios' ? 20 : 0;
+
 		return (
 			<View style={{ flex: 1 }}>
-				<View style={{ height: 20, backgroundColor: '#42beff' }} />
-					<ScrollableTabView renderTabBar={this.renderTabBar} >
-						<ZhiWeiShowContainer {...this.props} />
-						<GongShiShowContainer {...this.props} />
-					</ScrollableTabView>
-				
+				<View style={{ height: iosTop, backgroundColor: '#42beff' }} />
+				<ScrollableTabView renderTabBar={this.renderTabBar} >
+					<ZhiWeiShowContainer {...this.props} />
+					<GongShiShowContainer {...this.props} />
+				</ScrollableTabView>
+
 			</View>
 		);
 	}
@@ -125,24 +129,26 @@ const styles = StyleSheet.create({
 		borderBottomRightRadius: 10,
 	},
 	leftIOS: {
-		height: 15,
-		width: 25,
+		width: 24,
+		height: 24,
+		marginLeft: 8,
+		marginRight: 8,
 	},
 });
 class ZhiWeiDetailContainer extends Component {
 
-  render() {
-    return (
-      <ZhiWeiDetailPage {...this.props} />
-    );
-  }
+	render() {
+		return (
+			<ZhiWeiDetailPage {...this.props} />
+		);
+	}
 }
 
 function mapStateToProps(state) {
-  const { login }  = state;
-  return {
-    login,
-  }
+	const { login } = state;
+	return {
+		login,
+	}
 }
 
 export default connect(mapStateToProps)(ZhiWeiDetailContainer);

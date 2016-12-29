@@ -12,7 +12,7 @@ import {
 import { Iconfont, Toast, Spinner, LoginInfo, LineView,Utils } from 'react-native-go';
 
 import { connect } from 'react-redux';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 import { resumeMessageListAction } from '../../actions/resumeMessageListAction';
 
 class ResumeMessageListPage extends React.Component {

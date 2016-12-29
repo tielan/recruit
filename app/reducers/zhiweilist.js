@@ -1,15 +1,10 @@
-import React, {
-    ListView,
-} from 'react-native';
-
 import * as types from '../actions/ActionTypes';
 
-var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const initialState = {
     loading: false,
     user_name: '',
     user_password: '',
-    listData: dataSource.cloneWithRows([]),//数据源
+    data: undefined,
     errMsg: undefined,
 }
 

@@ -73,6 +73,8 @@ export const RECEIVE_getCollectionInfo_ACTION = 'RECEIVE_getCollectionInfo_ACTIO
 export const START_zhiweilist_ACTION = 'START_zhiweilist_ACTION';
 export const ERROR_zhiweilist_ACTION = 'ERROR_zhiweilist_ACTION';
 export const SUCCESS_zhiweilist_ACTION = 'SUCCESS_zhiweilist_ACTION';
+export const Update_zhiweilist_ACTION = 'Update_zhiweilist_ACTION';
+
 
 //职位详情
 export const START_zhiWeiShow_ACTION = 'START_zhiWeiShow_ACTION';

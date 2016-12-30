@@ -52,7 +52,6 @@ class ZhiWeiListPage extends React.Component {
                 zhiweilist.post_name,
                 zhiweilist.salary_type));
         }
-
     }
 
     renderSelect(typeDict, type) {
@@ -65,13 +64,13 @@ class ZhiWeiListPage extends React.Component {
             ids.push(item.id);
         });
         const { dispatch, route, zhiweilist } = this.props;
-        let selectedValue = zhiweilist[type] ? zhiweilist[type] : options[0];
+        let selectedValue = zhiweilist[type] ? options[zhiweilist[type]] : options[0];
         return (
             <Picker
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
-                    width: WINDOW_WIDTH / 3,
+                    flex:1
                 }}
                 selectedValue={selectedValue}
                 onValueChange={
@@ -160,10 +159,10 @@ class ZhiWeiListPage extends React.Component {
                         {this.renderSelect(Type_Dict.industry, 'industry')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.post, 'post')}
+                        {this.renderSelect(Type_Dict.post_name, 'post_name')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.salary_area, 'salary_area')}
+                        {this.renderSelect(Type_Dict.salary_type, 'salary_type')}
                     </View>
                 </View>
                 <LineView />

@@ -7,9 +7,10 @@ import * as types from '../actions/ActionTypes';
 var dataSource = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const initialState = {
     loading: false,
+    loadList: false,
     listData: dataSource.cloneWithRows([]),//数据源
     errMsg: undefined,
-    typeChange:false,
+    typeChange: false,
     addr_area: undefined,
     industry: undefined,
     post_name: undefined,
@@ -23,32 +24,36 @@ export default function ZhiWeiList(state = initialState, action) {
                 logining: true,
                 errMsg: undefined,
                 data: undefined,
-                typeChange:false,
+                typeChange: false,
+                loadList: false,
             });
-            case types.ERROR_zhiweilist_ACTION:
+        case types.ERROR_zhiweilist_ACTION:
             return Object.assign({}, state, {
-                logining: true,
+                loadList: true,
+
+                logining: false,
                 errMsg: action.errMsg,
-                data: undefined,
-                typeChange:false,
+                listData: dataSource.cloneWithRows([]),
+                typeChange: false,
             });
         case types.SUCCESS_zhiweilist_ACTION:
             return Object.assign({}, state, {
+                loadList: true,
                 logining: false,
-                typeChange:false,
-                listData:dataSource.cloneWithRows(action.result ? action.result : []),
+                typeChange: false,
+                listData: dataSource.cloneWithRows(action.result ? action.result : []),
                 errMsg: action.errMsg,
             });
         case types.Update_zhiweilist_ACTION:
             return Object.assign({}, state, {
                 logining: false,
-                typeChange:true,
+                typeChange: true,
                 data: undefined,
                 errMsg: undefined,
-                addr_area: action.addr_area ? action.addr_area : state.addr_area,
-                industry: action.industry  ? action.industry : state.industry,
-                post_name: action.post_name  ? action.post_name : state.post_name,
-                salary_type: action.salary_type  ? action.salary_type : state.salary_type,
+                addr_area: action.addr_area,
+                industry: action.industry,
+                post_name: action.post_name ,
+                salary_type: action.salary_type,
             });
         default:
             return state;

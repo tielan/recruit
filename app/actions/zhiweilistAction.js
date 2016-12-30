@@ -53,28 +53,36 @@ export function getCompanyByParamAction(work_type, addr_area, industry, post_nam
 
 export function updateParam(type, value) {
     if (type === 'addr_area') {
-        return dispatch =>{ dispatch({
-            type: types.Update_zhiweilist_ACTION,
-            addr_area: value,
-        });}
-    }
-    if (type === 'industry') {
-        return dispatch =>{dispatch({
-            type: types.Update_zhiweilist_ACTION,
-            industry: value,
-        });}
-    }
-    if (type === 'post_name') {
-       return dispatch =>{ dispatch({
-            type: types.Update_zhiweilist_ACTION,
-            post_name: value,
-        });}
-    }
-    if (type === 'salary_type') {
-       return dispatch =>{ dispatch({
-            type: types.Update_zhiweilist_ACTION,
-            salary_type: value,
-        });}
-    }
+        return dispatch => {
+            dispatch({
+                type: types.Update_zhiweilist_ACTION,
+                addr_area: value,
+            });
+        }
+    } else
+        if (type === 'industry') {
+            return dispatch => {
+                dispatch({
+                    type: types.Update_zhiweilist_ACTION,
+                    industry: value,
+                });
+            }
+        } else
+            if (type === 'post_name') {
+                return dispatch => {
+                    dispatch({
+                        type: types.Update_zhiweilist_ACTION,
+                        post_name: value,
+                    });
+                }
+            } else
+                if (type === 'salary_type') {
+                    return dispatch => {
+                        dispatch({
+                            type: types.Update_zhiweilist_ACTION,
+                            salary_type: value,
+                        });
+                    }
+                }
 
 }

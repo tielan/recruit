@@ -22,27 +22,21 @@ class Splash extends React.Component {
     const { navigator } = this.props;
 
     this.timer = setTimeout(() => {
-      InteractionManager.runAfterInteractions(() => {
-        navigator.resetTo({
-          component: MainContainer,
-          name: 'MainContainer'
+      if (LoginInfo.getUserInfo() && LoginInfo.getUserInfo().personal_id) {
+        InteractionManager.runAfterInteractions(() => {
+          navigator.resetTo({
+            component: MainContainer,
+            name: 'MainContainer'
+          });
         });
-      });
-      // if (LoginInfo.getUserInfo() && LoginInfo.getUserInfo().personal_id) {
-      //   InteractionManager.runAfterInteractions(() => {
-      //     navigator.resetTo({
-      //       component: MainContainer,
-      //       name: 'MainContainer'
-      //     });
-      //   });
-      // } else {
-      //   InteractionManager.runAfterInteractions(() => {
-      //     navigator.resetTo({
-      //       component: LoginContainer,
-      //       name: 'LoginContainer'
-      //     });
-      //   });
-      // }
+      } else {
+        InteractionManager.runAfterInteractions(() => {
+          navigator.resetTo({
+            component: LoginContainer,
+            name: 'LoginContainer'
+          });
+        });
+      }
     }, 2000);
   }
 

@@ -4,7 +4,7 @@ import personalLogin from './LoginReducer';
 import personalRegist from './RegisterReducer';
 import homeCompanyList from './HomeCompanyListReducer';
 import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
-import zhiweilist from './zhiweilist';
+import zhiweilist from './ZhiWeiList';
 import zhiWeiShow from './zhiWeiShow';
 import gongShiShow from './gongShiShow';
 import resumeMessageList from './resumeMessageList'

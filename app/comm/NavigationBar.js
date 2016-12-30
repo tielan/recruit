@@ -78,9 +78,8 @@ class NavigationBar extends React.Component {
 	}
 
 	_onRightButtonPressHandle(event) {
-		const {timeConsuming} = this.props;
 		let onPress = this.props.onRightButtonPress;
-		typeof onPress === 'function' && timeConsuming.canClick && onPress(event);
+		typeof onPress === 'function'  && onPress(event);
 	}
 
 	render() {

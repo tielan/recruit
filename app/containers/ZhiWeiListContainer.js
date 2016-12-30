@@ -23,7 +23,7 @@ import RefreshFooter from '../comm/RefreshFooter';
 import NavigationBar from '../comm/NavigationBar';
 import GridView from '../comm/GridView';
 import * as Type_Dict from '../constants/Type_Dict';
-import { getCompanyByParamAction } from '../actions/zhiweilistAction';
+import { getCompanyByParamAction, updateParam } from '../actions/zhiweilistAction';
 import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
@@ -42,6 +42,18 @@ class ZhiWeiListPage extends React.Component {
         //获取列表
         dispatch(getCompanyByParamAction(route.work_type));
     }
+    componentWillReceiveProps(nextProps) {
+        const { dispatch, route, zhiweilist } = nextProps;
+        if (zhiweilist.typeChange){
+            //根据类型 获取列表
+            dispatch(getCompanyByParamAction(route.work_type,
+                zhiweilist.addr_area,
+                zhiweilist.industry,
+                zhiweilist.post_name,
+                zhiweilist.salary_type));
+        }
+
+    }
 
     renderSelect(typeDict, type) {
         let options = [];
@@ -53,27 +65,18 @@ class ZhiWeiListPage extends React.Component {
             ids.push(item.id);
         });
         const { dispatch, route, zhiweilist } = this.props;
+        let selectedValue = zhiweilist[type] ? zhiweilist[type] : options[0];
         return (
             <Picker
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flex: 1
+                    width: WINDOW_WIDTH / 3,
                 }}
-                itemStyle={{
-                    textAlign: 'right',
-                    color: '#999'
-                }}
-                selectedValue={zhiweilist[type] ? zhiweilist[type] :  options[0]}
+                selectedValue={selectedValue}
                 onValueChange={
                     (values, id) => {
-                        zhiweilist[type] = ids[id];
-                        //根据类型 获取列表
-                        dispatch(getCompanyByParamAction(route.work_type,
-                            zhiweilist.addr_area,
-                            zhiweilist.industry,
-                            zhiweilist.post_name,
-                            zhiweilist.salary_type));
+                        dispatch(updateParam(type, ids[id]));
                     }
                 }>
                 {

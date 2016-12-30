@@ -14,6 +14,7 @@ import { Iconfont, Toast, Spinner, LoginInfo, LineView,Utils } from 'react-nativ
 import { connect } from 'react-redux';
 import NavigationBar from '../../comm/NavigationBar';
 import { resumeMessageListAction } from '../../actions/resumeMessageListAction';
+import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
 
 class ResumeMessageListPage extends React.Component {
     constructor(props) {
@@ -25,8 +26,13 @@ class ResumeMessageListPage extends React.Component {
         const userInfo = LoginInfo.getUserInfo();
         dispatch(resumeMessageListAction(userInfo.personal_id));
     }
-    _rowOnPress(rowData) {
-
+     _rowOnPress(rowData) {
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
+            company_id: rowData.company_id,
+            post_id: rowData.job_id,
+        });
     }
     _renderRowView(rowData, sectionId, index) {
         return (

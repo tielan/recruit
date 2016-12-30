@@ -19,7 +19,9 @@ export const RECEIVE_personalForgetPassWord_ACTION = 'RECEIVE_personalForgetPass
 //3.2.1 编辑个人简历信息
 export const API_editPersoanlResume = 'editPersoanlResume.do'
 export const START_editPersoanlResume_ACTION = 'START_editPersoanlResume_ACTION';  //开始登陆
-export const RECEIVE_editPersoanlResume_ACTION = 'RECEIVE_editPersoanlResume_ACTION'; //收到登陆结果
+export const ERROR_editPersoanl_ACTION = 'ERROR_editPersoanl_ACTION'; //收到登陆结果
+export const SUCCESS_editPersoanl_ACTION = 'SUCCESS_editPersoanl_ACTION'; //收到登陆结果
+
 //3.2.2  修改个人简历信息
 export const API_getPersoanResumeInfoById = 'getPersoanResumeInfoById.do'
 export const START_getPersoanResumeInfoById_ACTION = 'START_getPersoanResumeInfoById_ACTION';  //开始登陆

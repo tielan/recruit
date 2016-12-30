@@ -75,7 +75,8 @@ class ZhiWeiListPage extends React.Component {
                 selectedValue={selectedValue}
                 onValueChange={
                     (values, id) => {
-                        dispatch(updateParam(type, ids[id]));
+                        zhiweilist[type] = ids[id];
+                        dispatch(updateParam(zhiweilist.addr_area, zhiweilist.industry,zhiweilist.post_name,zhiweilist.salary_type));
                     }
                 }>
                 {

@@ -17,7 +17,7 @@ import { connect } from 'react-redux';
 
 import { Iconfont, LineView } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 
 class MyCVPage extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class MyCVPage extends React.Component {
     }
     render() {
         return (<View style={styles.container} >
-            <Toolbar title='编辑页面' navigator={this.props.navigator} />
+            <NavigationBar title='编辑页面' navigator={this.props.navigator} />
             <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
               
             </View >

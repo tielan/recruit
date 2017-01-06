@@ -2,7 +2,7 @@
 import React from 'react';
 import {
   Dimensions,
-  Animated,
+  Image,
   InteractionManager
 } from 'react-native';
 
@@ -10,23 +10,18 @@ import LoginContainer from './containers/login/LoginContainer';
 import MainContainer from './containers/MainContainer';
 
 import { LoginInfo } from 'react-native-go'
-
+const maxHeight = Dimensions.get('window').height;
+const maxWidth = Dimensions.get('window').width;
+const splashImg = require('./imgs/ic_splash.png');
 class Splash extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      bounceValue: new Animated.Value(1)
-    };
   }
 
   componentDidMount() {
     const { navigator } = this.props;
-    // Animated.timing(
-    //   this.state.bounceValue, { toValue: 1.2, duration: 1000 }
-    // ).start();
 
     this.timer = setTimeout(() => {
-
       if (LoginInfo.getUserInfo() && LoginInfo.getUserInfo().personal_id) {
         InteractionManager.runAfterInteractions(() => {
           navigator.resetTo({
@@ -45,19 +40,14 @@ class Splash extends React.Component {
     }, 2000);
   }
 
-  componentWillUnmount() {
-    clearTimeout(this.timer);
-  }
-
   render() {
     return (
-      <Animated.Image
+      <Image
         style={{
-          width: Dimensions.get('window').width,
-          height: Dimensions.get('window').height,
-          //   transform: [{ scale: this.state.bounceValue }] 
+          width: maxWidth,
+          flex: 1,
         }}
-        source={require('./imgs/bj.png')}
+        source={splashImg}
         />
     );
   }

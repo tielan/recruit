@@ -12,7 +12,7 @@ import {
 import { Iconfont, Toast, Spinner, LoginInfo, LineView } from 'react-native-go';
 
 import { connect } from 'react-redux';
-import Toolbar from '../../comm/Toolbar';
+import NavigationBar from '../../comm/NavigationBar';
 import { getPersonSendResumeInfoAction } from '../../actions/GetPersonSendResumeInfoAction';
 import { getCompanyInviteInfoAction } from '../../actions/GetCompanyInviteInfoAction';
 

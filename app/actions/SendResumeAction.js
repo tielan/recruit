@@ -3,16 +3,16 @@ import * as types from './ActionTypes';
 import { FetchManger } from 'react-native-go'
 
 //注册
-export function sendResumeAction(register) {
+export function sendResumeAction(personal_id, company_id, post_id) {
 
-  let param = { user_name: register.user_name, user_password: register.user_password, disability_code: register.disability_code };
+  let param = { personal_id: personal_id, company_id: company_id, post_id: post_id };
   return dispatch => {
     dispatch(startActon());
-    return FetchManger.postUri(types.API_sendResume,param).then((responseData) => {
+    return FetchManger.getUri(types.API_sendResume, param).then((responseData) => {
       dispatch(receiveResult(responseData));
     }).catch((error) => {
-        dispatch(receiveErrorResult(error));
-      })
+      dispatch(receiveErrorResult(error));
+    })
   };
 }
 
@@ -25,11 +25,13 @@ function receiveErrorResult(errMsg) {
   return {
     type: types.RECEIVE_sendResume_ACTION,
     errMsg: errMsg,
+    result:undefined,
   }
 }
 function receiveResult(responseData) {
   return {
     type: types.RECEIVE_sendResume_ACTION,
+    errMsg: undefined,
     result: responseData,
   }
 }

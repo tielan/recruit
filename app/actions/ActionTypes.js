@@ -19,7 +19,9 @@ export const RECEIVE_personalForgetPassWord_ACTION = 'RECEIVE_personalForgetPass
 //3.2.1 编辑个人简历信息
 export const API_editPersoanlResume = 'editPersoanlResume.do'
 export const START_editPersoanlResume_ACTION = 'START_editPersoanlResume_ACTION';  //开始登陆
-export const RECEIVE_editPersoanlResume_ACTION = 'RECEIVE_editPersoanlResume_ACTION'; //收到登陆结果
+export const ERROR_editPersoanl_ACTION = 'ERROR_editPersoanl_ACTION'; //收到登陆结果
+export const SUCCESS_editPersoanl_ACTION = 'SUCCESS_editPersoanl_ACTION'; //收到登陆结果
+
 //3.2.2  修改个人简历信息
 export const API_getPersoanResumeInfoById = 'getPersoanResumeInfoById.do'
 export const START_getPersoanResumeInfoById_ACTION = 'START_getPersoanResumeInfoById_ACTION';  //开始登陆
@@ -36,8 +38,8 @@ export const START_Home_getCompanyByParam_ACTION = 'START_Home_getCompanyByParam
 export const RECEIVE_Home_getCompanyByParam_ACTION = 'RECEIVE_Home_getCompanyByParam_ACTION'; //收到登陆结果
 //3.2.4 获取公司信息
 export const API_getCompanyInfoById = 'getCompanyInfoById.do'
-export const START_getCompanyInfoById_ACTION = 'START_getCompanyInfoById_ACTION';  //开始登陆
-export const RECEIVE_getCompanyInfoById_ACTION = 'RECEIVE_getCompanyInfoById_ACTION'; //收到登陆结果
+export const START_getCompanyInfoById_ACTION = 'START_getCompanyInfoById_ACTION'; 
+export const RECEIVE_getCompanyInfoById_ACTION = 'RECEIVE_getCompanyInfoById_ACTION'; 
 //3.2.5 投递简历
 export const API_sendResume = 'sendResume.do'
 export const START_sendResume_ACTION = 'START_sendResume_ACTION';  //开始登陆
@@ -66,3 +68,37 @@ export const RECEIVE_collectionPost_ACTION = 'RECEIVE_collectionPost_ACTION'; //
 export const API_getCollectionInfo = 'getCollectionInfo.do'
 export const START_getCollectionInfo_ACTION = 'START_getCollectionInfo_ACTION';  //开始登陆
 export const RECEIVE_getCollectionInfo_ACTION = 'RECEIVE_getCollectionInfo_ACTION'; //收到登陆结果
+
+//职位列表
+export const START_zhiweilist_ACTION = 'START_zhiweilist_ACTION';
+export const ERROR_zhiweilist_ACTION = 'ERROR_zhiweilist_ACTION';
+export const SUCCESS_zhiweilist_ACTION = 'SUCCESS_zhiweilist_ACTION';
+export const Update_zhiweilist_ACTION = 'Update_zhiweilist_ACTION';
+
+
+//职位详情
+export const START_zhiWeiShow_ACTION = 'START_zhiWeiShow_ACTION';
+export const ERROR_zhiWeiShow_ACTION = 'ERROR_zhiWeiShow_ACTION';
+export const SUCCESS_zhiWeiShow_ACTION = 'SUCCESS_zhiWeiShow_ACTION';
+//公司详情
+export const START_gongShiShow_ACTION = 'START_gongShiShow_ACTION';
+export const ERROR_gongShiShow_ACTION = 'ERROR_gongShiShow_ACTION';
+export const SUCCESS_gongShiShow_ACTION = 'SUCCESS_gongShiShow_ACTION';
+//简历被查看 消息
+export const START_resumeMessageList_ACTION = 'START_resumeMessageList_ACTION';
+export const SUCCESS_resumeMessageList_ACTION = 'SUCCESS_resumeMessageList_ACTION';
+export const ERROR_resumeMessageList_ACTION = 'ERROR_resumeMessageList_ACTION';
+//公司邀请 消息
+export const START_companyMessageList_ACTION = 'START_companyMessageList_ACTION';
+export const SUCCESS_companyMessageList_ACTION = 'SUCCESS_companyMessageList_ACTION';
+export const ERROR_companyMessageList_ACTION = 'ERROR_companyMessageList_ACTION';
+
+//我的收藏列表
+export const START_MyCollectionList_ACTION = 'START_MyCollectionList_ACTION';
+export const SUCCESS_MyCollectionList_ACTION = 'SUCCESS_MyCollectionList_ACTION';
+export const ERROR_MyCollectionList_ACTION = 'ERROR_MyCollectionList_ACTION';
+
+//我的投递的岗位列表
+export const START_MyResumeList_ACTION = 'START_MyResumeList_ACTION';
+export const SUCCESS_MyResumeList_ACTION = 'SUCCESS_MyResumeList_ACTION';
+export const ERROR_MyResumeList_ACTION = 'ERROR_MyResumeList_ACTION';

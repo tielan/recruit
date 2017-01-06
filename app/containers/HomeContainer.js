@@ -1,5 +1,4 @@
 import React, { Component, } from 'react';
-import { connect } from 'react-redux';
 import {
     StyleSheet,
     TextInput,
@@ -12,12 +11,16 @@ import {
 } from 'react-native';
 import { Iconfont, Toast, Spinner, LoginInfo, LineView } from 'react-native-go';
 import { getHotCompanyByAction } from '../actions/GetCompanyByParamAction';
+import { connect } from 'react-redux';
 
 import RefreshFooter from '../comm/RefreshFooter';
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 import GridView from '../comm/GridView';
 
-import ZhiWeiListContainer from './ZhiWeiListContainer'
+import ZhiWeiListContainer from './ZhiWeiListContainer';
+import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
+
+
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
@@ -66,27 +69,54 @@ class HomePage extends React.Component {
         );
     }
     _rowOnPress(rowData) {
-
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
+            company_id:rowData.company_id,
+            post_id:rowData.post_id,
+        });
     }
 
     _renderRowView(rowData, sectionId, index) {
         return (
             <TouchableHighlight
-                underlayColor='#C8C7CC'
+                underlayColor='#fff'
                 onPress={this._rowOnPress.bind(this, rowData)}
                 key={index}
                 >
-                <View style={styles.row}>
-                    <View style={styles.wenziView}>
-                        <View style={styles.titleView}>
-                            <Text style={styles.title}> {rowData.addr_area}</Text>
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flexDirection: 'column', marginBottom: 10, flex: 1, }} >
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 16, color: '#000' }}> {rowData.post_name}</Text>
                         </View>
-                        <View style={styles.styleVIew}>
-                            <Text style={styles.styletitle}>{rowData.addr_area}</Text>
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 14, color: '#666' }}>{rowData.company_name}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginLeft: 16, alignItems: 'flex-start', justifyContent: 'flex-start', marginTop: 10 }}>
+                            <View style={{ alignSelf: 'flex-start' }}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e679'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.addr_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+                            <View style={{ alignSelf: 'flex-start' ,marginLeft:16}}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e683'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.education_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+
                         </View>
                     </View>
-                    <View style={[styles.right, { width: 60 }]}>
-                        <Text style={[styles.pricetitle, { color: rowData.addr_area === '收费' ? 'red' : 'green' }]}>{rowData.addr_area}</Text>
+                    <View style={{ flexDirection: 'column', alignItems: 'center', width: 60, marginLeft: 8 }}>
+                        <Text style={{ color: '#bbbbbb',marginTop: 10 ,fontSize: 14,}}>{rowData.time}</Text>
+                        <Text style={{ color: 'red',marginTop: 10 ,fontSize: 16,}}>{rowData.salary_area}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -98,7 +128,7 @@ class HomePage extends React.Component {
         const { dispatch, homeCompanyList } = this.props;
         if (homeCompanyList.canLoadMore === true) {
             //获取列表
-            dispatch(getHotCompanyByAction(homeCompanyList.listData._cachedRowCount,10));
+            dispatch(getHotCompanyByAction(homeCompanyList.listData._cachedRowCount, 10));
             homeCompanyList.canLoadMore = false;
         }
     }
@@ -121,7 +151,7 @@ class HomePage extends React.Component {
         } else {
             return (<View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
                 <View style={{ flex: 1 }} />
-                <Text style={styles.bgtext}>暂无数据</Text>
+                <Text >暂无数据</Text>
                 <View style={{ flex: 1 }} />
             </View>);
         }
@@ -131,7 +161,7 @@ class HomePage extends React.Component {
         const { homeCompanyList } = this.props;
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='首页' />
+                <NavigationBar title='首页' leftButtonIcon={-1}/>
                 <View style={{ height: WINDOW_WIDTH / 4 }}>
                     <GridView
                         items={Array.from(homeCompanyList.headTabList)}
@@ -162,50 +192,9 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    row: {
-        flexDirection: 'row',
-        borderColor: '#e5e5e5',
-        borderBottomWidth: 1,
-    },
-    wenziView: {
-        flexDirection: 'column',
-        marginBottom: 10,
-        flex: 1,
-    },
-    titleView: {
-        marginLeft: 15,
-        marginTop: 10,
-    },
     title: {
         fontSize: 16,
         color: '#333',
-    },
-    styleVIew: {
-        flexDirection: 'row',
-        marginTop: 8,
-    },
-    styletitle: {
-        fontSize: 12,
-        color: '#999',
-        marginLeft: 15,
-
-    },
-    right: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        width: 60,
-        marginLeft: 8
-    },
-    pricetitle: {
-        fontSize: 12,
-        textAlign: 'right',
-        flex: 1
-    },
-    jiantouimg: {
-        width: 10,
-        height: 10,
-        marginLeft: 2,
-        marginRight: 10,
     },
     gridItemIcon: {
         alignItems: 'center',

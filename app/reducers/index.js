@@ -4,7 +4,13 @@ import personalLogin from './LoginReducer';
 import personalRegist from './RegisterReducer';
 import homeCompanyList from './HomeCompanyListReducer';
 import getPersonSendResumeInfo from './GetPersonSendResumeInfo';
-
+import zhiweilist from './ZhiWeiList';
+import zhiWeiShow from './zhiWeiShow';
+import gongShiShow from './gongShiShow';
+import resumeMessageList from './resumeMessageList'
+import companyMessageList from './companyMessageList'
+import MyCollectionList from './MyCollectionList'
+import MyResumeList from './MyResumeList'
 
 import collectionPost from './CollectionPost';
 import editPersoanlResume from './EditPersoanlResume';
@@ -33,7 +39,14 @@ const rootReducer = combineReducers({
       getPersonSendResumeInfo,
       getResumeStatus,
       sendResume,
-      homeCompanyList
+      homeCompanyList,
+      zhiweilist,
+      zhiWeiShow,
+      gongShiShow,
+      companyMessageList,
+      resumeMessageList,
+      MyCollectionList,
+      MyResumeList
       
 });
 

@@ -34,14 +34,14 @@ class RegisterPage extends React.Component {
     }
 
     componentWillReceiveProps(nextProps) {
-        const { dispatch, register } = nextProps;
-        if (register.data || register.errMsg) {
+        const { dispatch, personalRegist } = nextProps;
+        if (personalRegist.data || personalRegist.errMsg) {
             setTimeout(() => {
-                if (register.errMsg) {
-                    Alert.alert('', register.errMsg, [{ text: '好' },])
+                if (personalRegist.errMsg) {
+                    Alert.alert('', personalRegist.errMsg, [{ text: '好' },])
                     return;
                 }
-                if (register.data && register.data.success) {
+                if (personalRegist.data && personalRegist.data.success) {
                     InteractionManager.runAfterInteractions(() => {
                         nextProps.navigator.resetTo({
                             name: "MainContainer",
@@ -49,7 +49,7 @@ class RegisterPage extends React.Component {
                         });
                     });
                 } else {
-                    Alert.alert('', (register.data && register.data.msg) ? register.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
+                    Alert.alert('', (personalRegist.data && personalRegist.data.msg) ? personalRegist.data.msg : '网络请求失败，请稍后再试', [{ text: '好' },]);
                     return;
                 }
             }, 200);
@@ -85,9 +85,8 @@ class RegisterPage extends React.Component {
                                 iconSize={24}
                                 />
                         </View>
-                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        <TextInput style={{ height: 48, color: 'white',backgroundColor:'#5e5e5e', flex: 1, paddingLeft: 8 }}
                             placeholder={'请输入手机号'}
-                            backgroundColor={'#5e5e5e'}
                             placeholderTextColor={'#fff'}
                             underlineColorAndroid={'transparent'}
                             autoCapitalize={'none'}
@@ -106,10 +105,9 @@ class RegisterPage extends React.Component {
                                 iconSize={24}
                                 />
                         </View>
-                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        <TextInput style={{ height: 48, color: 'white',backgroundColor:'#5e5e5e', flex: 1, paddingLeft: 8 }}
                             placeholder={'残联证编号'}
                             underlineColorAndroid={'transparent'}
-                            backgroundColor={'#5e5e5e'}
                             placeholderTextColor={'#fff'}
                             onChangeText={(disability_code) => {
                                 personalRegist.disability_code = disability_code;
@@ -125,10 +123,9 @@ class RegisterPage extends React.Component {
                                 iconSize={24}
                                 />
                         </View>
-                        <TextInput style={{ height: 48, color: 'white', flex: 1, paddingLeft: 8 }}
+                        <TextInput style={{ height: 48, color: 'white',backgroundColor:'#5e5e5e' ,flex: 1, paddingLeft: 8 }}
                             placeholder={'请输入密码'}
                             underlineColorAndroid={'transparent'}
-                            backgroundColor={'#5e5e5e'}
                             placeholderTextColor={'#fff'}
                             secureTextEntry={true}
                             onChangeText={(user_password) => {

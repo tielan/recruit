@@ -1,5 +1,4 @@
 import React, { Component, } from 'react';
-import { connect } from 'react-redux';
 import {
     StyleSheet,
     TextInput,
@@ -16,100 +15,126 @@ import {
     TouchableOpacity,
     Modal,
 } from 'react-native';
-import { Iconfont, LineView } from 'react-native-go';
+import { connect } from 'react-redux';
+
+import { Iconfont, LineView, Spinner } from 'react-native-go';
 import ModalDropdown from '../comm/ModalDropdown'
 import RefreshFooter from '../comm/RefreshFooter';
-import Toolbar from '../comm/Toolbar';
+import NavigationBar from '../comm/NavigationBar';
 import GridView from '../comm/GridView';
 import * as Type_Dict from '../constants/Type_Dict';
-import { getCompanyByParamAction } from '../actions/GetCompanyByParamAction';
+import { getCompanyByParamAction, updateParam } from '../actions/zhiweilistAction';
+import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
 
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-let ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 != r2 });
-let canLoadMore;
 
 class ZhiWeiListPage extends React.Component {
     constructor(props) {
         super(props);
-        _data = [];
-
         this.onEndReached = this.onEndReached.bind(this);
         this._renderRowView = this._renderRowView.bind(this);
         this.renderSelect = this.renderSelect.bind(this);
-        canLoadMore = false;
-        this.state = {
-            dataSource: new ListView.DataSource({
-                rowHasChanged: (row1, row2) => row1 !== row2,
-            }),
-            loadMore: false,
-        };
-
     }
     componentDidMount() {
-        const { dispatch, router, getCompanyByParam } = this.props;
+        const { dispatch, route, zhiweilist } = this.props;
         //获取列表
-        dispatch(getCompanyByParamAction(router.work_type,
-            getCompanyByParam.addr_area,
-            getCompanyByParam.industry,
-            getCompanyByParam.post_name,
-            getCompanyByParam.salary_type));
+        dispatch(getCompanyByParamAction(route.work_type));
+    }
+    componentWillReceiveProps(nextProps) {
+        const { dispatch, route, zhiweilist } = nextProps;
+        if (zhiweilist.typeChange){
+            //根据类型 获取列表
+            dispatch(getCompanyByParamAction(route.work_type,
+                zhiweilist.addr_area,
+                zhiweilist.industry,
+                zhiweilist.post_name,
+                zhiweilist.salary_type));
+        }
     }
 
-    renderSelect(typeDict,type) {
+    renderSelect(typeDict, type) {
         let options = [];
         typeDict.map((item) => {
             options.push(item.name);
         });
-        let values = [];
+        let ids = [];
         typeDict.map((item) => {
-            values.push(item.id);
+            ids.push(item.id);
         });
-        const { dispatch,getCompanyByParam } = this.props;
+        const { dispatch, route, zhiweilist } = this.props;
+        let selectedValue = zhiweilist[type] ? options[zhiweilist[type]] : options[0];
         return (
-            <ModalDropdown
+            <Picker
                 style={{
                     alignItems: 'center',
                     justifyContent: 'center',
-                    flex: 1
+                    flex:1
                 }}
-                options={options}
-                defaultValue={options[0]}
-                onSelect={(id, values) => {
-                    getCompanyByParam[type] = values[id];
-                    //根据类型 获取列表
-                    dispatch(getCompanyByParamAction(router.work_type,
-                        getCompanyByParam.addr_area,
-                        getCompanyByParam.industry,
-                        getCompanyByParam.post_name,
-                        getCompanyByParam.salary_type));
-                    canLoadMore = false;
-                    onEndReach = false;
-                } }>
-            </ModalDropdown>
+                selectedValue={selectedValue}
+                onValueChange={
+                    (values, id) => {
+                        zhiweilist[type] = ids[id];
+                        dispatch(updateParam(zhiweilist.addr_area, zhiweilist.industry,zhiweilist.post_name,zhiweilist.salary_type));
+                    }
+                }>
+                {
+                    options.map((optionValue) => <Picker.Item label={optionValue} value={optionValue} key={optionValue} />)
+                }
+            </Picker>
+
         )
+    }
+    _rowOnPress(rowData) {
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
+            company_id: rowData.company_id,
+            post_id: rowData.post_id,
+        });
     }
 
     _renderRowView(rowData, sectionId, index) {
-        if (!rowData) {
-            return <View />;
-        }
         return (
             <TouchableHighlight
-                underlayColor='#c8c7cc'
-                onPress={this._pressRow.bind(this, rowData)}
-                key={rowData.url}>
-                <View style={styles.row}>
-                    <View style={styles.column}>
-                        <View style={{ flexDirection: 'row', flex: 1, marginTop: 8, marginBottom: 10 }}>
-                            <Text style={styles.datetext}>{rowData.order_day}</Text>
-                            <Text style={styles.timetext}>{rowData.datetime}</Text>
+                underlayColor='#fff'
+                onPress={this._rowOnPress.bind(this, rowData)}
+                key={index}
+                >
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
+                    <View style={{ flexDirection: 'column', marginBottom: 10, flex: 1, }} >
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 16, color: '#000' }}> {rowData.post_name}</Text>
                         </View>
-                        <View style={{ flexDirection: 'row', flex: 1, marginBottom: 8, alignItems: 'center' }}>
-                            <Text style={styles.persontext}>{rowData.userrealname}</Text>
-                            <Text style={styles.sitetext}>{rowData.org_name}</Text>
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 14, color: '#666' }}>{rowData.company_name}</Text>
                         </View>
+                        <View style={{ flexDirection: 'row', marginLeft: 16, alignItems: 'flex-start', justifyContent: 'flex-start', marginTop: 10 }}>
+                            <View style={{ alignSelf: 'flex-start' }}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e679'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.addr_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+                            <View style={{ alignSelf: 'flex-start', marginLeft: 16 }}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e683'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.education_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'column', alignItems: 'center', width: 60, marginLeft: 8 }}>
+                        <Text style={{ color: '#bbbbbb', marginTop: 10, fontSize: 14, }}>{rowData.time}</Text>
+                        <Text style={{ color: 'red', marginTop: 10, fontSize: 16, }}>{rowData.salary_area}</Text>
                     </View>
                 </View>
             </TouchableHighlight>
@@ -118,46 +143,40 @@ class ZhiWeiListPage extends React.Component {
     }
     //加载更多
     onEndReached() {
-        if (canLoadMore === true) {
-            this.setState({
-                loadMore: true,
-            });
-            canLoadMore = false;
-            this._requestData(true);
-        }
+
     }
     render() {
-        const { getCompanyByParam } = this.state;
+        const { zhiweilist } = this.props;
         return (
-            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee' }}>
-                <Toolbar title='职位列表' navigator={this.props.navigator} />
+            <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee', }}>
+                <NavigationBar title='职位列表' navigator={this.props.navigator} />
 
                 <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.addr_area,'addr_area')}
+                        {this.renderSelect(Type_Dict.addr_area, 'addr_area')}
 
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.industry,'industry')}
+                        {this.renderSelect(Type_Dict.industry, 'industry')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.post,'post')}
+                        {this.renderSelect(Type_Dict.post_name, 'post_name')}
                     </View>
                     <View style={styles.pickerContainer}>
-                        {this.renderSelect(Type_Dict.salary_area,'salary_area')}
+                        {this.renderSelect(Type_Dict.salary_type, 'salary_type')}
                     </View>
                 </View>
                 <LineView />
                 <View style={{ flex: 1 }}>
                     {
-                        (getCompanyByParam.data.length != 0) ?
+                        (zhiweilist.listData._cachedRowCount > 0) ?
                             <ListView
                                 enableEmptySections={true}
-                                dataSource={this.state.dataSource.cloneWithRows(getCompanyByParam.data)}
-                                renderRow={this.renderRowView}
-                                onEndReached={this.onEndReached.bind(this)}
+                                dataSource={zhiweilist.listData}
+                                renderRow={this._renderRowView}
+                                onEndReached={this.onEndReached}
                                 onEndReachedThreshold={38}
-                                renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={this.state.loadMore} /></View>}
+                                renderFooter={() => <View style={{ width: WINDOW_WIDTH, height: 44 }}><RefreshFooter loading={zhiweilist.loadMore} /></View>}
                                 />
                             :
                             <View style={{ alignItems: 'center', flex: 1, backgroundColor: '#fff' }}>
@@ -167,7 +186,7 @@ class ZhiWeiListPage extends React.Component {
                             </View>
                     }
                     <View>
-                        <Spinner visible={homeCompanyList.loading} />
+                        <Spinner visible={zhiweilist.loading} />
                     </View>
                 </View>
             </View>
@@ -228,8 +247,6 @@ const styles = StyleSheet.create({
     pickerContainer: {
         flex: 1,
         height: 35,
-        elevation: 2,
-        borderRadius: 2,
         backgroundColor: 'white',
         borderColor: 'lightgrey',
         justifyContent: 'center',
@@ -255,6 +272,40 @@ const styles = StyleSheet.create({
         width: WINDOW_WIDTH / 4,
         height: WINDOW_WIDTH / 4,
     },
+    row: {
+        flexDirection: 'row',
+        borderColor: '#e5e5e5',
+        borderBottomWidth: 1,
+    },
+    wenziView: {
+        flexDirection: 'column',
+        marginBottom: 10,
+        flex: 1,
+    },
+    titleView: {
+        marginLeft: 15,
+        marginTop: 10,
+    },
+    title: {
+        fontSize: 16,
+        color: '#333',
+    },
+    styleVIew: {
+        flexDirection: 'row',
+        marginTop: 8,
+    },
+    styletitle: {
+        fontSize: 12,
+        color: '#999',
+        marginLeft: 15,
+
+    },
+    right: {
+        flexDirection: 'row',
+        alignItems: 'center',
+        width: 60,
+        marginLeft: 8
+    },
 });
 
 class ZhiWeiListContainer extends Component {
@@ -267,9 +318,9 @@ class ZhiWeiListContainer extends Component {
 }
 
 function mapStateToProps(state) {
-    const { getCompanyByParam } = state;
+    const { zhiweilist } = state;
     return {
-        getCompanyByParam,
+        zhiweilist,
     }
 }
 

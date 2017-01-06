@@ -11,10 +11,11 @@ import {
     TouchableWithoutFeedback,
     Dimensions,
     ImageButton,
-    ScrollView
+    ScrollView,
+    BackAndroid
 } from 'react-native';
 import { connect } from 'react-redux';
-import { Iconfont, LineView } from 'react-native-go';
+import { Iconfont, LineView, LoginInfo } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
 import NavigationBar from '../../comm/NavigationBar';
 import ForgetPassWordContainer from '../login/ForgetPassWordContainer'
@@ -25,6 +26,7 @@ class SettingPage extends React.Component {
         super(props);
         this.onForgetPwd = this.onForgetPwd.bind(this);
         this.onMessageSetting = this.onMessageSetting.bind(this);
+        this.onLoginOut = this.onLoginOut.bind(this);
     }
     onForgetPwd() {
         this.props.navigator.push({
@@ -33,11 +35,12 @@ class SettingPage extends React.Component {
         });
     }
 
-    onMessageSetting(){
-        this.props.navigator.push({
-            name: "ZhiWeiDetailContainer",
-            component: ZhiWeiDetailContainer,
-        });
+    onMessageSetting() {
+
+    }
+    onLoginOut() {
+        LoginInfo.loginOut();
+        BackAndroid.exitApp(0);
     }
     render() {
         return (<View style={styles.container} >
@@ -86,7 +89,7 @@ class SettingPage extends React.Component {
 
 
                 <View style={{ marginTop: 10, marginLeft: 16, marginRight: 16, elevation: 4, backgroundColor: '#42befe' }}>
-                    <TouchableHighlight onPress={this.onLogin}
+                    <TouchableHighlight onPress={this.onLoginOut}
                         underlayColor={'#999'}
                         style={{ height: 44, alignItems: 'center', justifyContent: 'center' }}>
                         <Text style={{ fontSize: 26, color: 'white', }}>退出</Text>

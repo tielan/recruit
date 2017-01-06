@@ -50,3 +50,14 @@ export function getCompanyByParamAction(work_type, addr_area, industry, post_nam
         })
     };
 }
+
+export function updateParam(addr_area, industry,post_name,salary_type) {
+   return  dispatch => { dispatch({
+        type: types.Update_zhiweilist_ACTION,
+        addr_area: addr_area,
+        industry: industry,
+        post_name: post_name,
+        salary_type: salary_type,
+    });
+   };
+}

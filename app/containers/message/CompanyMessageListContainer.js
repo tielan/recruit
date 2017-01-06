@@ -14,6 +14,7 @@ import { Iconfont, Toast, Spinner, LoginInfo, LineView } from 'react-native-go';
 import { connect } from 'react-redux';
 import NavigationBar from '../../comm/NavigationBar';
 import { companyMessageListAction } from '../../actions/companyMessageListAction';
+import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
 
 class CompanyMessageListPage extends React.Component {
     constructor(props) {
@@ -27,7 +28,12 @@ class CompanyMessageListPage extends React.Component {
         dispatch(companyMessageListAction(userInfo.personal_id));
     }
     _rowOnPress(rowData) {
-
+        this.props.navigator.push({
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
+            company_id: rowData.company_id,
+            post_id: rowData.job_id,
+        });
     }
     _renderRowView(rowData, sectionId, index) {
         return (
@@ -39,13 +45,13 @@ class CompanyMessageListPage extends React.Component {
                 <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
                     <View style={{ flexDirection: 'column', marginLeft: 16, marginBottom: 10, flex: 1, }} >
                         <View style={{ marginTop: 10 }}>
-                            <Text style={{ fontSize: 16, color: '#000',alignSelf:'flex-start'}}> {rowData.company_name}</Text>
+                            <Text style={{ fontSize: 16, color: '#000', alignSelf: 'flex-start' }}> {rowData.company_name}</Text>
                         </View>
-                        <View style={{ marginTop: 10,marginLeft:4 }}>
+                        <View style={{ marginTop: 10, marginLeft: 4 }}>
                             <Text style={{ fontSize: 12, color: '#666' }}>{rowData.status}</Text>
                         </View>
                     </View>
-                    <View style={{ alignItems: 'center', width: 80, marginLeft: 8,marginRight:16 }}>
+                    <View style={{ alignItems: 'center', width: 80, marginLeft: 8, marginRight: 16 }}>
                         <Text style={{ color: '#bbbbbb', marginTop: 10, fontSize: 12, }}>{Utils.dateDiff(rowData.check_time)}</Text>
                     </View>
                 </View>

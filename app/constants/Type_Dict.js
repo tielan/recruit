@@ -1,6 +1,6 @@
-export const salary_area = [{
-    id: undefined,
-    name: '薪资范围'
+export const salary_type = [{
+    id: 0,
+    name: '薪资'
 }, {
     id: 1,
     name: '1000以下'
@@ -24,8 +24,8 @@ export const salary_area = [{
     name: '10000以上'
 }];
 export const addr_area = [{
-    id: undefined,
-    name: '全部区域'
+    id: 0,
+    name: '区域'
 }, {
     id: 1,
     name: '长沙'
@@ -69,9 +69,9 @@ export const addr_area = [{
     id: 14,
     name: '张家界'
 }];
-export const post = [{
+export const post_name = [{
     id: undefined,
-    name: '全部岗位'
+    name: '岗位'
 }, {
     id: 1,
     name: '零售类'
@@ -101,8 +101,8 @@ export const post = [{
     name: '综合类职能'
 }];
 export const industry = [{
-    id: undefined,
-    name: '全部行业'
+    id: 0,
+    name: '行业'
 }, {
     id: 1,
     name: '其他行业'

@@ -16,6 +16,34 @@ export function getPersoanResumeInfoByIdAction(personal_id) {
   };
 }
 
+export function editPersoanlResume(param) {
+
+  return dispatch => {
+    dispatch({
+      type: types.START_editPersoanlResume_ACTION,
+    });
+    return FetchManger.postUri(types.API_editPersoanlResume, param).then((responseData) => {
+      if (responseData.result === '1' || responseData.result === 1) {
+        dispatch({
+          type: types.SUCCESS_editPersoanl_ACTION,
+          result: responseData.data,
+        });
+      } else {
+        dispatch({
+          type: types.ERROR_editPersoanl_ACTION,
+          errMsg: responseData.msg,
+        });
+      }
+
+    }).catch((error) => {
+      dispatch({
+        type: types.ERROR_editPersoanl_ACTION,
+        errMsg: '网络出错',
+      });
+    })
+  };
+}
+
 function startActon() {
   return {
     type: types.START_getPersoanResumeInfoById_ACTION,

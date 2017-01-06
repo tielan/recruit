@@ -17,24 +17,34 @@ import {
     DatePickerAndroid
 } from 'react-native';
 
-import { Iconfont, LineView, LoginInfo,Toast } from 'react-native-go';
+import { Iconfont, LineView, LoginInfo, Toast } from 'react-native-go';
 import Spinner from '../../comm/Spinner';
 import NavigationBar from '../../comm/NavigationBar';
 import { connect } from 'react-redux';
 import { getPersoanResumeInfoByIdAction, editPersoanlResume } from '../../actions/GetPersoanResumeInfoByIdAction';
 //1:待业，2:已入职，3:待定
 let items = [
-    { name: '姓名', key: 'personal_name', type: 'text' },
-    { name: '性别', key: 'Sex', type: 'select', values: ['未知', '男', '女'] },
-    { name: '出生日期', key: 'birthday', type: 'date', format: 'yyyy-MM-dd' },
-    { name: '学历', key: 'education', type: 'select', values: ['未知', '小学', '初中', '本科'] },
-    { name: '工作年限', key: 'work_years', type: 'number', },
-    { name: '残联证编号', key: 'disability_code', type: 'number', },
-    { name: '联系电话', key: 'phone', type: 'number', },
-    { name: '求职状态', key: 'job_search_status', type: 'select', values: ['待业', '已入职', '待定'] },
-    { name: '教育经历', key: 'education_experience', type: 'multiline', },
-    { name: '工作经历', key: 'work_experience', type: 'multiline', },
-    { name: '自我介绍', key: 'self_introduction', type: 'multiline', },
+    { name: '姓名', key: 'cn_name', type: 'text' },
+    { name: '性别', key: 'sex', type: 'select', values: [[1, '男'], [2, '女']] },
+    { name: '出生日期', key: 'birthday', type: 'date', format: 'YYYY/MM/DD' },
+    { name: '学历', key: 'xl', type: 'select', values: [[0, '高中/中专'], [1, '大专'], [2, '本科'], [3, '研究生'], [4, '博士']] },
+    { name: '工作年限', key: 'gznf', type: 'number', },
+    { name: '残联证编号', key: 'cardno', type: 'number', },
+    { name: '联系电话', key: 'mobile', type: 'number', },
+    { name: '求职状态', key: 'qzzt', type: 'select', values: [[1, '目前正在找工作'], [2, '观望有好机会会考虑'], [3, '我目前不想换工作']] },
+    { name: '居住地', key: 'jzd', type: 'text', },
+    { name: '电子邮件', key: 'email', type: 'text', },
+    { name: '微信', key: 'weixin', type: 'text', },
+    { name: 'QQ', key: 'qq', type: 'number', },
+    { name: '身份证', key: 'jtdz', type: 'text', },
+    { name: '家庭地址', key: 'gzdd', type: 'text', },
+    { name: '期望薪资(最少)', key: 'qwxz', type: 'number', },
+    { name: '期望薪资(最多)', key: 'qwxz1', type: 'number', },
+    { name: '工作类型', key: 'gzlx', type: 'select', values: [[1, '实习生'], [2, '兼职'], [3, '全职'], [4, '全/兼职']] },
+    { name: '教育经历', key: 'jyjl', type: 'multiline', },
+    { name: '工作经历', key: 'gzjl', type: 'multiline', },
+    { name: '自我介绍', key: 'zwpj', type: 'multiline', },
+    { name: '技能特长', key: 'jntcms', type: 'multiline', },
 ];
 
 let inputValue = {};
@@ -42,6 +52,7 @@ let inputValue = {};
  * 我的简历
  */
 class MyCVPage extends React.Component {
+    
     constructor(props) {
         super(props);
         this.onRenderItems = this.onRenderItems.bind(this);
@@ -60,7 +71,7 @@ class MyCVPage extends React.Component {
                 inputValue = getPersoanResumeInfoById.result.data;
             }
         }
-        if(getPersoanResumeInfoById.update){
+        if (getPersoanResumeInfoById.update) {
             if (getPersoanResumeInfoById.errMsg) {
                 Toast.show(getPersoanResumeInfoById.errMsg);
                 return;
@@ -77,7 +88,7 @@ class MyCVPage extends React.Component {
         </View>);
     }
     onRightButtonPress() {
-                const { dispatch, router, getPersoanResumeInfoById } = this.props;
+        const { dispatch, router, getPersoanResumeInfoById } = this.props;
 
         const userInfo = LoginInfo.getUserInfo();
         inputValue.personal_id = userInfo.personal_id
@@ -129,14 +140,14 @@ class MyCVPage extends React.Component {
                                 color: '#999'
                             }}
                             mode={Picker.MODE_DIALOG}
-                            selectedValue={defaultValue ? defaultValue : item.values[0]}
+                            selectedValue={defaultValue ? defaultValue : item.values[0][1]}
                             onValueChange={
                                 (value) => {
                                     inputValue[item.key] = value;
                                 }
                             }>
                             {
-                                item.values.map((optionValue) => <Picker.Item label={optionValue} value={optionValue} key={optionValue} />)
+                                item.values.map((optionValue) => <Picker.Item label={optionValue[1]} value={optionValue[0]} key={optionValue[0]} />)
                             }
                         </Picker>
                         <View style={{ flex: 1 }} />

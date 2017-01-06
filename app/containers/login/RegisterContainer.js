@@ -37,11 +37,11 @@ class RegisterPage extends React.Component {
         const { dispatch, personalRegist } = nextProps;
         if (personalRegist.data || personalRegist.errMsg) {
             setTimeout(() => {
-                if (personalRegist.errMsg) {
+                if (personalRegist.data.result === 0 && personalRegist.errMsg) {
                     Alert.alert('', personalRegist.errMsg, [{ text: '好' },])
                     return;
                 }
-                if (personalRegist.data && personalRegist.data.success) {
+                if (personalRegist.data && personalRegist.data.result === 1) {
                     InteractionManager.runAfterInteractions(() => {
                         nextProps.navigator.resetTo({
                             name: "MainContainer",

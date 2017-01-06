@@ -12,4 +12,10 @@ public class MainActivity extends ReactActivity {
     protected String getMainComponentName() {
         return "zp01";
     }
+    @Override
+    public void onCreate(android.os.Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        com.tencent.bugly.Bugly.init(getApplicationContext(), "131e7a1f7b", false);
+    }
+
 }

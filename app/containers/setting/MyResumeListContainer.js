@@ -113,9 +113,7 @@ class MyResumeListPage extends React.Component {
                                 <View style={{ flex: 1 }} />
                             </View>
                     }
-                    <View>
-                        <Spinner visible={MyResumeList.loading} />
-                    </View>
+                   
                 </View>
             </View>
         );

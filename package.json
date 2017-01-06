@@ -7,15 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
-<<<<<<< HEAD
-    "react": "~15.4.0-rc.4",
-    "react-native": "0.39.2",
-    "react-native-go": "^1.8.0",
-=======
    "react": "15.4.1",
 		"react-native": "0.39.1",
     "react-native-go": "^1.8.2",
->>>>>>> b575e63a4f470ee2a5ac46933ab565867c624a45
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-redux": "^4.4.6",
     "redux": "^3.6.0",

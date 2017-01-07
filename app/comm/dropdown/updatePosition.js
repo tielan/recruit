@@ -1,17 +1,19 @@
 import React from 'react';
 
 import  {
-  NativeModules
+  UIManager,
+  
 } from 'react-native';
+import ReactNative from 'react-native';
 
-export default  function (ref, debug) {
-  const handle = React.findNodeHandle(ref);
+export  default function (ref, debug) {
+  const handle = ReactNative.findNodeHandle(ref);
   setTimeout(() => {
-    NativeModules.UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
+    UIManager.measure(handle, (x, y, width, height, pageX, pageY) => {
       if (debug) {
         console.log(x, y, width, height, pageX, pageY);
       }
       ref._currentPosition(pageX, pageY);
     });
-  }, 0);
+  }, 1);
 };

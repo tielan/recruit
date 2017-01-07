@@ -69,8 +69,8 @@ class HomePage extends React.Component {
     }
     _rowOnPress(rowData) {
         this.props.navigator.push({
-            name: "ZhiWeiListContainer",
-            component: ZhiWeiListContainer,
+            name: "ZhiWeiDetailContainer",
+            component: ZhiWeiDetailContainer,
             company_id:rowData.company_id,
             post_id:rowData.post_id,
         });
@@ -83,7 +83,7 @@ class HomePage extends React.Component {
                 onPress={this._rowOnPress.bind(this, rowData)}
                 key={index}
                 >
-                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: StyleSheet.hairlineWidth, backgroundColor: '#fff' }}>
                     <View style={{ flexDirection: 'column', marginBottom: 10, flex: 1, }} >
                         <View style={{ marginLeft: 16, marginTop: 10 }}>
                             <Text style={{ fontSize: 16, color: '#000' }}> {rowData.post_name}</Text>
@@ -169,11 +169,11 @@ class HomePage extends React.Component {
                         />
                 </View>
                 <View style={{ height: 8, backgroundColor: '#f2f2f2' }} />
-                <LineView />
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                 <View style={{ height: 32, backgroundColor: '#fff', justifyContent: 'center', }}>
                     <Text style={{ color: '#051b28', marginLeft: 8 }}>热门推荐</Text>
                 </View>
-                <LineView />
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                 <View style={{ flex: 1 }}>
                     {
                         this.renderContent()

@@ -143,7 +143,7 @@ var styles = StyleSheet.create({
     },
     input: {
         borderColor: '#D4D4D4',
-        borderBottomWidth: 1,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#fff',
         padding: 4,
     },
@@ -154,7 +154,7 @@ var styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         borderColor: '#D4D4D4',
-        borderBottomWidth: 1,
+        borderBottomWidth:  StyleSheet.hairlineWidth,
         backgroundColor: '#fff',
         height: 44,
     },

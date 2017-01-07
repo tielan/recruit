@@ -6,12 +6,13 @@ import {
   Component,
   View,
   ScrollView,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   Text
 } from 'react-native';
 
 
 const window = Dimensions.get('window');
+const WINDOW_WIDTH = Dimensions.get('window').width;
 
 
 class Items extends React.Component {
@@ -24,20 +25,23 @@ class Items extends React.Component {
     if (!show) {
       return null;
     }
-    const renderedItems = React.Children.map(items, (item) => {
+    const renderedItems = React.Children.map(items, (item, index) => {
       return (
-        <TouchableWithoutFeedback onPress={() => onPress(item.props.children, item.props.value)}>
-          <View>
+        <TouchableOpacity onPress={() => onPress(item.props.children, item.props.value)} key={index}>
+          <View style={{
+            borderBottomColor: '#bbb',
+            borderBottomWidth: StyleSheet.hairlineWidth
+          }}>
             {item}
           </View>
-        </TouchableWithoutFeedback>
+        </TouchableOpacity>
       );
     });
 
     return (
-      <View style={[styles.container, { top: positionY, left: positionX }]}>
+      <View style={[styles.container, { top: positionY+6, left: 0 }]}>
         <ScrollView
-          style={{ width: width - 2, height: height * 3 }}
+          style={{ width: WINDOW_WIDTH, height: height * 6 }}
           automaticallyAdjustContentInsets={false}
           bounces={false}>
           {renderedItems}
@@ -48,13 +52,13 @@ class Items extends React.Component {
 }
 const styles = StyleSheet.create({
   scrollView: {
-    height: 120,
+    height: 160,
     width: 198 //TODO: this needs to be dynamic
   },
   container: {
     position: 'absolute',
     borderColor: '#BDBDC1',
-    borderWidth: 2 / window.scale,
+    borderWidth: StyleSheet.hairlineWidth,
     borderTopColor: 'transparent',
   }
 })

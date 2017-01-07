@@ -55,7 +55,7 @@ class MyResumeListPage extends React.Component {
                 onPress={this._rowOnPress.bind(this, rowData)}
                 key={index}
                 >
-                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: StyleSheet.hairlineWidth, backgroundColor: '#fff' }}>
                     <View style={{ flexDirection: 'column', marginBottom: 10, flex: 1, }} >
                         <View style={{ marginLeft: 16, marginTop: 10 }}>
                             <Text style={{ fontSize: 16, color: '#000' }}> {rowData.post_name}</Text>

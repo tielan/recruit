@@ -7,19 +7,13 @@ import {
   TouchableWithoutFeedback,
   View
 } from 'react-native';
+import { Iconfont, LineView, LoginInfo, Toast } from 'react-native-go';
 
 import Option from './option';
 
 const window = Dimensions.get('window');
 
 const SELECT = 'SELECT';
-
-const styles = StyleSheet.create({
-  container: {
-    borderColor: '#BDBDC1',
-    borderWidth: 2 / window.scale
-  }
-});
 
 class Select extends React.Component {
   constructor(props) {
@@ -60,9 +54,9 @@ class Select extends React.Component {
       return false;
     }
 
-    optionListRef()._show(children, this.pageX, this.pageY, width, height, (item, value=item) => {
+    optionListRef()._show(children, this.pageX, this.pageY, width, height, (item, value) => {
       if (item) {
-        onSelect(value);
+        onSelect(item,value);
         this.setState({
           value: item
         });
@@ -73,17 +67,37 @@ class Select extends React.Component {
   render() {
     const { width, height, children, defaultValue, style, styleOption, styleText } = this.props;
     const dimensions = { width, height };
-
     return (
       <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
-        <View ref={SELECT} style={[styles.container, style, dimensions ]}>
-          <Option style={ styleOption } styleText={ styleText }>{this.state.value}</Option>
+        <View ref={SELECT} style={[styles.container, dimensions, style]}>
+          <View style={{ flex: 1 }} />
+          <Option style={styleOption} styleText={styleText}>{this.state.value}</Option>
+          <View style={{ flex: 1 }} />
+          <View>
+            <Iconfont fontFamily={'OAIndexIcon'}
+              icon='e654' // 图标
+              iconColor='#a3a3a3'
+              iconSize={14}
+              />
+          </View>
         </View>
       </TouchableWithoutFeedback>
     );
   }
 }
-
+const styles = StyleSheet.create({
+  container: {
+    borderRightColor: '#bbb',
+    borderRightWidth: StyleSheet.hairlineWidth,
+    justifyContent: 'center',
+    alignItems: 'center',
+    flexDirection: 'row',
+    paddingLeft:2,
+    paddingRight:2,
+    marginTop:6,
+    marginBottom:6
+  }
+});
 Select.propTypes = {
   width: React.PropTypes.number,
   height: React.PropTypes.number,
@@ -93,7 +107,7 @@ Select.propTypes = {
 
 Select.defaultProps = {
   width: 200,
-  height: 40,
+  height: 28,
   onSelect: () => { }
 };
 

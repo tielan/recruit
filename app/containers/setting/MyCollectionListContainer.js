@@ -47,7 +47,13 @@ class MyCollectionListPage extends React.Component {
             post_id: rowData.post_id,
         });
     }
-
+/*
+"gznxyq":"3",
+"company_id":9076,
+"company_name":"大公寺",
+"salary_area":"6000",
+"post_type":"实习","addr_area":"Y事实上","education_area":"1","gwzz":"AAAA","post_name":"WEB开发","post_id":3,"post_claim":"太阳日"
+*/
     _renderRowView(rowData, sectionId, index) {
         return (
             <TouchableHighlight

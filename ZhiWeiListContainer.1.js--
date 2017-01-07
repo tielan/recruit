@@ -142,7 +142,7 @@ class ZhiWeiListPage extends React.Component {
                         {this.renderSelect(Type_Dict.salary_type, 'salary_type')}
                     </View>
                 </View>
-                <LineView />
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                 <View style={{ flex: 1 }}>
                     {
                         (zhiweilist.listData._cachedRowCount > 0) ?

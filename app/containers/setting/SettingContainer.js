@@ -12,7 +12,7 @@ import {
     Dimensions,
     ImageButton,
     ScrollView,
-    BackAndroid
+    InteractionManager
 } from 'react-native';
 import { connect } from 'react-redux';
 import { Iconfont, LineView, LoginInfo } from 'react-native-go';
@@ -20,6 +20,7 @@ import Spinner from '../../comm/Spinner';
 import NavigationBar from '../../comm/NavigationBar';
 import ForgetPassWordContainer from '../login/ForgetPassWordContainer'
 import ZhiWeiDetailContainer from '../ZhiWeiDetailContainer'
+import LoginContainer from '../login/LoginContainer';
 
 class SettingPage extends React.Component {
     constructor(props) {
@@ -40,7 +41,12 @@ class SettingPage extends React.Component {
     }
     onLoginOut() {
         LoginInfo.loginOut();
-        BackAndroid.exitApp(0);
+        InteractionManager.runAfterInteractions(() => {
+            this.props.navigator.resetTo({
+                component: LoginContainer,
+                name: 'LoginContainer'
+            });
+        });
     }
     render() {
         return (<View style={styles.container} >
@@ -108,7 +114,7 @@ var styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         borderColor: '#D4D4D4',
-        borderBottomWidth: 1,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#fff',
         height: 44,
     },

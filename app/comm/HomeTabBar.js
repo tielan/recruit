@@ -49,7 +49,7 @@ class HomeTabBar extends Component {
     render() {
         return (
             <View style={{height:50}}>
-            <View style={{height:1,backgroundColor:'#d9d9d9'}}/>
+            <View style={{height:StyleSheet.hairlineWidth,backgroundColor:'#d9d9d9'}}/>
             <View style={styles.tabs}>
                 {this.props.tabs.map((tab, i) => this.renderTabOption(tab, i))}
             </View>

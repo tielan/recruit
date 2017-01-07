@@ -19,7 +19,7 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    FetchManger.initConfig({baseUrl:'http://222.240.214.122:18000/mobile_interfaces/mobile_info/',expiry:5*60000});
+    FetchManger.initConfig({baseUrl:'http://222.240.214.122:18000/mobile_interfaces/mobile_info/',expiry:10});
     this.renderScene = this.renderScene.bind(this);
      BackAndroid.addEventListener('hardwareBackPress', this.goBack);
      LoginInfo.loadUserInfo();

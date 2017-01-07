@@ -111,12 +111,12 @@ class ZhiWeiShowPage extends Component {
 						</View>
 					</View>
 				</View>
-				<LineView />
+				<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 				<View style={{ height: 20, backgroundColor: '#f2f2f2' }} />
-				<LineView />
+				<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 				<View style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, flexDirection: 'column', flex: 1 }}>
 					<Text style={{ fontSize: 16, color: '#000', height: 38 }}>职位详情</Text>
-					<View style={{ height: 1, backgroundColor: '#d9d9d9' }} />
+					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 					<Text style={{ fontSize: 16, color: '#999', marginTop: 8 }}> {data.post_introduction}</Text>
 				</View>
 				<View style={{ flexDirection: 'row', borderTopColor: '#d9d9d9', borderTopWidth: StyleSheet.hairlineWith, height: 56, margin: 8 }}>

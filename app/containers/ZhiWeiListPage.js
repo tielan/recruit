@@ -32,40 +32,30 @@ import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
+let Type = {};
+
 export default class ZhiWeiListPage extends React.Component {
 
     constructor(props) {
         super(props);
         this.onEndReached = this.onEndReached.bind(this);
         this._renderRowView = this._renderRowView.bind(this);
+        Type = {};
     }
     componentDidMount() {
         const { dispatch, route, zhiweilist } = this.props;
         //获取列表
         dispatch(getCompanyByParamAction(route.work_type));
-      
+
         selectArr.map((item) => {
             updatePosition(this.refs[item.name]);
         });
         updatePosition(this.refs['OPTIONLIST']);
-        
+
     }
     _getOptionList() {
         return this.refs['OPTIONLIST'];
     }
-
-    componentWillReceiveProps(nextProps) {
-        const { dispatch, route, zhiweilist } = nextProps;
-        if (zhiweilist.typeChange) {
-            //根据类型 获取列表
-            dispatch(getCompanyByParamAction(route.work_type,
-                zhiweilist.addr_area,
-                zhiweilist.industry,
-                zhiweilist.post_name,
-                zhiweilist.salary_type));
-        }
-    }
-
     _rowOnPress(rowData) {
         this.props.navigator.push({
             name: "ZhiWeiDetailContainer",
@@ -76,25 +66,50 @@ export default class ZhiWeiListPage extends React.Component {
     }
 
     _renderRowView(rowData, sectionId, index) {
-        return (<TouchableOpacity onPress={this.onRightItemPress.bind(this, item, defaultValue)} key={i}>
-            <View style={{ height: 44 }}>
-                <View style={styles.row}>
-                    <View style={styles.text}>
-                        <View style={{ flex: 1 }} />
-                        <Text style={styles.titles}>{rowData.name}</Text>
-                        <View style={{ flex: 1 }} />
-                    </View>
 
-                    <View style={styles.right} >
-                        <Iconfont fontFamily={'OAIndexIcon'}
-                            icon='e657' // 图标
-                            iconColor='#a3a3a3'
-                            iconSize={20}
-                            />
+        return (
+            <TouchableHighlight
+                underlayColor='#fff'
+                onPress={this._rowOnPress.bind(this, rowData)}
+                key={index}
+                >
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: StyleSheet.hairlineWidth, backgroundColor: '#fff' }}>
+                    <View style={{ flexDirection: 'column', marginBottom: 10, flex: 1, }} >
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 16, color: '#000' }}> {rowData.post_name}</Text>
+                        </View>
+                        <View style={{ marginLeft: 16, marginTop: 10 }}>
+                            <Text style={{ fontSize: 14, color: '#666' }}>{rowData.company_name}</Text>
+                        </View>
+                        <View style={{ flexDirection: 'row', marginLeft: 16, alignItems: 'flex-start', justifyContent: 'flex-start', marginTop: 10 }}>
+                            <View style={{ alignSelf: 'flex-start' }}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e679'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.addr_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+                            <View style={{ alignSelf: 'flex-start', marginLeft: 16 }}>
+                                <Iconfont fontFamily={'OAIndexIcon'}
+                                    icon={'e683'} // 图标
+                                    iconColor='#bbb'
+                                    labelColor='#bbb'
+                                    label={rowData.education_area}
+                                    iconSize={14}
+                                    />
+                            </View>
+
+                        </View>
+                    </View>
+                    <View style={{ flexDirection: 'column', alignItems: 'center', width: 60, marginLeft: 8 }}>
+                        <Text style={{ color: '#bbbbbb', marginTop: 10, fontSize: 14, }}>{rowData.time}</Text>
+                        <Text style={{ color: 'red', marginTop: 10, fontSize: 16, }}>{rowData.salary_area}</Text>
                     </View>
                 </View>
-            </View>
-        </TouchableOpacity>);
+            </TouchableHighlight>
+        );
 
     }
     //加载更多
@@ -103,29 +118,47 @@ export default class ZhiWeiListPage extends React.Component {
     }
 
     render() {
-        const { zhiweilist } = this.props;
+        const { dispatch, route, zhiweilist } = this.props;
+
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee', }}>
                 <NavigationBar title='职位列表' navigator={this.props.navigator} />
                 <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
-                {
-                    selectArr.map((item) => <Select
+                    {
+                        selectArr.map((item) => <Select
                             width={WINDOW_WIDTH / 4}
                             ref={item.name}
                             key={item.name}
                             optionListRef={this._getOptionList.bind(this)}
                             defaultValue={item.value[0].name}
-                            onSelect={(value) => {
-
+                            onSelect={(_item, _value) => {
+                                Type[item.name] = _value ? _value : undefined;
+                                dispatch(getCompanyByParamAction(route.work_type,
+                                    Type.addr_area,
+                                    Type.industry,
+                                    Type.post_name,
+                                    Type.salary_type));
                             } }>
                             {
-                                item.value.map((oItem) => <Option key={oItem.id}>{oItem.name}</Option>)
+                                item.value.map((oItem) => <Option
+                                    key={oItem.id}
+                                    value={oItem.id}
+                                    styleText={{
+                                        backgroundColor: '#fff',
+                                        color: '#666',
+                                        marginLeft: 16
+                                    }}
+                                    style={{
+                                        height: 32,
+                                        justifyContent: 'center',
+                                        alignItems: 'flex-start',
+                                    }}>{oItem.name}</Option>)
                             }
                         </Select>)
-                    
-                }
+
+                    }
                 </View>
-                <LineView />
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                 <View style={{ flex: 1 }}>
                     {
                         (zhiweilist.listData._cachedRowCount > 0) ?
@@ -235,7 +268,7 @@ const styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         borderColor: '#e5e5e5',
-        borderBottomWidth: 1,
+        borderBottomWidth: StyleSheet.hairlineWidth,
     },
     wenziView: {
         flexDirection: 'column',

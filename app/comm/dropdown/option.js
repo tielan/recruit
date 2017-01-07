@@ -19,14 +19,18 @@ class Option extends React.Component {
 
     return (
       <View style={[styles.container, style]}>
-        <Text style={styleText}>{this.props.children}</Text>
+        <Text style={[styles.styleText, styleText]} numberOfLines={1}>{this.props.children}</Text>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
-    padding: 10
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  styleText:{
+      marginLeft:4,
   }
 });
 Option.propTypes = {

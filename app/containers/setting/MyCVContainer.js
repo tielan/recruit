@@ -52,6 +52,9 @@ let items = [
 
 /**
  * 我的简历
+ * "birthday":"1994/10/16","sex":"2","cn_name":"谢曼林","cardno":"43022319620403655122","personal_id":"9106"
+ * 
+ * 
  */
 class MyCVPage extends React.Component {
 
@@ -62,8 +65,12 @@ class MyCVPage extends React.Component {
         const userInfo = LoginInfo.getUserInfo();
         this.state = {
             inputValue: {
-                resume_id:0,
-                User_id:userInfo.personal_id
+                resume_id: 0,
+                birthday: userInfo.birthday,
+                sex: userInfo.sex,
+                cn_name: userInfo.cn_name,
+                cardno: userInfo.cardno,
+                user_id: userInfo.personal_id
             }
         }
     }
@@ -219,7 +226,7 @@ class MyCVPage extends React.Component {
                             <Text style={styles.titles}>{item.name}</Text>
                             <View style={{ flex: 1 }} />
                         </View>
-                         <View style={{ flex: 1 }} />
+                        <View style={{ flex: 1 }} />
                         <View style={styles.rightTextView}>
                             <DatePicker
                                 style={{ flex: 1 }}
@@ -238,7 +245,7 @@ class MyCVPage extends React.Component {
                                         textAlign: 'right',
                                         color: '#999',
                                     },
-                                    placeholderText:{
+                                    placeholderText: {
                                         textAlign: 'right',
                                         color: '#999',
                                     }
@@ -322,7 +329,7 @@ var styles = StyleSheet.create({
     row: {
         flexDirection: 'row',
         borderColor: '#D4D4D4',
-        borderBottomWidth: 1,
+        borderBottomWidth: StyleSheet.hairlineWidth,
         backgroundColor: '#fff',
         height: 44,
     },

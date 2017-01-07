@@ -33,12 +33,12 @@ class GongShiShowPage extends Component {
 						<Text style={{ color: '#999', fontSize: 14, flex: 1 }}>{data.address}</Text>
 					</View>
 				</View>
-				<LineView />
+				<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 				<View style={{ height: 20, backgroundColor: '#f2f2f2' }} />
-				<LineView />
+				<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 				<View style={{ paddingTop: 16, paddingLeft: 16, paddingRight: 16, flexDirection: 'column', flex: 1 }}>
 					<Text style={{ fontSize: 16, color: '#000', height: 38 }}>公司介绍</Text>
-					<View style={{ height: 1, backgroundColor: '#d9d9d9' }} />
+					<View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
 					<Text style={{ fontSize: 16, color: '#999', marginTop: 8 }}> {data.company_introduction}</Text>
 				</View>
 

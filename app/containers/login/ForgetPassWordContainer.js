@@ -48,7 +48,7 @@ class ForgetPassWordPage extends React.Component {
             <View style={{ flex: 1, backgroundColor: '#F2F2F2' }}>
 
                 <View style={{ height: 40, marginTop: 20 }}>
-                    <LineView />
+                    <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                     <TextInput style={{ height: 40, paddingLeft: 8, backgroundColor: '#fff' }}
                         placeholder={'请输入手机号码'}
                         placeholderTextColor={'#cbcbcb'}
@@ -60,9 +60,8 @@ class ForgetPassWordPage extends React.Component {
                         } }
                         />
                 </View>
-
-                <View style={{ height: 40, marginTop: 1 }}>
-                    <LineView />
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
+                <View style={{ height: 40 }}>
                     <TextInput style={{ height: 40, paddingLeft: 8, backgroundColor: '#fff' }}
                         placeholder={'请输入残联证编号'}
                         placeholderTextColor={'#cbcbcb'}
@@ -74,8 +73,9 @@ class ForgetPassWordPage extends React.Component {
                         } }
                         />
                 </View>
-                <LineView />
-                <View style={{ height: 40, marginTop: 20 }}>
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
+                <View style={{ marginTop: 20, height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
+                <View style={{ height: 40, }}>
                     <TextInput style={{ height: 40, paddingLeft: 8, backgroundColor: '#fff' }}
                         placeholder={'请输入新密码'}
                         placeholderTextColor={'#cbcbcb'}
@@ -88,7 +88,7 @@ class ForgetPassWordPage extends React.Component {
                         } }
                         />
                 </View>
-
+                <View style={{ height: StyleSheet.hairlineWidth, backgroundColor: '#d9d9d9' }} />
                 <View style={{ flexDirection: 'row', height: 48, backgroundColor: 'transparent', alignItems: 'center', justifyContent: 'center' }}>
                     <Text style={{ fontSize: 14, color: '#666' }}>密码为6-20位数字、字母组合，不含下划线</Text>
                 </View>

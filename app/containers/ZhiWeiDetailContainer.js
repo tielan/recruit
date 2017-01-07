@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
 		width: 90,
 		height: 30,
 		borderColor: '#fff',
-		borderWidth: 1,
+		borderWidth: StyleSheet.hairlineWidth,
 		borderTopLeftRadius: 10,
 		borderBottomLeftRadius: 10,
 
@@ -124,7 +124,7 @@ const styles = StyleSheet.create({
 		width: 90,
 		height: 30,
 		borderColor: '#fff',
-		borderWidth: 1,
+		borderWidth: StyleSheet.hairlineWidth,
 		borderTopRightRadius: 10,
 		borderBottomRightRadius: 10,
 	},

@@ -42,7 +42,7 @@ class CompanyMessageListPage extends React.Component {
                 onPress={this._rowOnPress.bind(this, rowData)}
                 key={index}
                 >
-                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: 1, backgroundColor: '#fff' }}>
+                <View style={{ flexDirection: 'row', borderColor: '#e5e5e5', borderBottomWidth: StyleSheet.hairlineWidth, backgroundColor: '#fff' }}>
                     <View style={{ flexDirection: 'column', marginLeft: 16, marginBottom: 10, flex: 1, }} >
                         <View style={{ marginTop: 10 }}>
                             <Text style={{ fontSize: 16, color: '#000', alignSelf: 'flex-start' }}> {rowData.company_name}</Text>

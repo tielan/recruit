@@ -73,7 +73,7 @@ const addr_area = [{
 }];
 
 const post_name = [{
-    id: undefined,
+    id: 0,
     name: '岗位'
 }, {
     id: 1,

@@ -32,7 +32,7 @@ import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
 const WINDOW_WIDTH = Dimensions.get('window').width;
 const WINDOW_HEIGHT = Dimensions.get('window').height;
 
-class ZhiWeiListPage extends React.Component {
+export default class ZhiWeiListPage extends React.Component {
 
     constructor(props) {
         super(props);
@@ -43,7 +43,7 @@ class ZhiWeiListPage extends React.Component {
         const { dispatch, route, zhiweilist } = this.props;
         //获取列表
         dispatch(getCompanyByParamAction(route.work_type));
-        
+      
         selectArr.map((item) => {
             updatePosition(this.refs[item.name]);
         });
@@ -122,7 +122,7 @@ class ZhiWeiListPage extends React.Component {
                                 item.value.map((oItem) => <Option key={oItem.id}>{oItem.name}</Option>)
                             }
                         </Select>)
-                    }
+                    
                 }
                 </View>
                 <LineView />

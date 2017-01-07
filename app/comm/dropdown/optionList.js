@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Component,
   VieweWithoutFeedback,
+  View,
   Text
 } from 'react-native';
 import Overlay from './overlay';
@@ -13,10 +14,10 @@ import Items from './items';
 
 const window = Dimensions.get('window');
 
-class OptionList extends React.Component {
+export default class OptionList extends React.Component {
+
   constructor(props) {
     super(props);
-
     this.state = {
       show: false,
 
@@ -107,12 +108,3 @@ class OptionList extends React.Component {
   }
 }
 
-OptionList.propTypes = {
-
-};
-
-OptionList.defaultProps = {
-
-};
-
-export default OptionList;

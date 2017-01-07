@@ -1,7 +1,7 @@
 import React from 'react';
 
 import {
-   Dimensions,
+  Dimensions,
   StyleSheet,
   Component,
   TouchableWithoutFeedback,
@@ -18,14 +18,12 @@ class Overlay extends React.Component {
 
   render() {
     const { pageX, pageY, show, onPress } = this.props;
-
     if (!show) {
       return null
     }
-
     return (
       <TouchableWithoutFeedback style={styles.container} onPress={onPress}>
-        <View style={[styles.overlay, { top: -pageY, left: -pageX }]}/>
+        <View style={[styles.overlay, { top: -pageY, left: -pageX }]} />
       </TouchableWithoutFeedback>
     );
   }
@@ -59,4 +57,4 @@ Overlay.defaultProps = {
   show: false
 };
 
-export default  Overlay;
+export default Overlay;

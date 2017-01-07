@@ -21,15 +21,12 @@ class Items extends React.Component {
 
   render() {
     const { items, positionX, positionY, show, onPress, width, height } = this.props;
-
     if (!show) {
       return null;
     }
-
     const renderedItems = React.Children.map(items, (item) => {
-
       return (
-        <TouchableWithoutFeedback onPress={() => onPress(item.props.children, item.props.value) }>
+        <TouchableWithoutFeedback onPress={() => onPress(item.props.children, item.props.value)}>
           <View>
             {item}
           </View>
@@ -75,7 +72,7 @@ Items.defaultProps = {
   positionX: 0,
   positionY: 0,
   show: false,
-  onPress: () => {}
+  onPress: () => { }
 };
 
-export default  Items;
+export default Items;

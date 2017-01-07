@@ -102,3 +102,6 @@ export const ERROR_MyCollectionList_ACTION = 'ERROR_MyCollectionList_ACTION';
 export const START_MyResumeList_ACTION = 'START_MyResumeList_ACTION';
 export const SUCCESS_MyResumeList_ACTION = 'SUCCESS_MyResumeList_ACTION';
 export const ERROR_MyResumeList_ACTION = 'ERROR_MyResumeList_ACTION';
+
+//
+export const START_editItemSave_ACTION = 'START_editItemSave_ACTION';  //编辑保存

@@ -7,8 +7,9 @@
     "test": "jest"
   },
   "dependencies": {
-   "react": "15.4.1",
-		"react-native": "0.39.1",
+    "react": "15.4.1",
+    "react-native": "0.39.1",
+    "react-native-datepicker": "^1.4.3",
     "react-native-go": "^1.8.2",
     "react-native-scrollable-tab-view": "^0.7.0",
     "react-redux": "^4.4.6",
@@ -16,10 +17,10 @@
     "redux-thunk": "^2.1.0"
   },
   "devDependencies": {
-   	"babel-jest": "17.0.2",
-		"babel-preset-react-native": "1.9.0",
-		"jest": "17.0.3",
-		"react-test-renderer": "15.4.1"
+    "babel-jest": "17.0.2",
+    "babel-preset-react-native": "1.9.0",
+    "jest": "17.0.3",
+    "react-test-renderer": "15.4.1"
   },
   "jest": {
     "preset": "react-native"

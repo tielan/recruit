@@ -21,7 +21,6 @@ import ZhiWeiListContainer from './ZhiWeiListContainer';
 import ZhiWeiDetailContainer from './ZhiWeiDetailContainer'
 
 
-
 const WINDOW_WIDTH = Dimensions.get('window').width;
 
 class HomePage extends React.Component {
@@ -70,8 +69,8 @@ class HomePage extends React.Component {
     }
     _rowOnPress(rowData) {
         this.props.navigator.push({
-            name: "ZhiWeiDetailContainer",
-            component: ZhiWeiDetailContainer,
+            name: "ZhiWeiListContainer",
+            component: ZhiWeiListContainer,
             company_id:rowData.company_id,
             post_id:rowData.post_id,
         });

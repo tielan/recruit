@@ -5,7 +5,7 @@ import { FetchManger } from 'react-native-go'
 //注册
 export function getPersoanResumeInfoByIdAction(personal_id) {
 
-  let param = { personal_id: personal_id };
+  let param = { user_id: personal_id };
   return dispatch => {
     dispatch(startActon());
     return FetchManger.getUri(types.API_getPersoanResumeInfoById, param).then((responseData) => {
@@ -59,5 +59,15 @@ function receiveResult(responseData) {
   return {
     type: types.RECEIVE_getPersoanResumeInfoById_ACTION,
     result: responseData,
+  }
+}
+
+export function editItemSave(item, value) {
+  return dispatch => {
+    dispatch({
+      type: types.START_editItemSave_ACTION,
+      item: item,
+      value: value
+    });
   }
 }

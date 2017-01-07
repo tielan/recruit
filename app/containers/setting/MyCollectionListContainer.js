@@ -113,9 +113,7 @@ class MyCollectionListPage extends React.Component {
                                 <View style={{ flex: 1 }} />
                             </View>
                     }
-                    <View>
-                        <Spinner visible={MyCollectionList.loading} />
-                    </View>
+                    
                 </View>
             </View>
         );

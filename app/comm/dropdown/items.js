@@ -22,6 +22,7 @@ class Items extends React.Component {
 
   render() {
     const { items, positionX, positionY, show, onPress, width, height } = this.props;
+    debugger
     if (!show) {
       return null;
     }
@@ -39,7 +40,7 @@ class Items extends React.Component {
     });
 
     return (
-      <View style={[styles.container, { top: positionY+6, left: 0 }]}>
+      <View style={[styles.container, { top: positionY, left: 0 }]}>
         <ScrollView
           style={{ width: WINDOW_WIDTH, height: height * 6 }}
           automaticallyAdjustContentInsets={false}
@@ -60,6 +61,7 @@ const styles = StyleSheet.create({
     borderColor: '#BDBDC1',
     borderWidth: StyleSheet.hairlineWidth,
     borderTopColor: 'transparent',
+    backgroundColor:'#ffffff',
   }
 })
 

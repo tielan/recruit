@@ -3,8 +3,7 @@ import React from 'react';
 import {
   Dimensions,
   StyleSheet,
-  Component,
-  TouchableWithoutFeedback,
+  TouchableOpacity,
   View
 } from 'react-native';
 import { Iconfont, LineView, LoginInfo, Toast } from 'react-native-go';
@@ -53,7 +52,7 @@ class Select extends React.Component {
     if (!children.length) {
       return false;
     }
-
+    debugger;
     optionListRef()._show(children, this.pageX, this.pageY, width, height, (item, value) => {
       if (item) {
         onSelect(item,value);
@@ -68,7 +67,7 @@ class Select extends React.Component {
     const { width, height, children, defaultValue, style, styleOption, styleText } = this.props;
     const dimensions = { width, height };
     return (
-      <TouchableWithoutFeedback onPress={this._onPress.bind(this)}>
+      <TouchableOpacity onPress={this._onPress.bind(this)}>
         <View ref={SELECT} style={[styles.container, dimensions, style]}>
           <View style={{ flex: 1 }} />
           <Option style={styleOption} styleText={styleText}>{this.state.value}</Option>
@@ -81,7 +80,7 @@ class Select extends React.Component {
               />
           </View>
         </View>
-      </TouchableWithoutFeedback>
+      </TouchableOpacity>
     );
   }
 }

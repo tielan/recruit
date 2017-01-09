@@ -41,6 +41,7 @@ export default class OptionList extends React.Component {
   }
 
   _show(items, positionX, positionY, width, height, onSelect) {
+    debugger
     positionX = positionX - this.state.pageX;
     positionY = positionY - this.state.pageY;
     const oldState = this.state;
@@ -89,7 +90,7 @@ export default class OptionList extends React.Component {
     } = this.state;
 
     return (
-      <View>
+      <View style={{backgroundColor:'#ffffff'}}>
         <Overlay
           pageX={pageX}
           pageY={pageY}

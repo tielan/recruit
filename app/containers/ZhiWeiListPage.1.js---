@@ -12,8 +12,12 @@ import {
     TouchableOpacity,
 } from 'react-native';
 
-import ModalDropdown from '../comm/ModalDropdown';
-
+import {
+    Select,
+    Option,
+    OptionList,
+    updatePosition
+} from '../comm/dropdown';
 
 import { connect } from 'react-redux';
 import { Iconfont, LineView, Spinner } from 'react-native-go';
@@ -42,8 +46,16 @@ export default class ZhiWeiListPage extends React.Component {
         const { dispatch, route, zhiweilist } = this.props;
         //获取列表
         dispatch(getCompanyByParamAction(route.work_type));
-    }
 
+        selectArr.map((item) => {
+            updatePosition(this.refs[item.name]);
+        });
+        updatePosition(this.refs['OPTIONLIST']);
+
+    }
+    _getOptionList() {
+        return this.refs['OPTIONLIST'];
+    }
     _rowOnPress(rowData) {
         this.props.navigator.push({
             name: "ZhiWeiDetailContainer",
@@ -111,26 +123,38 @@ export default class ZhiWeiListPage extends React.Component {
         return (
             <View style={{ flex: 1, flexDirection: 'column', backgroundColor: '#ebedee', }}>
                 <NavigationBar title='职位列表' navigator={this.props.navigator} />
-                <View style={{ height: 40,marginLeft:2,marginRight:2, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
+                <View style={{ height: 40, flexDirection: 'row', backgroundColor: '#fff', justifyContent: 'center', }}>
                     {
-                        selectArr.map((item) => <ModalDropdown
+                        selectArr.map((item) => <Select
                             width={WINDOW_WIDTH / 4}
+                            ref={item.name}
                             key={item.name}
-                            options={item.value}
+                            optionListRef={this._getOptionList.bind(this)}
                             defaultValue={item.value[0].name}
-                            style={{
-                                justifyContent: 'center',
-                            }}
-                            onSelect={
-                                (index,_item) => {
-                                Type[item.name] = _item.id ? _item.id : undefined;
+                            onSelect={(_item, _value) => {
+                                Type[item.name] = _value ? _value : undefined;
                                 dispatch(getCompanyByParamAction(route.work_type,
                                     Type.addr_area,
                                     Type.industry,
                                     Type.post_name,
                                     Type.salary_type));
-                            }}
-                            />)
+                            } }>
+                            {
+                                item.value.map((oItem) => <Option
+                                    key={oItem.id}
+                                    value={oItem.id}
+                                    styleText={{
+                                        backgroundColor: '#fff',
+                                        color: '#666',
+                                        marginLeft: 16
+                                    }}
+                                    style={{
+                                        height: 32,
+                                        justifyContent: 'center',
+                                        alignItems: 'flex-start',
+                                    }}>{oItem.name}</Option>)
+                            }
+                        </Select>)
 
                     }
                 </View>
@@ -157,6 +181,7 @@ export default class ZhiWeiListPage extends React.Component {
                         <Spinner visible={zhiweilist.loading} />
                     </View>
                 </View>
+                <OptionList ref="OPTIONLIST" />
             </View>
         );
     }
@@ -274,16 +299,4 @@ const styles = StyleSheet.create({
         width: 60,
         marginLeft: 8
     },
-    selectItem: {
-        borderRightColor: '#bbb',
-        borderRightWidth: StyleSheet.hairlineWidth,
-        justifyContent: 'center',
-        alignItems: 'center',
-        flexDirection: 'row',
-        width: WINDOW_WIDTH / 4,
-        paddingLeft: 2,
-        paddingRight: 2,
-        marginTop: 6,
-        marginBottom: 6
-    }
 });

@@ -1,4 +1,4 @@
-package com.zp01;
+package com.recruit;
 
 import com.facebook.react.ReactActivity;
 
@@ -10,12 +10,6 @@ public class MainActivity extends ReactActivity {
      */
     @Override
     protected String getMainComponentName() {
-        return "zp01";
+        return "recruit";
     }
-    @Override
-    public void onCreate(android.os.Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        com.tencent.bugly.Bugly.init(getApplicationContext(), "131e7a1f7b", false);
-    }
-
 }

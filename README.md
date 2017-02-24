@@ -1,2 +1,0 @@
-# recruit
-the recruit  app

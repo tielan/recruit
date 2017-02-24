@@ -1,3 +1,3 @@
-rootProject.name = 'zp01'
+rootProject.name = 'recruit'
 
 include ':app'

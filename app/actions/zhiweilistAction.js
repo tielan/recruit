@@ -12,7 +12,7 @@ import { FetchManger } from 'react-native-go'
   */
 export function getCompanyByParamAction(work_type, addr_area, industry, post_name, salary_type) {
 
-    let param = { work_type: work_type, hot_recommend: '0' };
+    let param = { work_type: work_type };
     if (addr_area) {
         param.addr_area = addr_area;
     }
